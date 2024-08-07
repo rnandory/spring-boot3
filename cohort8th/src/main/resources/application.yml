@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cohort8th
+
+server:
+  port: 80
+#  address: 
