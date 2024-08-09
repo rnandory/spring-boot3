@@ -1,0 +1,6 @@
+.metadata/
+.vscode/
+javaprj/
+Servers/
+*.png
+*.jpg
