@@ -1,5 +1,6 @@
 package com.newlecture.web.cohort8th.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class DefaultService implements NoticeService{
     private NoticeRepository repository;
 
     @Override
-    public List<Notice> getList() {
+    public List<Notice> getList() throws SQLException, ClassNotFoundException {
                 
         List<Notice> list = repository.findAll();
 

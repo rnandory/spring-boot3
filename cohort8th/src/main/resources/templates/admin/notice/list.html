@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{inc/layout}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>notice</h1>
+    <main layout:fragment="main">
+        <section>
+            <h1>notice</h1>
+
+            <section th:each="n : ${notices}">
+                <h1 th:text="${n.title}">JSP교육이 있습니다.</h1>
+                <div>2024-10-20</div>
+            </section>
+
+<!--/*            <section th:each="notice : ${notices}">-->
+<!--                <h1>JSP교육이 있습니다.</h1>-->
+<!--                <div>2024-10-20</div>-->
+<!--            </section>*/-->
+
+        </section>
+    </main>
 </body>
 </html>

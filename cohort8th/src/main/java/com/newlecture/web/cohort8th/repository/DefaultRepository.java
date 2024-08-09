@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.newlecture.web.cohort8th.entity.Notice;
 
-@Repository
+//@Repository
 public class DefaultRepository implements NoticeRepository {
 
     @Override
