@@ -10,17 +10,26 @@ import com.newlecture.web.cohort8th.entity.Notice;
 import com.newlecture.web.cohort8th.repository.NoticeRepository;
 
 @Service
-public class DefaultService implements NoticeService{
+public class DefaultNoticeService implements NoticeService{
 
     @Autowired
     private NoticeRepository repository;
 
     @Override
-    public List<Notice> getList() throws SQLException, ClassNotFoundException {
-                
-        List<Notice> list = repository.findAll();
+    public List<Notice> getList() {
 
-        return list;
+        List<Notice> notices = null;
+//        try {
+//            notices = repository.findAll();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
+        return null;
     }
+
+
     
 }

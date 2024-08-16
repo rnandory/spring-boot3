@@ -26,7 +26,7 @@ public class NoticeController {
 
     @Autowired
     private NoticeService service;
-    
+
     @GetMapping("list")
     // @ResponseBody
     public String list(
@@ -44,5 +44,5 @@ public class NoticeController {
 
         return "admin/notice/list";
     }
-    
+
 }

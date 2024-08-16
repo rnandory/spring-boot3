@@ -1,21 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header th:fragment="header">
-        <h1>뉴렉처</h1>
-        <nav>
-            <h1>메인메뉴</h1>
-            <ul>
-                <li><a href="">home</a></li>
-                <li><a href="">login</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-</body>
-</html>
+<header class="header-container" >
+    <h1 class="d-none">알랜드</h1>
+    <div>
+        <a href="/index" title="index페이지로 이동합니다.">
+            <img src="/image/logo.svg">
+        </a>
+        <a class="icon icon-menu">메뉴</a>
+    </div>
+    <nav class="nav-wrap">
+        <h1 class="d-none">네비게이션 목록</h1>
+        <ul>
+            <li>
+                <a href="/index" class="icon icon-home" title="index페이지로 이동합니다.">홈</a>
+                <a href="/admin/index" class="icon icon-dashboard" title="관리자 대시보드로 이동합니다.">관리자 대시보드</a>
+            </li>
+            <li>
+                <a href="/sign-in" class="icon icon-person" title="로그인 페이지로 이동합니다.">로그인</a>
+                <a href="/logout" class="icon icon-sign-out" title="로그인 페이지로 이동합니다.">로그아웃</a>
+
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<aside class="side-bar d-none">
+    <h1 class="d-none">어사이드 목록</h1>
+    <ul>
+        <li><a href="" class="icon icon-close">취소</a></li>
+        <li><a href="/index" class="">홈</a></li>
+        <li><a href="/admin/menu/list">메뉴 관리</a></li>
+        <li><a href="">로그아웃</a></li>
+    </ul>
+</aside>

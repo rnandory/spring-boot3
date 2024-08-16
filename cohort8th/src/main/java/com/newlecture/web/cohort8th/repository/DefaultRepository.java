@@ -15,9 +15,9 @@ public class DefaultRepository implements NoticeRepository {
                 
         List<Notice> list = new ArrayList<Notice>();
 
-        list.add(new Notice(1, "title1", "content1"));
-        list.add(new Notice(2, "title2", "content2"));
-        list.add(new Notice(3, "title3", "content3"));
+//        list.add(new Notice(1, "title1", "content1"));
+//        list.add(new Notice(2, "title2", "content2"));
+//        list.add(new Notice(3, "title3", "content3"));
         
         return list;
     }

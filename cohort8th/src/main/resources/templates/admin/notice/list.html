@@ -14,8 +14,12 @@
             <h1>notice</h1>
 
             <section th:each="n : ${notices}">
+
+                <div th:text="${n.id}">id</div>
                 <h1 th:text="${n.title}">JSP교육이 있습니다.</h1>
-                <div>2024-10-20</div>
+                <h2 th:text="${n.content}">JSP교육이 있습니다.</h2>
+                <div th:text="${n.regDate}">2024-10-20</div>
+                <hr>
             </section>
 
 <!--/*            <section th:each="notice : ${notices}">-->

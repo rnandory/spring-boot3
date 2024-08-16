@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/util.css">
+    <link rel="stylesheet" href="../../css/modal.css">
+    <link rel="stylesheet" href="../../css/icon.css">
+    <link rel="stylesheet" href="../../css/button.css">
+    <link rel="stylesheet" href="../../css/component.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/aside.css">
+	<link rel="stylesheet" href="../../css/menu.css" />
+	<link rel="stylesheet" href="../../css/admin/menu/list.css" />
+	<link rel="stylesheet" href="../../css/admin/menu/reg.css" />
+
+</head>
+
+<body>
+
+    <header class="header-container">
+        <h1 class="d-none">알랜드</h1>
+        <div>
+            <a href="/index.html" title="index페이지로 이동합니다.">
+                <img src="/image/logo.svg">
+            </a>
+            <a class="icon icon-menu">메뉴</a>
+        </div>
+        <nav class="nav-wrap">
+            <h1 class="d-none">네비게이션 목록</h1>
+            <ul>
+                <li>
+                    <a href="/index.html" class="icon icon-home" title="index페이지로 이동합니다.">홈</a>
+                    <a href="/admin/index.html" class="icon icon-dashboard" title="관리자 대시보드로 이동합니다.">관리자 대시보드</a>
+                </li>
+                <li>
+                    <a href="/sign-in.html" class="icon icon-person" title="로그인 페이지로 이동합니다.">로그인</a>
+                    <a href="/logout" class="icon icon-sign-out" title="로그인 페이지로 이동합니다.">로그아웃</a>
+
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+	<main layout:fragment="content">		
+		<div class="tab-search-container">
+			<div class="top-img-title">
+				<h1>메뉴 관리</h1>
+			</div>
+			<!-- ----------------메뉴 탭 -->
+			<div class="tab-search-wrap">
+				<section class="tab-section">
+					<h1>탭 목록</h1>
+					<ul>
+						<li class="selected"><a href="">전체메뉴</a></li>
+						<li><a href="">커피</a></li>
+						<li><a href="">수제청</a></li>
+						<li><a href="">샌드위치</a></li>
+						<li><a href="">쿠키</a></li>
+					</ul>
+				</section>
+				<!-- --------------------------------------------------검색바 -->
+				<section class="search-section">
+					<h1>검색</h1>
+					<form action="">
+						<input type="text" value="" name="search" />
+						<button type="submit" class="icon icon-search"></button>
+					</form>
+				</section>
+			</div>
+		</div>
+		<div class="flex-align">
+			<!-- ----------------상품추가 박스 모바일 -->
+			<a href="../menu/reg" class="menu-add-box-mobile">
+				<span class="icon icon-plus-circle"></span>
+			</a>
+			<!-- ----------------메뉴 목록 -->
+			
+			
+			<section class="menu-edit-section">
+				<h1 class="d-none">메뉴 목록</h1>
+				<!-- ----------------상품추가 박스 pc -->
+				<a href="reg.html" class="menu-add-box-pc">
+					<span class="icon icon-plus-circle"></span>
+				</a>
+
+				<section class="menu">
+					<div>
+						<a href="detail.html">
+							<img src="/image/espresso.svg" alt="에스프레소" />
+						</a>
+					</div>
+					<h1>에스프레소</h1>
+					<h2>Espresso</h2>
+					<div>2,500원</div>
+					<div>
+						<a class="icon icon-arrow-up">추천메뉴 보기</a>
+					</div>
+					<div>
+						<a href="" class="icon icon-lg icon-pencil">수정</a>
+						<a href="" class="icon icon-lg icon-trash">삭제</a>
+					</div>
+				</section>
+				<!-- ----------------추천메뉴 목록 -->
+				
+				<section class="recommend-menu-section">
+					<div class="bl-2 pl-12 flex-cloumn-gap-12">
+						<h1>추천 메뉴</h1>
+						<section class="menu-delete-section">
+							<h1 class="d-none">메뉴 목록</h1>
+							<section class="menu">
+								<div>
+									<a href="">
+										<img src="/image/espresso.svg" alt="에스프레소" />
+									</a>
+								</div>
+								<h1>에스프레소</h1>
+								<h2>Espresso</h2>
+								<div>2,500원</div>
+								<div>
+									<a href="" class="icon icon-trash">삭제</a>
+								</div>
+							</section>
+							
+							<section class="menu">
+								<div>
+									<a href="">
+										<img src="/image/espresso.svg" alt="에스프레소" />
+									</a>
+								</div>
+								<h1>에스프레소</h1>
+								<h2>Espresso</h2>
+								<div>2,500원</div>
+								<div>
+									<a href="" class="icon icon-trash">삭제</a>
+								</div>
+							</section>
+							<section class="menu">
+								<div>
+									<a href="">
+										<img src="/image/espresso.svg" alt="에스프레소" />
+									</a>
+								</div>
+								<h1>에스프레소</h1>
+								<h2>Espresso</h2>
+								<div>2,500원</div>
+								<div>
+									<a href="" class="icon icon-trash">삭제</a>
+								</div>
+							</section>
+
+							<!-- ----------------상품추가 박스 pc small-->
+							<a href="../menu/reg.html" class="menu-add-box-pc-sm">
+								<span class="icon icon-plus-circle"></span>
+							</a>
+							<!-- ----------------상품추가 박스 모바일 -->
+							<a href="../menu/reg.html" class="menu-add-box-mobile">
+								<span class="icon icon-plus-circle"></span>
+							</a>
+						</section>
+					</div>
+				</section>
+
+				<section class="menu">
+					<div>
+						<a href="detail.html">
+							<img src="/image/espresso.svg" alt="에스프레소" />
+						</a>
+					</div>
+					<h1>에스프레소</h1>
+					<h2>Espresso</h2>
+					<div>2,500원</div>
+					<div>
+						<a class="icon icon-arrow-up">추천메뉴 보기</a>
+					</div>
+					<div>
+						<a href="" class="icon icon-lg icon-pencil">수정</a>
+						<a href="" class="icon icon-lg icon-trash">삭제</a>
+					</div>
+				</section>
+
+				<section class="menu">
+					<div>
+						<a href="detail.html">
+							<img src="/image/espresso.svg" alt="에스프레소" />
+						</a>
+					</div>
+					<h1>에스프레소</h1>
+					<h2>Espresso</h2>
+					<div>2,500원</div>
+					<div>
+						<a class="icon icon-arrow-up">추천메뉴 보기</a>
+					</div>
+					<div>
+						<a href="" class="icon icon-lg icon-pencil">수정</a>
+						<a href="" class="icon icon-lg icon-trash">삭제</a>
+					</div>
+				</section>
+				
+				<section class="menu">
+					<div>
+						<a href="">
+							<img src="/image/espresso.svg" alt="에스프레소" />
+						</a>
+					</div>
+					<h1>에스프레소</h1>
+					<h2>Espresso</h2>
+					<div>2,500원</div>
+					<div>
+						<a class="icon icon-arrow-up">추천메뉴 보기</a>
+					</div>
+					<div>
+						<a href="" class="icon icon-lg icon-pencil">수정</a>
+						<a href="" class="icon icon-lg icon-trash">삭제</a>
+					</div>
+				</section>
+				
+				<section class="menu">
+					<div>
+						<a href="">
+							<img src="/image/espresso.svg" alt="에스프레소" />
+						</a>
+					</div>
+					<h1>에스프레소</h1>
+					<h2>Espresso</h2>
+					<div>2,500원</div>
+					<div>
+						<a class="icon icon-arrow-up">추천메뉴 보기</a>
+					</div>
+					<div>
+						<a href="" class="icon icon-lg icon-pencil">수정</a>
+						<a href="" class="icon icon-lg icon-trash">삭제</a>
+					</div>
+				</section>
+			</section>
+		</div>
+		<!--<modal-alert data-title="확인" data-content="정말 닫고 싶은거야? 정말?" class="d-none">
+		</modal-alert>
+		<modal-panel class="d-none">
+			<section slot="content">
+				<h1>메뉴 등록</h1>
+				<form>
+					<input >
+				</form>
+				<form>
+					<input >
+				</form>
+				<form>
+					<input >
+				</form>
+				<form>
+					<input >
+				</form>
+				<form>
+					<input >
+				</form>
+			</section>
+		</modal-panel>-->
+		
+		<!-- ----------------------------------------------------------- -->
+		<div class="d-none">
+			<section class="menu-reg-section">
+	        <h1>메뉴 등록 페이지</h1>
+	        <form class="menu-reg-form">
+	          <section class="menu-reg-img">
+	            <h1>메뉴 사진 추가</h1>
+	            <label for="menu-reg-img-input" class="icon icon-plus img-drop-zone"
+	              >메뉴 사진 추가</label
+	            >
+	            <input type="file" alt="사진 추가" id="menu-reg-img-input" />
+	          </section>
+	          <!-- --------------------------------------------------------------------입력폼 -->
+	          <section class="menu-reg-input-list">
+	            <h1>메뉴 등록 정보 입력 목록</h1>
+	            <select name="category-id" id="">
+	              <option>카테고리를 선택하세요.</option>
+	              <option value="1">커피</option>
+	              <option value="2">수제청</option>
+	              <option value="3">샌드위치</option>
+	              <option value="8">쿠키</option>
+	            </select>
+	            <input type="text" name="kor-name" placeholder="메뉴 이름을 입력하세요." />
+	            <input type="text" name="eng-name" placeholder="메뉴 영문이름을 입력하세요." />
+	            <input type="number" name="price" placeholder="메뉴 가격을 입력하세요." />
+	            <input type="hidden" name="reg-member-id" th:value="${#authentication.principal.id}" />
+	            <textarea
+	              name="description"
+	              id=""
+	              placeholder="메뉴 설명을 입력하세요."
+	            ></textarea>
+	          </section>
+	          <!-- --------------------------------------------------------------------옵션 -->
+	          <section class="menu-reg-input-checkbox">
+	            <h1>옵션 가능 여부</h1>
+	            <div class="menu-reg-input-checkbox-list">
+	              <div>
+	                <input type="checkbox" name="" id="menu-size" />
+	                <label for="menu-size">Small</label>
+	              </div>
+	              <div>
+	                <input type="checkbox" name="" id="menu-option" />
+	                <label for="menu-option">ICED</label>
+	              </div>
+	            </div>
+	            <div class="deco icon-exclamation-circle-fill">
+	              사이즈와 옵션 여부를 선택하세요.
+	            </div>
+	          </section>
+	          <!-- --------------------------------------------------------------------버튼 -->
+	          <div class="btn-bottom">
+	            <div class="">
+	              <a href="list.html" class="btn" title="뒤로 가기">취소</a>
+	            </div>
+	            <div class="">
+	              <input class="btn btn-ok" type="submit" value="저장" />
+	            </div>
+	          </div>
+	        </form>
+	      </section>
+		</div>
+		
+	</main>
+	
+    <!--footer 부분-->
+    <footer class="footer-container">
+        <a href="">홈페이지 이용약관</a>
+        <span>사업자 등록번호: 123-45-67</span>
+        <span>Ⓒ 2023 Rland Newlecture All Rights Reserved</span>
+    </footer>
+	
+</body>
+
+</html>
+
+
+
+

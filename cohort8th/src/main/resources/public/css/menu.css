@@ -1,0 +1,166 @@
+
+.menu {
+  height: 80px;
+  width: 100%;
+
+  display: grid;
+  grid-template:
+    "img name arrow" 1fr
+    "img engName ." 1fr
+    "img price pencilTrash" 1fr/
+    80px 1fr 1fr;
+
+  column-gap: 16px;
+  position: relative;
+}
+
+.menu > div:first-child {
+  grid-area: img;
+}
+
+.menu > div:first-child > a {
+  width: 100%;
+  height: 100%;
+}
+
+.menu > div:first-child > a > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu > h1 {
+  grid-area: name;
+
+  display: flex;
+  align-items: center;
+
+  font-size: var(--font-size-normal-mobile);
+  font-weight: 600;
+}
+
+.menu > h2 {
+  grid-area: engName;
+
+  font-size: var(--font-size-normal2-mobile);
+  color: var(--color-text-5);
+}
+
+.menu > div:nth-child(4) {
+  grid-area: price;
+
+  display: flex;
+  align-items: end;
+
+  font-size: var(--font-size-normal-mobile);
+  font-weight: 600;
+}
+
+.menu > div:nth-child(5) {
+  grid-area: arrow;
+
+  display: flex;
+  justify-content: end;
+}
+
+.menu > div:nth-child(5) > span {
+  padding: 0 5px 0 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menu > div:nth-child(6) {
+  grid-area: pencilTrash;
+
+  display: flex;
+  justify-content: end;
+}
+
+.menu-list-section .icon-cart::before,
+.menu-list-section .icon-plus::before {
+  background-color: var(--color-text-6);
+}
+
+
+
+@media (min-width: 768px) {
+  .menu-list-section > .menu-list {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 40px auto 77px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+    max-width: fit-content;
+  }
+
+  .price-and-cart-in-count {
+    display: none;
+  }
+  /* --------------------------------------찜과 장바구니 메뉴카드 */
+  .menu {
+    width: 225px;
+    height: 280px;
+
+    display: grid;
+    grid-template:
+      "img img img" 186px
+      "name name arrow" 1fr
+      "engName . ." 1fr
+      "price . ." 1fr/
+      1fr 1fr 1fr;
+    column-gap: 0;
+
+    position: relative;
+  }
+  
+  .menu > h1,
+  .menu > h2{
+	text-overflow: ellipsis;	
+	white-space: nowrap;
+	max-width: 100%;	
+	display: inline-flex;  
+  }
+
+  .menu > div:nth-child(6) {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 10px;
+
+    position: absolute;
+    top: 110px;
+    right: 8px;
+  }
+
+  .menu-list-section .icon-cart::before,
+  .menu-list-section .icon-plus::before {
+    background-color: var(--color-text-invert);
+  }
+
+}
+
+@media (min-width: 1000px) {
+  .menu-list-section .menu-list {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 40px auto 70px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+    max-width: fit-content;
+  }
+}
+
+@media (min-width: 1400px) {
+  .menu-list-section .menu-list {        
+    grid-template-columns: repeat(4, 1fr);
+    
+  }
+}
+

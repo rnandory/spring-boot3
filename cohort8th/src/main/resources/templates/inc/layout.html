@@ -5,17 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/util.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/icon.css">
+    <link rel="stylesheet" href="/css/button.css">
+    <link rel="stylesheet" href="/css/component.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/aside.css">
+
     <title>Document</title>
 </head>
 <body>
     <!-- header 영역 -->
-    <div th:replace="~{inc/header::header}"></div>
+    <div th:replace="~{inc/header}"></div>
     
     <!-- main 영역 -->
-     <div layout:fragment="main"></div>
+    <div layout:fragment="main"></div>
     
     <!-- footer 영역 -->
-    <div th:replace="~{inc/footer::footer}"></div>
+    <div th:replace="~{inc/footer}"></div>
     
 </body>
 </html>

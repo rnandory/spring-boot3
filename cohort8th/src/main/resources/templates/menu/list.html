@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="inc/layout">
+
+<head>
+    <title>주문하기 알랜드</title>
+
+    <link href="/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="/css/menu/list.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+
+<main layout:fragment="main">
+    <div class="tab-search-container">
+        <div class="top-img-title">
+            <img src="/image/menu-management.svg" alt="제목입력">
+            <h1>Rland Menu</h1>
+        </div>
+        <div class="tab-search-wrap">
+            <section class="tab-section">
+                <h1>탭 목록</h1>
+
+
+                <ul>
+                    <li class="selected"><a href="list">전체메뉴</a></li>
+                    <li th:each="menu : ${menus}">
+                        <a th:text="${menu.korName}" href="">커피</a>
+                    </li>
+                </ul>
+
+
+                <ul>
+                    <li class="selected"><a href="list">전체메뉴</a></li>
+                    <li>
+                        <a href="">커피</a>
+                    </li>
+                    <li>
+                        <a href="">수제청</a>
+                    </li>
+                    <li>
+                        <a href="">샌드위치</a>
+                    </li>
+                    <li>
+                        <a href="">쿠키</a>
+                    </li>
+                </ul>
+            </section>
+            <!-- -------------------------------------------------- -->
+            <section class="search-section">
+                <h1>검색</h1>
+                <form action="list" method="get">
+                    <input type="text" name="q">
+                    <button type="submit" class="icon icon-search"></button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <section class="menu-list-section">
+        <h1 class="d-none">메뉴 목록</h1>
+        <div class="menu-list">
+
+            <section class="menu">
+                <div>
+                    <a href="detail.html">
+                        <img src="/image/espresso.svg" alt="에스프레소">
+                    </a>
+                </div>
+                <h1>에스프레소</h1>
+                <h2>Espresso</h2>
+                <div>2,500원</div>
+                <div>
+                    <a href="" class="icon icon-heart">좋아요</a>
+                    <span>1</span>
+                </div>
+                <div>
+                    <a href="" class="icon icon-plus icon-lg">추가</a>
+                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
+                </div>
+            </section>
+
+            <section class="menu">
+                <div>
+                    <a href="detail.html">
+                        <img src="/image/espresso.svg" alt="에스프레소">
+                    </a>
+                </div>
+                <h1>에스프레소</h1>
+                <h2>Espresso</h2>
+                <div>2,500원</div>
+                <div>
+                    <a href="" class="icon icon-heart">좋아요</a>
+                    <span>1</span>
+                </div>
+                <div>
+                    <a href="" class="icon icon-plus icon-lg">추가</a>
+                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
+                </div>
+            </section>
+
+            <section class="menu">
+                <div>
+                    <a href="detail.html">
+                        <img src="/image/espresso.svg" alt="에스프레소">
+                    </a>
+                </div>
+                <h1>에스프레소</h1>
+                <h2>Espresso</h2>
+                <div>2,500원</div>
+                <div>
+                    <a href="" class="icon icon-heart">좋아요</a>
+                    <span>1</span>
+                </div>
+                <div>
+                    <a href="" class="icon icon-plus icon-lg">추가</a>
+                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
+                </div>
+            </section>
+
+            <section class="menu">
+                <div>
+                    <a href="detail.html">
+                        <img src="/image/espresso.svg" alt="에스프레소">
+                    </a>
+                </div>
+                <h1>에스프레소</h1>
+                <h2>Espresso</h2>
+                <div>2,500원</div>
+                <div>
+                    <a href="" class="icon icon-heart">좋아요</a>
+                    <span>1</span>
+                </div>
+                <div>
+                    <a href="" class="icon icon-plus icon-lg">추가</a>
+                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
+                </div>
+            </section>
+
+            <section class="menu">
+                <div>
+                    <a href="detail.html">
+                        <img src="/image/espresso.svg" alt="에스프레소">
+                    </a>
+                </div>
+                <h1>에스프레소</h1>
+                <h2>Espresso</h2>
+                <div>2,500원</div>
+                <div>
+                    <a href="" class="icon icon-heart">좋아요</a>
+                    <span>1</span>
+                </div>
+                <div>
+                    <a href="" class="icon icon-plus icon-lg">추가</a>
+                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
+                </div>
+            </section>
+
+            <section class="menu">
+                <div>
+                    <a href="detail.html">
+                        <img src="/image/espresso.svg" alt="에스프레소">
+                    </a>
+                </div>
+                <h1>에스프레소</h1>
+                <h2>Espresso</h2>
+                <div>2,500원</div>
+                <div>
+                    <a href="" class="icon icon-heart">좋아요</a>
+                    <span>1</span>
+                </div>
+                <div>
+                    <a href="" class="icon icon-plus icon-lg">추가</a>
+                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
+                </div>
+            </section>
+        </div>
+
+        <div class="price-and-cart-in-count">
+            <div>
+                <span>금액 42,500</span>
+            </div>
+            <div class="cart-in-count">
+                <a href="../cart/list.html" class="icon icon-cart-count"></a>
+                <span>7</span>
+            </div>
+        </div>
+        <input id="input-member-id" type="hidden">
+    </section>
+</main>
+
+
+</body>
+
+</html>

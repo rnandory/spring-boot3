@@ -6,5 +6,5 @@ import java.util.List;
 import com.newlecture.web.cohort8th.entity.Notice;
 
 public interface NoticeService {
-    List<Notice> getList() throws SQLException, ClassNotFoundException;
+    List<Notice> getList();
 } 
