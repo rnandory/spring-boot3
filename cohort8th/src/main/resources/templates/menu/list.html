@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="inc/layout">
+      layout:decorate="~{inc/layout}">
 
 <head>
     <title>주문하기 알랜드</title>
@@ -26,13 +26,13 @@
 
                 <ul>
                     <li class="selected"><a href="list">전체메뉴</a></li>
-                    <li th:each="menu : ${menus}">
-                        <a th:text="${menu.korName}" href="">커피</a>
+                    <li th:each="category : ${categories}">
+                        <a th:text="${category.name}" href="">커피</a>
                     </li>
                 </ul>
 
 
-                <ul>
+                <!--<ul>
                     <li class="selected"><a href="list">전체메뉴</a></li>
                     <li>
                         <a href="">커피</a>
@@ -46,7 +46,7 @@
                     <li>
                         <a href="">쿠키</a>
                     </li>
-                </ul>
+                </ul>-->
             </section>
             <!-- -------------------------------------------------- -->
             <section class="search-section">
@@ -63,15 +63,18 @@
         <h1 class="d-none">메뉴 목록</h1>
         <div class="menu-list">
 
-            <section class="menu">
+            <section class="menu" th:each="menu : ${menus}">
                 <div>
                     <a href="detail.html">
-                        <img src="/image/espresso.svg" alt="에스프레소">
+                        <!--<img
+                                th:src="@{/image/{img}(img=${menu.img})
+
+                                alt="에스프레소">-->
                     </a>
                 </div>
-                <h1>에스프레소</h1>
-                <h2>Espresso</h2>
-                <div>2,500원</div>
+                <h1 th:text="${menu.korName}">에스프레소</h1>
+                <h2 th:text="${menu.engName}">Espresso</h2>
+                <div th:text="${menu.price} + '원'">2,500원</div>
                 <div>
                     <a href="" class="icon icon-heart">좋아요</a>
                     <span>1</span>
@@ -82,100 +85,6 @@
                 </div>
             </section>
 
-            <section class="menu">
-                <div>
-                    <a href="detail.html">
-                        <img src="/image/espresso.svg" alt="에스프레소">
-                    </a>
-                </div>
-                <h1>에스프레소</h1>
-                <h2>Espresso</h2>
-                <div>2,500원</div>
-                <div>
-                    <a href="" class="icon icon-heart">좋아요</a>
-                    <span>1</span>
-                </div>
-                <div>
-                    <a href="" class="icon icon-plus icon-lg">추가</a>
-                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
-                </div>
-            </section>
-
-            <section class="menu">
-                <div>
-                    <a href="detail.html">
-                        <img src="/image/espresso.svg" alt="에스프레소">
-                    </a>
-                </div>
-                <h1>에스프레소</h1>
-                <h2>Espresso</h2>
-                <div>2,500원</div>
-                <div>
-                    <a href="" class="icon icon-heart">좋아요</a>
-                    <span>1</span>
-                </div>
-                <div>
-                    <a href="" class="icon icon-plus icon-lg">추가</a>
-                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
-                </div>
-            </section>
-
-            <section class="menu">
-                <div>
-                    <a href="detail.html">
-                        <img src="/image/espresso.svg" alt="에스프레소">
-                    </a>
-                </div>
-                <h1>에스프레소</h1>
-                <h2>Espresso</h2>
-                <div>2,500원</div>
-                <div>
-                    <a href="" class="icon icon-heart">좋아요</a>
-                    <span>1</span>
-                </div>
-                <div>
-                    <a href="" class="icon icon-plus icon-lg">추가</a>
-                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
-                </div>
-            </section>
-
-            <section class="menu">
-                <div>
-                    <a href="detail.html">
-                        <img src="/image/espresso.svg" alt="에스프레소">
-                    </a>
-                </div>
-                <h1>에스프레소</h1>
-                <h2>Espresso</h2>
-                <div>2,500원</div>
-                <div>
-                    <a href="" class="icon icon-heart">좋아요</a>
-                    <span>1</span>
-                </div>
-                <div>
-                    <a href="" class="icon icon-plus icon-lg">추가</a>
-                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
-                </div>
-            </section>
-
-            <section class="menu">
-                <div>
-                    <a href="detail.html">
-                        <img src="/image/espresso.svg" alt="에스프레소">
-                    </a>
-                </div>
-                <h1>에스프레소</h1>
-                <h2>Espresso</h2>
-                <div>2,500원</div>
-                <div>
-                    <a href="" class="icon icon-heart">좋아요</a>
-                    <span>1</span>
-                </div>
-                <div>
-                    <a href="" class="icon icon-plus icon-lg">추가</a>
-                    <a href="" class="icon icon-cart icon-lg">장바구니</a>
-                </div>
-            </section>
         </div>
 
         <div class="price-and-cart-in-count">

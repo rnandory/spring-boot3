@@ -1,7 +1,18 @@
 spring:
   application:
     name: cohort8th
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@//hi.newlecture.com:1521/XEPDB1
+    username: {SPRING_DATASOURCE_USERNAME}
+    password: 1128
 
 server:
   port: 80
-#  address: 
+#  address:
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mappers/*Mapper.xml
+  type-aliases-package: com.newlecture.web.cohort8th.entity

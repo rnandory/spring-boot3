@@ -1,5 +1,6 @@
 package com.newlecture.web.cohort8th.service;
 
+import com.newlecture.web.cohort8th.entity.Category;
 import com.newlecture.web.cohort8th.entity.Menu;
 import com.newlecture.web.cohort8th.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 public class DefaultMenuService implements MenuService {
 
     @Autowired
-    MenuRepository repository;
+    private MenuRepository repository;
 
     @Override
     public List<Menu> getList() {
@@ -23,6 +24,7 @@ public class DefaultMenuService implements MenuService {
             return list;
         }
         catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("menu service: menu repo findAll 에러발생");
         }
 

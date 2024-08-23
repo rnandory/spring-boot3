@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+//@Repository
 public class JDBCMenuRepository implements MenuRepository{
 
     @Override
@@ -21,7 +21,7 @@ public class JDBCMenuRepository implements MenuRepository{
 //        Class.forName("oracle.jdbc.driver.OracleDriver");
 
         try(
-            Connection conn = DriverManager.getConnection(url, "rland", "0530");
+            Connection conn = DriverManager.getConnection(url, "rland", "1128");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             ) {
@@ -49,7 +49,7 @@ public class JDBCMenuRepository implements MenuRepository{
 
                 menus.add(menu);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
