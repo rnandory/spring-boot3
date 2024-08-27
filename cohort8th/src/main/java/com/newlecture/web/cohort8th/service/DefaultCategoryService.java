@@ -13,7 +13,7 @@ public class DefaultCategoryService implements CategoryService{
     private CategoryRepository repository;
 
     @Override
-    public List<Category> getCategoryList() {
+    public List<Category> getList() {
 
         List<Category> list = repository.findAll();
         return list;

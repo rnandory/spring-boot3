@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface MenuRepository {
 //    @Select("SELECT * FROM MENU")
-    List<Menu> findAll();
+    List<Menu> findAll(Integer categoryId, String query);
 }

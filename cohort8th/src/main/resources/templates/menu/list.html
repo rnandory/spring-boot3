@@ -27,7 +27,9 @@
                 <ul>
                     <li class="selected"><a href="list">전체메뉴</a></li>
                     <li th:each="category : ${categories}">
-                        <a th:text="${category.name}" href="">커피</a>
+                        <a href=""
+                           th:href="@{list(c=${category.id})}"
+                           th:text="${category.name}">커피</a>
                     </li>
                 </ul>
 
@@ -53,6 +55,7 @@
                 <h1>검색</h1>
                 <form action="list" method="get">
                     <input type="text" name="q">
+                    <input type="hidden" name="c" th:value="${currentCategory}">
                     <button type="submit" class="icon icon-search"></button>
                 </form>
             </section>
@@ -66,10 +69,10 @@
             <section class="menu" th:each="menu : ${menus}">
                 <div>
                     <a href="detail.html">
-                        <!--<img
-                                th:src="@{/image/{img}(img=${menu.img})
-
-                                alt="에스프레소">-->
+                        <img
+                                src="/image/espresso.svg"
+                                th:src="@{/image/{img}.svg(img=${menu.engName})}"
+                                th:alt="에스프레소">
                     </a>
                 </div>
                 <h1 th:text="${menu.korName}">에스프레소</h1>

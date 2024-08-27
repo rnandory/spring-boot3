@@ -19,15 +19,20 @@ public class DefaultMenuService implements MenuService {
     @Override
     public List<Menu> getList() {
 
-        try{
-            List<Menu> list = repository.findAll();
-            return list;
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("menu service: menu repo findAll 에러발생");
-        }
+        List<Menu> menus = getList(null, null);
+        return menus;
+    }
 
-        return null;
+    @Override
+    public List<Menu> getList(Integer category) {
+
+        List<Menu> menus = getList(category, null);
+        return menus;
+    }
+
+    @Override
+    public List<Menu> getList(Integer categoryId, String query) {
+        List<Menu> menus = repository.findAll(categoryId, query);
+        return menus;
     }
 }

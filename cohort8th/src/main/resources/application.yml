@@ -16,3 +16,6 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: mappers/*Mapper.xml
   type-aliases-package: com.newlecture.web.cohort8th.entity
+logging:
+  level:
+    com.newlecture.web.cohort8th.repository: trace
