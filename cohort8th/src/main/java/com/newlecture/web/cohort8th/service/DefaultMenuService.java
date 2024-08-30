@@ -1,13 +1,11 @@
 package com.newlecture.web.cohort8th.service;
 
-import com.newlecture.web.cohort8th.entity.Category;
 import com.newlecture.web.cohort8th.entity.Menu;
+import com.newlecture.web.cohort8th.entity.MenuView;
 import com.newlecture.web.cohort8th.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -17,22 +15,29 @@ public class DefaultMenuService implements MenuService {
     private MenuRepository repository;
 
     @Override
-    public List<Menu> getList() {
+    public List<MenuView> getList() {
 
-        List<Menu> menus = getList(null, null);
+        List<MenuView> menus = getList(null, null, null);
         return menus;
     }
 
     @Override
-    public List<Menu> getList(Integer category) {
+    public List<MenuView> getList(Integer category) {
 
-        List<Menu> menus = getList(category, null);
+        List<MenuView> menus = getList(category, null, null);
         return menus;
     }
 
     @Override
-    public List<Menu> getList(Integer categoryId, String query) {
-        List<Menu> menus = repository.findAll(categoryId, query);
+    public List<MenuView> getList(Integer category,String query) {
+
+        List<MenuView> menus = getList(category, query, null);
+        return menus;
+    }
+
+    @Override
+    public List<MenuView> getList(Integer categoryId, String query, String order) {
+        List<MenuView> menus = repository.findAll(categoryId, query, order);
         return menus;
     }
 }

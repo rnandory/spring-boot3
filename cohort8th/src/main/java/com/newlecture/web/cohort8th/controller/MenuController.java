@@ -2,6 +2,7 @@ package com.newlecture.web.cohort8th.controller;
 
 import com.newlecture.web.cohort8th.entity.Category;
 import com.newlecture.web.cohort8th.entity.Menu;
+import com.newlecture.web.cohort8th.entity.MenuView;
 import com.newlecture.web.cohort8th.service.CategoryService;
 import com.newlecture.web.cohort8th.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,14 @@ public class MenuController {
             Integer categoryId,
 
             @RequestParam(name = "q", required = false)
-            String query) {
+            String query,
+
+            @RequestParam(name = "order", required = false)
+            String order
+    ) {
 
         List<Category> categories = categoryService.getList();
-        List<Menu> menus = service.getList(categoryId, query);
+        List<MenuView> menus = service.getList(categoryId, query, order);
 
         model.addAttribute("currentCategory", categoryId);
         model.addAttribute("menus", menus);

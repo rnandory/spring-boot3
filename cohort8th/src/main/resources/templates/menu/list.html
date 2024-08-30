@@ -71,7 +71,7 @@
                     <a href="detail.html">
                         <img
                                 src="/image/espresso.svg"
-                                th:src="@{/image/{img}.svg(img=${menu.engName})}"
+                                th:src="@{/image/{img}(img=${menu.img})}"
                                 th:alt="에스프레소">
                     </a>
                 </div>
@@ -80,7 +80,7 @@
                 <div th:text="${menu.price} + '원'">2,500원</div>
                 <div>
                     <a href="" class="icon icon-heart">좋아요</a>
-                    <span>1</span>
+                    <span th:text="${menu.likeCount}">1</span>
                 </div>
                 <div>
                     <a href="" class="icon icon-plus icon-lg">추가</a>

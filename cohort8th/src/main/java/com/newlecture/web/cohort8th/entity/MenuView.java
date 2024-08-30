@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Menu {
+public class MenuView {
     private long id;
     private String korName;
     private String engName;
@@ -19,4 +19,12 @@ public class Menu {
     private Date regDate;
     private long categoryId;
     private long regMemberId;
+
+    private String categoryName;
+    private String img;
+
+    private int likeCount;
+
+//    private List<MenuImage> imgs;
+
 }
