@@ -1,0 +1,175 @@
+/* body * {
+    box-sizing: border-box;
+} */
+
+/* 집중화 방식 : 옛날 */
+/* .n-icon {
+    display: inline-flex;
+    height: 24px;
+    width: 24px;
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+} */
+
+/* 집중화 방식 : 최신 */
+:where(.n-icon\:home,
+    .n-icon\:dashboard,
+    .n-icon\:sign-in,
+    .n-icon\:sign-out) {
+    --icon-width: 24px;
+    --icon-color: black;
+    --deco-gap: 0;
+    display: inline-flex;
+    height: var(--icon-width);
+    width: var(--icon-width);
+    /* width: auto; */
+    overflow: hidden;
+    /* text-indent: -999px; */
+    align-items: center;
+    gap: var(--deco-gap);
+
+    /* flex-direction: column; */
+}
+
+:where(.n-icon\:home,
+    .n-icon\:dashboard,
+    .n-icon\:sign-in,
+    .n-icon\:sign-out)::before {
+
+    flex-shrink: 0;
+    content: "";
+    display: inline-flex;
+    /* height: inherit; */
+    height: var(--icon-width);
+    width: var(--icon-width);
+    overflow: hidden;
+    text-indent: -999px;
+
+    /* background-repeat: no-repeat; */
+    /* background-size: contain; */
+    /* background-size: var(--icon-width); */
+    background-color: var(--icon-color);
+
+    mask-size: var(--icon-width);
+    mask-repeat: no-repeat;
+
+}
+
+
+.n-icon\:home::before {
+    /* background-image: url(/image/icon/home.svg);    */
+    mask-image: url(/image/icon/home.svg);
+}
+
+.n-icon\:dashboard::before {
+    /* background-image: url(/image/icon/dashboard_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg); */
+    mask-image: url(/image/icon/dashboard_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);
+}
+
+.n-icon\:sign-in::before {
+    /* background-image: url(/image/icon/person_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);    */
+    mask-image: url(/image/icon/person_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);
+}
+
+.n-icon\:sign-out::before {
+    /* background-image: url(/image/icon/logout_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);    */
+    mask-image: url(/image/icon/logout_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);
+}
+
+/* === size ======================================= */
+.n-icon-size\:1,
+.n-icon-size\:small {
+    --icon-width: 15px;
+    /* --w:15px
+    width: 15px;
+    height: 15px;
+    background-size: var(--w); */
+}
+
+.n-icon-size\:2,
+.n-icon-size\:medium,
+.n-icon-size,
+.n-icon-size\:default {
+    --icon-width: 24px;
+}
+
+.n-icon-size\:3,
+.n-icon-size\:large {
+    --icon-width: 32px;
+}
+
+/* == color ===================================== */
+/* main 1/2/3
+sub 1/2/3
+accent 1/2/3
+base 1/2/3/4/5/6/7/8/9/10 */
+
+.n-icon-color\:main-1 {
+    --icon-color: var(--color-main-3, #D86259);
+}
+
+.n-icon-color\:main-2 {
+    --icon-color: var(--color-main-2, #905634)
+}
+
+.n-icon-color\:main-3 {
+    --icon-color: var(--color-main-3, #5E2808);
+}
+
+.n-icon-color\:sub-1 {
+    --icon-color: var(--color-sub-1, #F3E184);
+}
+
+.n-icon-color\:accent-1 {
+    --icon-color: var(--color-accent-1, #334DCF)DCF;
+}
+
+/* ======================================== */
+.n-deco {
+    width: auto;
+}
+
+.n-deco-gap\:1 {
+    --deco-gap: 4px;
+}
+
+.n-deco-gap\:2 {
+    --deco-gap: 8px;
+}
+
+.n-deco-gap\:3 {
+    --deco-gap: 12px;
+}
+
+.n-deco-pos\:left::before,
+.n-deco-pos\:top::before {
+    /* order: initial; */
+    order: unset;
+}
+
+.n-deco-pos\:right::before,
+.n-deco-pos\:bottom::before {
+    order: 1;
+}
+
+.n-deco-pos\:top,
+.n-deco-pos\:bottom {
+    flex-direction: column;
+    height: auto;
+}
+
+/* =============================================== */
+.n-btn {
+    border: 1px solid var(--color-main-3);
+    border-radius: 10px;
+    padding: 6px 10px;
+
+    display: inline-flex;
+}
+
+
+
+/* .n-btn:not(.n-deco){ color:blue; } */
+.n-btn .n-deco{ color:red; }
+/* .n-btn:has(.n-deco){ color: orange; } */
