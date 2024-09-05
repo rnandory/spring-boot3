@@ -13,10 +13,14 @@
 } */
 
 /* 집중화 방식 : 최신 */
-:where(.n-icon\:home,
-    .n-icon\:dashboard,
-    .n-icon\:sign-in,
-    .n-icon\:sign-out) {
+/*:where(*/
+.n-icon\:home,
+.n-icon\:dashboard,
+.n-icon\:sign-in,
+.n-icon\:sign-out
+
+/*)*/
+    {
     --icon-width: 24px;
     --icon-color: black;
     --deco-gap: 0;
@@ -32,7 +36,7 @@
     /* flex-direction: column; */
 }
 
-:where(.n-icon\:home,
+:is(.n-icon\:home,
     .n-icon\:dashboard,
     .n-icon\:sign-in,
     .n-icon\:sign-out)::before {
@@ -159,17 +163,170 @@ base 1/2/3/4/5/6/7/8/9/10 */
     height: auto;
 }
 
+@media (width > 768px) {
+
+    .md\:n-deco.n-icon\:home,
+    .md\:n-deco.n-icon\:dashboard,
+    .md\:n-deco.n-icon\:sign-in,
+    .md\:n-deco.n-icon\:sign-out {
+        text-indent: initial;
+        width: auto;
+    }
+
+    .md\:n-deco-gap\:1 {
+        --deco-gap: 4px;
+    }
+
+    .md\:n-deco-gap\:2 {
+        --deco-gap: 8px;
+    }
+
+    .md\:n-deco-gap\:3 {
+        --deco-gap: 12px;
+    }
+
+    .md\:n-deco-pos\:left::before,
+    .md\:n-deco-pos\:top::before {
+        /* order: initial; */
+        order: unset;
+    }
+
+    .md\:n-deco-pos\:right::before,
+    .md\:n-deco-pos\:bottom::before {
+        order: 1;
+    }
+
+    .md\:n-deco-pos\:top,
+    .md\:n-deco-pos\:bottom {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
 /* =============================================== */
 .n-btn {
     border: 1px solid var(--color-main-3);
     border-radius: 10px;
     padding: 6px 10px;
+    /* box-sizing: border-box; */
 
     display: inline-flex;
 }
 
+.n-btn:not(.n-deco):is(.n-icon\:home,
+    .n-icon\:dashboard,
+    .n-icon\:sign-in,
+    .n-icon\:sign-out) {
+    text-indent: -999px;
+}
+
+.n-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.n-btn:hover::before {
+    background-color: var(--color-accent-1);
+}
+
+.n-btn-color\:main {
+    background-color: var(--color-main-1, yellow);
+    color: var(--color-main-3, blue);
+
+    transition: transform 1s, background-color 1s;
+}
+
+.n-btn-color\:main:hover {
+    background-color: var(--color-main-3, blue);
+    color: var(--color-main-1, yellow);
+
+    box-shadow: 2px 2px 2px;
+    transform: translateX(-2px) translateY(-2px);
+}
 
 
-/* .n-btn:not(.n-deco){ color:blue; } */
-.n-btn .n-deco{ color:red; }
-/* .n-btn:has(.n-deco){ color: orange; } */
+/* === :where활용 ========================================= */
+
+/* :where(.n-btn, .n-deco
+    ):where(.n-icon\:home,
+    .n-icon\:dashboard,
+    .n-icon\:sign-in,
+    .n-icon\:sign-out
+    ) {
+
+    } */
+
+/* .n-btn:not(.n-deco).n-icon\:home,
+.n-btn:not(.n-deco).n-icon\:dashboard,
+.n-btn:not(.n-deco).n-icon\:sign-in,
+.n-btn:not(.n-deco).n-icon\:sign-out {
+    text-indent: -999px;
+} */
+
+
+
+
+/* ====우선순위 :is :where============================================= */
+
+/* 
+    where는 항상 제일 밑에 깔림
+    is는 동급
+*/
+
+
+/* #a {
+    border: 5px solid red;
+}
+
+:is(.a) {
+    border: 5px solid green;
+}
+
+.a {
+    border: 5px solid orange;
+}
+
+a {
+    border: 5px solid yellow;
+}
+
+:where(#a) {
+    border: 5px solid blue;
+} */
+
+/* quiz */
+div>h1,
+div>h2,
+div>h3,
+div>h4,
+div>h5 {}
+
+div>:where(h1, h2, h3, h4, h5) {}
+
+/* --------------------- */
+div>h1,
+div>h2,
+div>h3,
+div>h4,
+div>h5,
+section>h1,
+section>h2,
+section>h3,
+section>h4,
+section>h5 {}
+
+:where(div, section)>:where(h1, h2, h3, h4, h5) {}
+
+/* ============================= */
+/* is의 특이성은 가장 높은 셀렉터의 특이성 */
+:is(#a, .c) {
+    color: red;
+}
+
+#a {
+    color: blue;
+}
+
+.c {
+    color: blue;
+}

@@ -125,9 +125,9 @@ hr {
 }
 
 /* 하이퍼링크*/
-a,
+:where(a,
 a:link,
-a:visited {
+a:visited) {
   text-decoration: none;
   color: inherit;
 }

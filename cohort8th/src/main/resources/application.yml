@@ -6,6 +6,10 @@ spring:
     url: jdbc:oracle:thin:@//hi.newlecture.com:1521/XEPDB1
     username: {SPRING_DATASOURCE_USERNAME}
     password: 1128
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 300MB
 
 server:
   port: 80
