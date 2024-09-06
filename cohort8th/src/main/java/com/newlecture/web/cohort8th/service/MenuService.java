@@ -14,4 +14,6 @@ public interface MenuService {
     List<MenuView> getList(Integer categoryId, String query);
 
     List<MenuView> getList(Integer categoryId, String query, String order);
+
+    void reg(Menu menu);
 }

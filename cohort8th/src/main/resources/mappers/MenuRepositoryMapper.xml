@@ -27,4 +27,18 @@
         </if>
 
     </select>
+    
+    <insert id="save" parameterType="Menu">
+        insert into MENU(id, kor_name, eng_name, price, reg_member_id, category_id, reg_date, description)
+        values (
+            #{id},
+            #{korName},
+            #{engName},
+            #{price},
+            #{regMemberId},
+            #{categoryId},
+            systimestamp,
+            #{description}
+        )
+    </insert>
 </mapper>

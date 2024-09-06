@@ -12,11 +12,12 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class Menu {
-    private long id;
+    private Long id;
     private String korName;
     private String engName;
-    private int price;
+    private Integer price;
     private Date regDate;
-    private long categoryId;
-    private long regMemberId;
+    private String description;
+    private Long categoryId;
+    private Long regMemberId;
 }

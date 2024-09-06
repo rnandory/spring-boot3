@@ -14,15 +14,15 @@
 
 /* 집중화 방식 : 최신 */
 /*:where(*/
-.n-icon\:home,
+/* .n-icon\:home,
 .n-icon\:dashboard,
 .n-icon\:sign-in,
-.n-icon\:sign-out
+.n-icon\:sign-out */
 
 /*)*/
-    {
+    .n-icon {
     --icon-width: 24px;
-    --icon-color: black;
+    --icon-color: var(--color-accent-1);
     --deco-gap: 0;
     display: inline-flex;
     height: var(--icon-width);
@@ -36,10 +36,11 @@
     /* flex-direction: column; */
 }
 
-:is(.n-icon\:home,
+/* :is(.n-icon\:home,
     .n-icon\:dashboard,
     .n-icon\:sign-in,
-    .n-icon\:sign-out)::before {
+    .n-icon\:sign-out) */
+    .n-icon::before {
 
     flex-shrink: 0;
     content: "";
@@ -131,6 +132,7 @@ base 1/2/3/4/5/6/7/8/9/10 */
 
 /* ======================================== */
 .n-deco {
+    text-indent: initial;
     width: auto;
 }
 
@@ -213,10 +215,13 @@ base 1/2/3/4/5/6/7/8/9/10 */
     display: inline-flex;
 }
 
-.n-btn:not(.n-deco):is(.n-icon\:home,
+/* .n-btn:not(.n-deco):where(.n-icon\:home,
     .n-icon\:dashboard,
     .n-icon\:sign-in,
     .n-icon\:sign-out) {
+    text-indent: -999px;
+} */
+.n-btn:not(.n-deco).n-icon {
     text-indent: -999px;
 }
 
@@ -330,3 +335,10 @@ section>h5 {}
 .c {
     color: blue;
 }
+
+
+/* =================================== */
+
+ input[type="text"]{  background-color: red; }
+ input.first{  background-color: blue; }
+ input:hover{  background-color: green; }

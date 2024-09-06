@@ -11,4 +11,6 @@ import java.util.List;
 public interface MenuRepository {
 //    @Select("SELECT * FROM MENU")
     List<MenuView> findAll(Integer categoryId, String query, String order);
+
+    void save(Menu menu);
 }

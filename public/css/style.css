@@ -5,3 +5,7 @@
     --color-sub-1: #F3E184;
     --color-accent-1: #334DCF;    
 }
+
+.n-icon\:sign-in {
+    --color-accent-1: red;
+}

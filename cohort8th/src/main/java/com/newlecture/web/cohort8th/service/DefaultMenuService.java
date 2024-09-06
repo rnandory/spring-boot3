@@ -40,4 +40,9 @@ public class DefaultMenuService implements MenuService {
         List<MenuView> menus = repository.findAll(categoryId, query, order);
         return menus;
     }
+
+    @Override
+    public void reg(Menu menu) {
+        repository.save(menu); // xml : insert
+    }
 }
