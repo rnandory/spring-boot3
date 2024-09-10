@@ -1,8 +1,9 @@
 package com.newlecture.web.cohort8th.service;
 
-import com.newlecture.web.cohort8th.entity.Menu;
-import com.newlecture.web.cohort8th.entity.MenuView;
+import com.newlecture.web.cohort8th.entity.*;
+import com.newlecture.web.cohort8th.repository.MenuImgRepository;
 import com.newlecture.web.cohort8th.repository.MenuRepository;
+import com.newlecture.web.cohort8th.repository.RcmdMenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,11 @@ public class DefaultMenuService implements MenuService {
 
     @Autowired
     private MenuRepository repository;
+    @Autowired
+    private MenuImgRepository menuImgRepository;
+    @Autowired
+    private RcmdMenuRepository rcmdMenuRepository;
+
 
     @Override
     public List<MenuView> getList() {
@@ -29,7 +35,7 @@ public class DefaultMenuService implements MenuService {
     }
 
     @Override
-    public List<MenuView> getList(Integer category,String query) {
+    public List<MenuView> getList(Integer category, String query) {
 
         List<MenuView> menus = getList(category, query, null);
         return menus;
@@ -44,5 +50,22 @@ public class DefaultMenuService implements MenuService {
     @Override
     public void reg(Menu menu) {
         repository.save(menu); // xml : insert
+    }
+
+    @Override
+    public MenuDetailModel getDetailById(Long id) {
+        Menu menu = repository.findById(id);
+        List<MenuImage> images = menuImgRepository.findAllByMenuId(id);
+        List<RcmdMenuView> rcmdMenus= rcmdMenuRepository.findAllByMenuId(id);
+
+        MenuDetailModel model = MenuDetailModel
+                .builder()
+                .menu(menu)
+                .images(images)
+                .rcmdMenus(rcmdMenus)
+                .build();
+
+
+        return model;
     }
 }

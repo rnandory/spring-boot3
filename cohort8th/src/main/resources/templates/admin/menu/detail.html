@@ -9,37 +9,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
 
-  <link href="../../css/reset.css" rel="stylesheet" type="text/css">
-  <link href="../../css/style.css" rel="stylesheet" type="text/css">
-  <link href="../../css/icon.css" rel="stylesheet" type="text/css">
-  <link href="../../css/button.css" rel="stylesheet" type="text/css">
-  <link href="../../css/util.css" rel="stylesheet" type="text/css">
-  <link href="../../css/header.css" rel="stylesheet" type="text/css">
-  <link href="../../css/footer.css" rel="stylesheet" type="text/css">
-  <link href="../../css/component.css" rel="stylesheet" type="text/css">
-  <link href="../../css/menu.css" rel="stylesheet" type="text/css">
-  <link href="../../css/admin/menu/detail.css" rel="stylesheet" type="text/css" >
+  <link href="/css/menu.css" rel="stylesheet" type="text/css">
+  <link href="/css/admin/menu/detail.css" rel="stylesheet" type="text/css" >
 </head>
 
 <body>
 
 
-<main layout:fragment="main">
+<main class="menu-detail-main" layout:fragment="main">
   <div class="menu-detail">
     <section class="menu-detail-header">
       <h1 class="d-none">메뉴 사진</h1>
-      <img src="/image/latte2.svg" alt="커피라떼" >
+      <img src="/image/latte2.svg" alt="커피라떼"
+           th:each="i : ${menuModel.images}" th:if="${i.isDefault}"
+           th:src="@{/image/{img}(img=${i.src})}">
       <a href="list" class="icon icon-arrow-left-line">뒤로가기</a>
     </section>
     <!-- --------------------------------------------------------------------메뉴설명 -->
     <section class="menu-detail-main-section">
       <h1 class="d-none">메뉴 설명 및 옵션</h1>
       <div class="menu-detail-text">
-        <div class="text-title-1">카페 라떼</div>
-        <div class="text-sub">Cafe Latte</div>
-        <div class="text-title-1"><input type="number" name="price" value="4500" dir="rtl"> 원</div>
+        <div class="text-title-1" th:text="${menuModel.menu.korName}">카페 라떼</div>
+        <div class="text-sub" th:text="${menuModel.menu.engName}">Cafe Latte</div>
+        <div class="text-title-1"><input type="number" name="price" value="4500" th:value="${menuModel.menu.price}" dir="rtl"> 원</div>
         <p class="text-ctt">
-            <textarea>
+            <textarea th:text="${menuModel.menu.description}">
 알랜드만의 로스팅 기법으로 볶은 원두를 사용하여 추출된 풍부한 에스프레소와 신선한 우유가 어우러진 대표 라떼
             </textarea>
         </p>
@@ -91,36 +85,19 @@
         <section class="menu-section">
           <h1 class="d-none">메뉴 목록</h1>
           <div>
-            <section class="menu">
+            <section class="menu" th:each=" rcmdMenu : ${menuModel.rcmdMenus}">
               <div>
                 <a href="../admin/menu/recommend-list">
-                  <img src="/image/espresso.svg" alt="에스프레소" >
+                  <img src="/image/espresso.svg"
+                       alt="에스프레소"
+                       th:src="@{/image/{img}(img=${rcmdMenu.img})}">
                 </a>
               </div>
-              <h1>에스프레소</h1>
-              <h2>Espresso</h2>
-              <div>2,500원</div>
+              <h1 th:text="${rcmdMenu.korName}">에스프레소</h1>
+              <h2 th:text="${rcmdMenu.engName}">Espresso</h2>
+              <div th:text="${rcmdMenu.price}">2,500원</div>
             </section>
-            <section class="menu">
-              <div>
-                <a href="../admin/menu/recommend-list">
-                  <img src="/image/espresso.svg" alt="에스프레소" >
-                </a>
-              </div>
-              <h1>에스프레소</h1>
-              <h2>Espresso</h2>
-              <div>2,500원</div>
-            </section>
-            <section class="menu">
-              <div>
-                <a href="../admin/menu/recommend-list">
-                  <img src="/image/espresso.svg" alt="에스프레소" >
-                </a>
-              </div>
-              <h1>에스프레소</h1>
-              <h2>Espresso</h2>
-              <div>2,500원</div>
-            </section>
+
             <section>
               <a href="../menu/reg" class="menu-add-box-pc-sm">
                 <span class="icon icon-plus-circle"></span>

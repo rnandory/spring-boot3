@@ -1,0 +1,31 @@
+form .n-text{}
+form .n-radio{}
+
+.n-form {
+    input[type=text] {
+
+    }
+
+    label:has(>input:invalid:not(:placeholder-shown))::after {
+        content: "오마이갓";
+    }
+    
+    label:has(>input:valid:not(:placeholder-shown))::after {
+        content: "유효";
+    }
+
+    input[type=text]:invalid:not(:placeholder-shown) {
+        
+    }
+
+    input[type=text]:valid:not(:placeholder-shown) {
+        
+    }
+    
+    input[type=text]:focus-within {
+        border: 2px solid pink;
+    }
+    .n-radio {
+
+    }
+}

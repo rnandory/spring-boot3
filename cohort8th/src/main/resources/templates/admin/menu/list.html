@@ -27,18 +27,20 @@
         <section class="tab-section">
           <h1>탭 목록</h1>
           <ul>
-            <li class="selected"><a href="">전체메뉴</a></li>
-            <li><a href="">커피</a></li>
-            <li><a href="">수제청</a></li>
-            <li><a href="">샌드위치</a></li>
-            <li><a href="">쿠키</a></li>
+            <li class="selected"><a href="./list">전체메뉴</a></li>
+            <li th:each="category : ${categories}"><a href="" th:href="@{list(c=${category.id})}" th:text="${category.name}">커피</a></li>
+<!--            <li><a href="">커피</a></li>-->
+<!--            <li><a href="">수제청</a></li>-->
+<!--            <li><a href="">샌드위치</a></li>-->
+<!--            <li><a href="">쿠키</a></li>-->
           </ul>
         </section>
         <!-- --------------------------------------------------검색바 -->
         <section class="search-section">
           <h1>검색</h1>
-          <form action="">
-            <input type="text" value="" name="search" />
+          <form action="list" method="get">
+            <input type="text" name="q">
+            <input type="hidden" name="c" th:value="${param.c}">
             <button type="submit" class="icon icon-search"></button>
           </form>
         </section>
@@ -59,15 +61,36 @@
           <span class="icon icon-plus-circle"></span>
         </a>
 
-        <section class="menu">
+<!--        <section class="menu">-->
+<!--          <div>-->
+<!--            <a href="detail">-->
+<!--              <img src="/image/espresso.svg" alt="에스프레소" />-->
+<!--            </a>-->
+<!--          </div>-->
+<!--          <h1>에스프레소</h1>-->
+<!--          <h2>Espresso</h2>-->
+<!--          <div>2,500원</div>-->
+<!--          <div>-->
+<!--            <a class="icon icon-arrow-up">추천메뉴 보기</a>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <a href="" class="icon icon-lg icon-pencil">수정</a>-->
+<!--            <a href="" class="icon icon-lg icon-trash">삭제</a>-->
+<!--          </div>-->
+<!--        </section>-->
+
+        <section class="menu" th:each="menu : ${menus}">
           <div>
-            <a href="detail">
-              <img src="/image/espresso.svg" alt="에스프레소" />
+            <a href="detail" th:href="@{detail(id=${menu.id})}">
+              <img
+                      src="/image/espresso.svg"
+                      th:src="@{../../image/{img}(img=${menu.img})}"
+                      th:alt="에스프레소">
             </a>
           </div>
-          <h1>에스프레소</h1>
-          <h2>Espresso</h2>
-          <div>2,500원</div>
+          <h1 th:text="${menu.korName}">에스프레소</h1>
+          <h2 th:text="${menu.engName}">Espresso</h2>
+          <div th:text="${menu.price} + '원'">2,500원</div>
           <div>
             <a class="icon icon-arrow-up">추천메뉴 보기</a>
           </div>
@@ -78,7 +101,7 @@
         </section>
         <!-- ----------------추천메뉴 목록 -->
 
-        <section class="recommend-menu-section">
+        <!--<section class="recommend-menu-section">
           <div class="bl-2 pl-12 flex-cloumn-gap-12">
             <h1>추천 메뉴</h1>
             <section class="menu-delete-section">
@@ -124,89 +147,18 @@
                 </div>
               </section>
 
-              <!-- ----------------상품추가 박스 pc small-->
+              &lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;상품추가 박스 pc small&ndash;&gt;
               <a href="../menu/reg" class="menu-add-box-pc-sm">
                 <span class="icon icon-plus-circle"></span>
               </a>
-              <!-- ----------------상품추가 박스 모바일 -->
+              &lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;상품추가 박스 모바일 &ndash;&gt;
               <a href="../menu/reg" class="menu-add-box-mobile">
                 <span class="icon icon-plus-circle"></span>
               </a>
             </section>
           </div>
-        </section>
+        </section>-->
 
-        <section class="menu">
-          <div>
-            <a href="detail">
-              <img src="/image/espresso.svg" alt="에스프레소" />
-            </a>
-          </div>
-          <h1>에스프레소</h1>
-          <h2>Espresso</h2>
-          <div>2,500원</div>
-          <div>
-            <a class="icon icon-arrow-up">추천메뉴 보기</a>
-          </div>
-          <div>
-            <a href="" class="icon icon-lg icon-pencil">수정</a>
-            <a href="" class="icon icon-lg icon-trash">삭제</a>
-          </div>
-        </section>
-
-        <section class="menu">
-          <div>
-            <a href="detail">
-              <img src="/image/espresso.svg" alt="에스프레소" />
-            </a>
-          </div>
-          <h1>에스프레소</h1>
-          <h2>Espresso</h2>
-          <div>2,500원</div>
-          <div>
-            <a class="icon icon-arrow-up">추천메뉴 보기</a>
-          </div>
-          <div>
-            <a href="" class="icon icon-lg icon-pencil">수정</a>
-            <a href="" class="icon icon-lg icon-trash">삭제</a>
-          </div>
-        </section>
-
-        <section class="menu">
-          <div>
-            <a href="">
-              <img src="/image/espresso.svg" alt="에스프레소" />
-            </a>
-          </div>
-          <h1>에스프레소</h1>
-          <h2>Espresso</h2>
-          <div>2,500원</div>
-          <div>
-            <a class="icon icon-arrow-up">추천메뉴 보기</a>
-          </div>
-          <div>
-            <a href="" class="icon icon-lg icon-pencil">수정</a>
-            <a href="" class="icon icon-lg icon-trash">삭제</a>
-          </div>
-        </section>
-
-        <section class="menu">
-          <div>
-            <a href="">
-              <img src="/image/espresso.svg" alt="에스프레소" />
-            </a>
-          </div>
-          <h1>에스프레소</h1>
-          <h2>Espresso</h2>
-          <div>2,500원</div>
-          <div>
-            <a class="icon icon-arrow-up">추천메뉴 보기</a>
-          </div>
-          <div>
-            <a href="" class="icon icon-lg icon-pencil">수정</a>
-            <a href="" class="icon icon-lg icon-trash">삭제</a>
-          </div>
-        </section>
       </section>
     </div>
     <!--<modal-alert data-title="확인" data-content="정말 닫고 싶은거야? 정말?" class="d-none">
@@ -233,7 +185,7 @@
     </modal-panel>-->
 
     <!-- ----------------------------------------------------------- -->
-    <div class="d-none">
+    <div class="<!--d-none-->">
       <section class="menu-reg-section">
         <h1>메뉴 등록 페이지</h1>
         <form class="menu-reg-form">

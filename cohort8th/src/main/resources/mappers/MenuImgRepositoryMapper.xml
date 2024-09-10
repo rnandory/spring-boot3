@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newlecture.web.cohort8th.repository.MenuImgRepository"><!--어떤 인터페이스의 메서드인지-->
+    <select id="findAllByMenuId" resultType="MenuImage"><!--반환타입은 qualifed name. yml에서 설정하면 안 써도 됨-->
+        SELECT *
+        FROM MENU_IMAGE
+        WHERE MENU_ID = #{id}
+    </select>
+
+</mapper>
+
+

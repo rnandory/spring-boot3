@@ -6,13 +6,13 @@
 <mapper namespace="com.newlecture.web.cohort8th.repository.MenuRepository"><!--어떤 인터페이스의 메서드인지-->
     <select id="findAll" resultType="MenuView"><!--반환타입은 qualifed name. yml에서 설정하면 안 써도 됨-->
         select m.*,
-        MI.SRC IMG,
-        nvl(ML.LiKE_COUNT, 0) LIKE_COUNT
+            MI.SRC IMG,
+            nvl(ML.LiKE_COUNT, 0) LIKE_COUNT
         from MENU m
-        left join (select * from MENU_IMAGE where DEFAULT_IMG = 1) MI
-        on MI.MENU_ID = M.ID
+        left join (select * from MENU_IMAGE where IS_DEFAULT = 1) MI
+            on MI.MENU_ID = M.ID
         left join (select MENU_ID, count(MENU_ID) LiKE_COUNT from MENU_LIKE group by MENU_ID) ML
-        on M.ID = ML.MENU_ID
+            on M.ID = ML.MENU_ID
         <where>
             <if test="categoryId != null">
                 CATEGORY_ID = #{categoryId}
@@ -29,16 +29,28 @@
     </select>
     
     <insert id="save" parameterType="Menu">
-        insert into MENU(id, kor_name, eng_name, price, reg_member_id, category_id, reg_date, description)
+        insert into MENU(
+            kor_name,
+            eng_name,
+            price,
+            reg_member_id,
+            category_id,
+            description)
         values (
-            #{id},
             #{korName},
             #{engName},
             #{price},
             #{regMemberId},
             #{categoryId},
-            systimestamp,
             #{description}
         )
     </insert>
+
+    <select id="findById" resultType="Menu"><!--반환타입은 qualifed name. yml에서 설정하면 안 써도 됨-->
+        select *
+        from MENU
+        where id = #{id}
+    </select>
 </mapper>
+
+

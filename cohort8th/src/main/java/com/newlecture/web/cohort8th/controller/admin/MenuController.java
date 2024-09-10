@@ -1,7 +1,6 @@
 package com.newlecture.web.cohort8th.controller.admin;
 
-import com.newlecture.web.cohort8th.entity.Category;
-import com.newlecture.web.cohort8th.entity.Menu;
+import com.newlecture.web.cohort8th.entity.*;
 import com.newlecture.web.cohort8th.service.CategoryService;
 import com.newlecture.web.cohort8th.service.MenuService;
 import jakarta.servlet.ServletContext;
@@ -33,13 +32,35 @@ public class MenuController {
     @Autowired
     private CategoryService categoryService;
 
+
     @GetMapping("list")
-    public String list(Model model) {
+    public String list(Model model,
+                       @RequestParam(name = "c", required = false)
+                       Integer categoryId,
+
+                       @RequestParam(name = "q", required = false)
+                           String query,
+
+                       @RequestParam(name = "order", required = false)
+                           String order) {
 
         List<Category> categories = categoryService.getList();
+        List<MenuView> menus = service.getList(categoryId, query, order);
+
         model.addAttribute("categories", categories);
+        model.addAttribute("menus", menus);
 
         return "admin/menu/list";
+    }
+
+    @GetMapping("detail")
+    public String detail(Long id ,Model model) {
+        MenuDetailModel menuModel = service.getDetailById(id);
+        System.out.println(menuModel);
+
+        model.addAttribute("menuModel", menuModel);
+
+        return "admin/menu/detail";
     }
 
     @GetMapping("reg")
@@ -77,7 +98,7 @@ public class MenuController {
 
 //        String fullPath = path + File.separator + fileName;
         String fullPath = Paths.get(pathFile.toString(), fileName).toString();
-//        System.out.println(fullPath);
+        System.out.println(fullPath);
         try {
             img.transferTo(new File(fullPath));
         } catch (IOException e) {
@@ -88,7 +109,6 @@ public class MenuController {
         menu.setEngName(engName);
         menu.setCategoryId(categoryId);
         menu.setRegMemberId(1L);
-        menu.setId(6L);
 
         System.out.println(menu);
 

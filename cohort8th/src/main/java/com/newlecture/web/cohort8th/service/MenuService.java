@@ -2,6 +2,7 @@ package com.newlecture.web.cohort8th.service;
 
 import com.newlecture.web.cohort8th.entity.Category;
 import com.newlecture.web.cohort8th.entity.Menu;
+import com.newlecture.web.cohort8th.entity.MenuDetailModel;
 import com.newlecture.web.cohort8th.entity.MenuView;
 
 import java.sql.SQLException;
@@ -16,4 +17,6 @@ public interface MenuService {
     List<MenuView> getList(Integer categoryId, String query, String order);
 
     void reg(Menu menu);
+
+    MenuDetailModel getDetailById(Long id);
 }

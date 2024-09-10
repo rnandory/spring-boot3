@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newlecture.web.cohort8th.repository.RcmdMenuRepository"><!--어떤 인터페이스의 메서드인지-->
+    <select id="findAllByMenuId" resultType="RcmdMenuView"><!--반환타입은 qualifed name. yml에서 설정하면 안 써도 됨-->
+        select *
+        from RCMD_MENU
+        left join  (select MENU.*, main_image.img
+        from MENU
+        left join (select MENU_ID ,SRC img
+        from MENU_IMAGE
+        where IS_DEFAULT=1) main_image
+        on MENU.ID = main_image.MENU_ID) menu_view
+        on RCMD_MENU.R_MENU_ID = menu_view.ID
+        where MENU_ID = #{id}
+    </select>
+</mapper>

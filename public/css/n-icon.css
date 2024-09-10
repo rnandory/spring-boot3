@@ -338,7 +338,3 @@ section>h5 {}
 
 
 /* =================================== */
-
- input[type="text"]{  background-color: red; }
- input.first{  background-color: blue; }
- input:hover{  background-color: green; }

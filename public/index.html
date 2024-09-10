@@ -5,14 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="/css/reset.css" type="text/css">
-    <link rel="stylesheet" href="/css/n-icon.css" type="text/css"> -->
-    <link rel="stylesheet" href="https://www.newlecture.com/dist/v0.2.2/style.min.css" type="text/css">
+    <!-- <link rel="stylesheet" href="https://www.newlecture.com/dist/v0.2.2/style.min.css" type="text/css"> -->
+    <link rel="stylesheet" href="/css/reset.css" type="text/css">    
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/n-form.css" type="text/css">    
     <link rel="stylesheet" href="/css/n-icon.css" type="text/css">
 </head>
 
 <body>
+    <section>
+        <h1>입력박스</h1>
+        <form action="" class="n-form">
+            <div>
+                <label>
+                    <span>아이디</span>
+                    <input type="text"
+                        name="uid"
+                        required
+                        maxlength="8"
+                        minlength="4"
+                        placeholder="아이디를 입력하세요. (단, 8자 이내)"
+                        autocomplete="off"
+                        >
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>비밀번호</span>
+                    <input type="text" required>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>애완동물</span>
+                    <input type="text"
+                    name="pet"                        
+                    placeholder="애완동물을 입력하세요."
+                    list="pet"
+                    autofocus>
+                </label>
+                <datalist id="pet">
+                    <option value="강아지"></option>
+                    <option value="고양이"></option>
+                    <option value="도마뱀"></option>
+                    <option value="햄스터"></option>
+                </datalist>
+            </div>
+            <div>
+                <label>
+                    <span>가격</span>
+                    <input type="number" required min="1000" max="10000" name="price">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>전화번호</span>
+                    <input type="tel" name="price"
+                        pattern="^010-\d{4}-\d{4}$"
+                        placeholder="전화번호를 입력하세요. -포함">
+                </label>
+            </div>
+            <div>
+                <input type="checkbox" id="option1">
+                <label for="option1">아이스</label>
+            </div>
+            <div>
+                <button>전송</button>
+            </div>
+        </form>
+    </section>
+    <div style="height: 200px;"></div>
     <header>
         <h1>Rland</h1>
         <nav>
