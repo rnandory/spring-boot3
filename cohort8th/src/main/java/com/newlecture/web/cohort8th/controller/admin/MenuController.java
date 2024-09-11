@@ -58,7 +58,10 @@ public class MenuController {
         MenuDetailModel menuModel = service.getDetailById(id);
         System.out.println(menuModel);
 
-        model.addAttribute("menuModel", menuModel);
+//        model.addAttribute("menuModel", menuModel);
+        model.addAttribute("menu", menuModel.getMenu());
+        model.addAttribute("imgs", menuModel.getImages());
+        model.addAttribute("rcmds", menuModel.getRcmdMenus());
 
         return "admin/menu/detail";
     }

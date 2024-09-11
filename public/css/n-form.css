@@ -6,12 +6,40 @@ form .n-radio{}
 
     }
 
+    label {
+        display: inline-flex;
+        /* width: 400px; */
+        align-items: center;
+        gap: 5px;
+    }
+
+    label>span {
+        width: 100px;
+        /* flex-basis: 100px; */
+        /* flex-shrink: 0; */
+        /* flex-grow: 1; */
+    }
+
+    label>input {
+        /* flex-grow: 1; */
+    }
+
     label:has(>input:invalid:not(:placeholder-shown))::after {
-        content: "오마이갓";
+        content: "";
+        display: inline-flex;
+        height: 24px;
+        width: 24px;                
+        mask: url(/image/icon/invalid.svg) no-repeat center;
+        background-color: red;
     }
     
     label:has(>input:valid:not(:placeholder-shown))::after {
-        content: "유효";
+        content: "";
+        display: inline-flex;
+        height: 24px;
+        width: 24px;
+        mask: url(/image/icon/valid.svg) no-repeat center;
+        background-color: green;
     }
 
     input[type=text]:invalid:not(:placeholder-shown) {

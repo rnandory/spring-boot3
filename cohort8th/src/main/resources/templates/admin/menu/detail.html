@@ -21,19 +21,19 @@
     <section class="menu-detail-header">
       <h1 class="d-none">메뉴 사진</h1>
       <img src="/image/latte2.svg" alt="커피라떼"
-           th:each="i : ${menuModel.images}" th:if="${i.isDefault}"
-           th:src="@{/image/{img}(img=${i.src})}">
+           th:each="i : ${imgs}" th:if="${i.isDefault}"
+           th:src="@{/image/product/{img}(img=${i.src})}">
       <a href="list" class="icon icon-arrow-left-line">뒤로가기</a>
     </section>
     <!-- --------------------------------------------------------------------메뉴설명 -->
     <section class="menu-detail-main-section">
       <h1 class="d-none">메뉴 설명 및 옵션</h1>
       <div class="menu-detail-text">
-        <div class="text-title-1" th:text="${menuModel.menu.korName}">카페 라떼</div>
-        <div class="text-sub" th:text="${menuModel.menu.engName}">Cafe Latte</div>
-        <div class="text-title-1"><input type="number" name="price" value="4500" th:value="${menuModel.menu.price}" dir="rtl"> 원</div>
+        <div class="text-title-1" th:text="${menu.korName}">카페 라떼</div>
+        <div class="text-sub" th:text="${menu.engName}">Cafe Latte</div>
+        <div class="text-title-1"><input type="number" name="price" value="4500" th:value="${menu.price}" dir="rtl"> 원</div>
         <p class="text-ctt">
-            <textarea th:text="${menuModel.menu.description}">
+            <textarea th:text="${menu.description}">
 알랜드만의 로스팅 기법으로 볶은 원두를 사용하여 추출된 풍부한 에스프레소와 신선한 우유가 어우러진 대표 라떼
             </textarea>
         </p>
@@ -85,12 +85,12 @@
         <section class="menu-section">
           <h1 class="d-none">메뉴 목록</h1>
           <div>
-            <section class="menu" th:each=" rcmdMenu : ${menuModel.rcmdMenus}">
+            <section class="menu" th:each=" rcmdMenu : ${rcmds}">
               <div>
                 <a href="../admin/menu/recommend-list">
                   <img src="/image/espresso.svg"
                        alt="에스프레소"
-                       th:src="@{/image/{img}(img=${rcmdMenu.img})}">
+                       th:src="@{/image/product/{img}(img=${rcmdMenu.img})}">
                 </a>
               </div>
               <h1 th:text="${rcmdMenu.korName}">에스프레소</h1>

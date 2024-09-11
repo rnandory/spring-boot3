@@ -6,6 +6,18 @@
     --color-accent-1: #334DCF;    
 }
 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard', '고딕', '명조', Arial, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
 .n-icon\:sign-in {
     --color-accent-1: red;
 }

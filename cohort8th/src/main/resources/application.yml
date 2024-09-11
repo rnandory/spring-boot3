@@ -3,7 +3,7 @@ spring:
     name: cohort8th
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    url: jdbc:oracle:thin:@//hi.newlecture.com:1521/XEPDB1
+    url: jdbc:oracle:thin:@//221.148.97.239:1521/XEPDB1
     username: {SPRING_DATASOURCE_USERNAME}
     password: 1128
   servlet:
