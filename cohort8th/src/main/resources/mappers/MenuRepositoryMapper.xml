@@ -51,6 +51,10 @@
         from MENU
         where id = #{id}
     </select>
+
+    <delete id="deleteById">
+        DELETE MENU WHERE ID=#{id}
+    </delete>
 </mapper>
 
 

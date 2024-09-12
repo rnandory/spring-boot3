@@ -1,9 +1,10 @@
 package com.newlecture.web.cohort8th.controller.admin;
 
+import com.newlecture.web.cohort8th.dto.MenuRegDto;
 import com.newlecture.web.cohort8th.entity.*;
+import com.newlecture.web.cohort8th.model.MenuDetailModel;
 import com.newlecture.web.cohort8th.service.CategoryService;
 import com.newlecture.web.cohort8th.service.MenuService;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller("adminMenuController")
@@ -77,37 +79,14 @@ public class MenuController {
 
     @PostMapping("reg")
     public String reg(
-            MultipartFile img,
+            List<MultipartFile> imgs,
             HttpServletRequest request
 //            ServletContext context
             , Menu menu
             , @RequestParam("kor-name") String korName
             , @RequestParam("eng-name") String engName
             , @RequestParam("category-id") Long categoryId
-            ) {
-
-        if (img.isEmpty()) {
-            return "redirect:list";
-        }
-
-        String path = request.getServletContext().getRealPath("/image/product");
-
-        File pathFile = new File(path);
-        if (!pathFile.exists()) {
-            pathFile.mkdirs();
-        }
-
-        String fileName = img.getOriginalFilename();
-
-//        String fullPath = path + File.separator + fileName;
-        String fullPath = Paths.get(pathFile.toString(), fileName).toString();
-        System.out.println(fullPath);
-        try {
-            img.transferTo(new File(fullPath));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+    ) {
         menu.setKorName(korName);
         menu.setEngName(engName);
         menu.setCategoryId(categoryId);
@@ -115,7 +94,69 @@ public class MenuController {
 
         System.out.println(menu);
 
-        service.reg(menu);
+        List<MenuImage> images = new ArrayList<>();
+        for (MultipartFile img : imgs) {
+
+            if (img.isEmpty()) {
+                return "redirect:list";
+            }
+
+            String path = request.getServletContext().getRealPath("/image/product");
+
+            File pathFile = new File(path);
+            if (!pathFile.exists()) {
+                pathFile.mkdirs();
+            }
+
+            String fileName = img.getOriginalFilename();
+
+//        String fullPath = path + File.separator + fileName;
+            String fullPath = Paths.get(pathFile.toString(), fileName).toString();
+            System.out.println(fullPath);
+            try {
+                img.transferTo(new File(fullPath));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            images.add(MenuImage.builder()
+                    .src(fileName)
+                    .isDefault(true)
+                    .build());
+        }
+        images.add(MenuImage.builder()
+                .src("americano.svg")
+                .isDefault(false)
+                .build());
+
+        MenuRegDto menuDto = MenuRegDto
+                .builder()
+                .menu(menu)
+                .images(images)
+                .build();
+
+
+        service.reg(menuDto);
+//        MenuImage image = new MenuImage();
+//        image.setSrc("");
+//        menuImageService.reg(image);
+
+        return "redirect:list";
+    }
+
+    @GetMapping("del")
+    public String del(Long id, Model model) {
+
+        Menu menu = service.getById(id);
+        model.addAttribute("menu", menu);
+
+        return "admin/menu/del";
+    }
+
+    @PostMapping("del")
+    public String delPost(Long id) {
+
+        service.delete(id);
 
         return "redirect:list";
     }

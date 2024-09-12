@@ -1,0 +1,33 @@
+/* 
+최종 덧칠용도
+클래스네임 = css 속성을 그대로 따옴
+클래스명을 추가함으로 마치 인라인스타일을 적용하는 것같은 효과
+ */
+
+ .display\:inline {
+    display: inline !important;
+ }
+
+ .display\:inline-block {
+    display: inline-block !important;
+ }
+
+ .display\:flex {
+    display: flex !important;
+ }
+ 
+ .width\:1 {
+    width: var(--width-1) !important;
+ }
+ 
+ .width\:2 {
+    width: var(--width-2) !important;
+ }
+ 
+ .width\:3 {
+    width: var(--width-3) !important;
+ }
+ 
+ .width\:ex {
+    width: 0 !important;
+ }

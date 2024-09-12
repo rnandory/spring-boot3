@@ -1,5 +1,7 @@
-package com.newlecture.web.cohort8th.entity;
+package com.newlecture.web.cohort8th.dto;
 
+import com.newlecture.web.cohort8th.entity.Menu;
+import com.newlecture.web.cohort8th.entity.MenuImage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MenuDetailModel {
+public class MenuRegDto {
     private Menu menu;
     private List<MenuImage> images;
-    private List<RcmdMenuView> rcmdMenus;
+
 }

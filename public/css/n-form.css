@@ -2,19 +2,30 @@ form .n-text{}
 form .n-radio{}
 
 .n-form {
-    input[type=text] {
 
+    >div {
+        width: 300px;
+    }
+
+    input {
+        border: 1px solid var(--color-base-3);
+        padding: var(--gap-1);
+        border-radius: var(--radius-1);
+    }
+
+    input[type=text]:invalid {
+        /* background-color: red; */
     }
 
     label {
-        display: inline-flex;
+        display: inline-flex;        
         /* width: 400px; */
         align-items: center;
         gap: 5px;
     }
 
     label>span {
-        width: 100px;
+        width: 100%;
         /* flex-basis: 100px; */
         /* flex-shrink: 0; */
         /* flex-grow: 1; */
@@ -56,4 +67,18 @@ form .n-radio{}
     .n-radio {
 
     }
+
+
 }
+
+/* === 라벨 위치 오버라이드 ================================*/
+.n-form.field-label-position\:top, .fl-pos\:top {
+    label {           
+        flex-wrap: wrap;            
+    }
+
+    label>span {
+        width: 100%;
+    }
+}
+/* ====================================================== */

@@ -9,4 +9,6 @@ import java.util.List;
 public interface MenuImgRepository {
     List<MenuImage> findAllByMenuId(Long id);
     MenuImage findDefaultByMenuId(Long id);
+
+    void saveAll(List<MenuImage> images);
 }

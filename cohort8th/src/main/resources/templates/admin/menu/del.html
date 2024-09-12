@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{inc/layout}">
+
+<body>
+<main layout:fragment="main" class="menu-reg-background">
+    <!--  section/ container 등 이름 크게 정하기.  -->
+    <section class="menu-del-section">
+        <h1>메뉴 삭제 페이지</h1>
+        <div>정말 삭제할꺼냐?</div>
+        <section class="menu-detail-main-section">
+            <h1 class="d-none">메뉴 설명 및 옵션</h1>
+            <div class="menu-detail-text">
+                <div class="text-title-1" th:text="${menu.korName}">카페 라떼</div>
+                <div class="text-sub" th:text="${menu.engName}">Cafe Latte</div>
+                <div class="text-title-1">
+                    <p th:text="${menu.price}"></p>
+                </div>
+                <p class="text-ctt">
+            <p th:text="${menu.description}">
+알랜드만의 로스팅 기법으로 볶은 원두를 사용하여 추출된 풍부한 에스프레소와 신선한 우유가 어우러진 대표 라떼
+            </p>
+                </p>
+            </div>
+        </section>
+        <form action="del" method="post" class="menu-del-form">
+            <input type="hidden" name="id" th:value="${menu.id}">
+            <a href="detail">취소</a>
+            <button>삭제</button>
+        </form>
+    </section>
+</main>
+
+</body>
+
+</html>

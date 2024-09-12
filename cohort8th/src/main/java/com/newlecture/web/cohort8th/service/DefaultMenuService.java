@@ -1,6 +1,8 @@
 package com.newlecture.web.cohort8th.service;
 
+import com.newlecture.web.cohort8th.dto.MenuRegDto;
 import com.newlecture.web.cohort8th.entity.*;
+import com.newlecture.web.cohort8th.model.MenuDetailModel;
 import com.newlecture.web.cohort8th.repository.MenuImgRepository;
 import com.newlecture.web.cohort8th.repository.MenuRepository;
 import com.newlecture.web.cohort8th.repository.RcmdMenuRepository;
@@ -48,8 +50,21 @@ public class DefaultMenuService implements MenuService {
     }
 
     @Override
-    public void reg(Menu menu) {
+    public Menu getById(Long id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public void reg(MenuRegDto menuDto) {
+
+        Menu menu = menuDto.getMenu();
+        List<MenuImage> images = menuDto.getImages();
+
+        System.out.println(images);
+
         repository.save(menu); // xml : insert
+
+        menuImgRepository.saveAll(images);
     }
 
     @Override
@@ -67,5 +82,10 @@ public class DefaultMenuService implements MenuService {
 
 
         return model;
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }
