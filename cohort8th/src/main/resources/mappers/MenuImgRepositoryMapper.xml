@@ -11,29 +11,18 @@
     </select>
 
 <!--    <insert id="saveAll" parameterType="java.util.List">-->
-<!--        INSERT INTO MENU_IMAGE (-->
-<!--                                SRC,-->
-<!--                                MENU_ID,-->
-<!--                                IS_DEFAULT)-->
-<!--        VALUES-->
-<!--            <foreach collection="images" item="menuImage" separator=",">-->
-<!--                (-->
-<!--                    #{menuImage.src},-->
-<!--                    1,-->
-<!--                    #{menuImage.isDefault}-->
-<!--                )-->
-<!--            </foreach>-->
+<!--        INSERT ALL-->
+<!--        <foreach item="img" collection="images">-->
+<!--            INTO MENU_IMAGE (SRC, MENU_ID, IS_DEFAULT)-->
+<!--            VALUES (#{img.src}, #{img.menuId}, #{img.isDefault})-->
+<!--        </foreach>-->
+<!--        SELECT * FROM DUAL-->
 <!--    </insert>-->
-
+<!--parameterType="MenuImage" 여도 되는 이유?-->
     <insert id="saveAll" parameterType="java.util.List">
-        <foreach collection="images" item="menuImage" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
-            INTO MENU_IMAGE (
-            SRC,
-            MENU_ID,
-            IS_DEFAULT
-            )
-            VALUES
-            (#{menuImage.src}, 1, #{menuImage.isDefault})
+        <foreach collection="images" item="image" open="INSERT ALL" close="SELECT * FROM DUAL">
+            INTO MENU_IMAGE (SRC, MENU_ID, IS_DEFAULT)
+            VALUES (#{image.src}, #{image.menuId}, #{image.isDefault})
         </foreach>
     </insert>
 

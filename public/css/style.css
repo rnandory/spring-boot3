@@ -42,8 +42,8 @@
 } */
 
 body {
-    /* font-family: 'Pretendard', '고딕', '명조', Arial, Arial, Helvetica, sans-serif; */
-    font-family: 'Pretendard';
+    font-family: 'Pretendard', '고딕', '명조', Arial, Arial, Helvetica, sans-serif;
+    /* font-family: 'Pretendard'; */
     font-size: 15px;
 }
 

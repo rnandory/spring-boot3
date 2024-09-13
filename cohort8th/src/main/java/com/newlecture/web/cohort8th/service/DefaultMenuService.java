@@ -8,6 +8,8 @@ import com.newlecture.web.cohort8th.repository.MenuRepository;
 import com.newlecture.web.cohort8th.repository.RcmdMenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -55,6 +57,7 @@ public class DefaultMenuService implements MenuService {
     }
 
     @Override
+    @Transactional
     public void reg(MenuRegDto menuDto) {
 
         Menu menu = menuDto.getMenu();
@@ -63,11 +66,12 @@ public class DefaultMenuService implements MenuService {
         System.out.println(images);
 
         repository.save(menu); // xml : insert
-
+//        repository.findLastOne();
         menuImgRepository.saveAll(images);
     }
 
     @Override
+//    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public MenuDetailModel getDetailById(Long id) {
         Menu menu = repository.findById(id);
         List<MenuImage> images = menuImgRepository.findAllByMenuId(id);

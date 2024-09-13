@@ -20,7 +20,7 @@
 .n-icon\:sign-out */
 
 /*)*/
-    .n-icon {
+.n-icon {
     --icon-width: 24px;
     --icon-color: var(--color-accent-1);
     --deco-gap: 0;
@@ -40,7 +40,7 @@
     .n-icon\:dashboard,
     .n-icon\:sign-in,
     .n-icon\:sign-out) */
-    .n-icon::before {
+.n-icon::before {
 
     flex-shrink: 0;
     content: "";
@@ -81,6 +81,12 @@
     /* background-image: url(/image/icon/logout_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);    */
     mask-image: url(/image/icon/logout_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg);
 }
+
+.n-icon\:cart::before {
+    mask-image: url(/image/icon/cart.svg);
+}
+
+;
 
 /* === size ======================================= */
 .n-icon-size\:1,
@@ -338,4 +344,3 @@ section>h5 {}
 
 
 /* =================================== */
-

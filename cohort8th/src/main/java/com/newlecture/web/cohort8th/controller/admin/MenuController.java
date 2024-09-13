@@ -90,7 +90,7 @@ public class MenuController {
         menu.setKorName(korName);
         menu.setEngName(engName);
         menu.setCategoryId(categoryId);
-        menu.setRegMemberId(1L);
+        menu.setRegMemberId(5211L);
 
         System.out.println(menu);
 
@@ -121,11 +121,13 @@ public class MenuController {
 
             images.add(MenuImage.builder()
                     .src(fileName)
+                    .menuId(347L)
                     .isDefault(true)
                     .build());
         }
         images.add(MenuImage.builder()
                 .src("americano.svg")
+                .menuId(347L)
                 .isDefault(false)
                 .build());
 
