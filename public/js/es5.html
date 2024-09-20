@@ -5,72 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        // window.alert("hello javascript")
-        // var nums = new Array(5);
+    //     window.alert("hello javascript")
+    //     var nums = new Array(5);
         
-        // nums[2] = new Array(3);
-        // nums[3] = new Array(1,2,3, undefined);
-        // console.log(nums);
-        // console.log(typeof nums[3]);
-        // console.log(nums[3][1]);
+    //     nums[2] = new Array(3);
+    //     nums[3] = new Array(1,2,3, undefined);
+    //     console.log(nums);
+    //     console.log(typeof nums[3]);
+    //     console.log(nums[3][1]);
 
-        // console.log(nums.length);
+    //     console.log(nums.length);
 
-        // var stack = new Array();
-        // stack.push(1);
-        // stack.push(2);
-        // stack.push(3);
-        // stack.push(4);
+    //     var stack = new Array();
+    //     stack.push(1);
+    //     stack.push(2);
+    //     stack.push(3);
+    //     stack.push(4);
 
-        // console.log(stack.pop());
-        // console.log(stack.pop());
-        // console.log(stack.lastIndexOf());
-        // console.log(stack.lastIndexOf() + ':' + stack[stack.lastIndexOf()])
+    //     console.log(stack.pop());
+    //     console.log(stack.pop());
+    //     console.log(stack.lastIndexOf());
+    //     console.log(stack.lastIndexOf() + ':' + stack[stack.lastIndexOf()])
         
-        // var que = new Array();
-        // console.log(que.push(1));
-        // console.log(que.push(2));
-        // console.log(que.push(3));
-        // console.log(que.shift());        
-        // console.log(que.shift());        
-        // console.log(que.shift());        
+    //     var que = new Array();
+    //     console.log(que.push(1));
+    //     console.log(que.push(2));
+    //     console.log(que.push(3));
+    //     console.log(que.shift());        
+    //     console.log(que.shift());        
+    //     console.log(que.shift());        
 
 
-        // var deque = new Array();
-        // console.log(deque.push(1));
-        // console.log(deque.push(2));
-        // console.log(deque.push(3));
-        // console.log(deque.unshift(0));
-        // console.log(deque)
-        // deque.pop()
-        // console.log(deque)
-        // deque.shift()
-        // console.log(deque)
-        // deque.unshift(-1)
-        // console.log(deque)
-        // //=================================================
-        // nums = new Array(1,2,3,4,5);
-        // // nums.splice(2, 1); // index 2부터 1개만 날려라
-        // // nums.splice(2, 0, new Array(1,2,3)); // index 2부터 0개만 날리고, 삽입
-        // // nums.splice(2, 0, 1,2,3); // index 2부터 0개만 날리고, 삽입
-        // nums.splice(2,2); // 3,4삭제
-        // console.log(nums);
-        // //=================================================
-        // var exam = new Object();
-        // exam.kor = 30;
-        // exam["kor-Eng"] = 100;
-        // exam.backgroundImage = 'red';
+    //     var deque = new Array();
+    //     console.log(deque.push(1));
+    //     console.log(deque.push(2));
+    //     console.log(deque.push(3));
+    //     console.log(deque.unshift(0));
+    //     console.log(deque)
+    //     deque.pop()
+    //     console.log(deque)
+    //     deque.shift()
+    //     console.log(deque)
+    //     deque.unshift(-1)
+    //     console.log(deque)
+    // //=================================================
+    //     nums = new Array(1,2,3,4,5);
+    //     // nums.splice(2, 1); // index 2부터 1개만 날려라
+    //     // nums.splice(2, 0, new Array(1,2,3)); // index 2부터 0개만 날리고, 삽입
+    //     // nums.splice(2, 0, 1,2,3); // index 2부터 0개만 날리고, 삽입
+    //     nums.splice(2,2); // 3,4삭제
+    //     console.log(nums);
+    // //=================================================
+    //     var exam = new Object();
+    //     exam.kor = 30;
+    //     exam["kor-Eng"] = 100;
+    //     exam.backgroundImage = 'red';
 
-        // // console.log(exam.kor);
-        // // console.log(exam["kor"]);
-        // // console.log(exam["korEng"]);
-        // // console.log(exam["kor-Eng"]);
-        // console.log(exam);
-        // console.log(exam.eng); // 확인하는 순간 eng속성이 붙어버림
+    //     // console.log(exam.kor);
+    //     // console.log(exam["kor"]);
+    //     // console.log(exam["korEng"]);
+    //     // console.log(exam["kor-Eng"]);
+    //     console.log(exam);
+    //     console.log(exam.eng); // 확인하는 순간 eng속성이 붙어버림
 
-        // delete exam.kor; // 속성을 지움
-        // // console.log(exam.kor); // 지웠지만 확인하는 순간 붙어버림
-        // console.log(exam); // 이렇게 확인해야함
+    //     delete exam.kor; // 속성을 지움
+    //     // console.log(exam.kor); // 지웠지만 확인하는 순간 붙어버림
+    //     console.log(exam); // 이렇게 확인해야함
         
         // var notices = [{"id":1, "title":"hello json"},
         //                 {"id":2, "title":"hello json"},
@@ -81,11 +81,252 @@
         // console.log(notices[1].id)
         // console.log(notices[1].title)
 
-        // //=========================================================
+    // //=== 9/20 금======================================================
+    // //=== eval ======================================================
 
-        var code = "var x = 30";
-        eval(code);
-        console.log(x);
+        // var code = "var x = 30";
+        // eval(code);
+        // console.log(x);
+
+        // var jason = '{kor:30, "eng":40, "math":60}';
+        // // var exam = eval(jason); // 완전한 문장을 실행하는게 아니라 오류발생
+        // // console.log(exam);
+        // var exam = eval("("+jason+")"); // 소괄호로 감싸서 완전한 문장으로
+        // console.log(exam);
+        
+    // //=== JSON Parsor==========================================================
+        
+        // var jason = "{\"kor\":30, \"eng\":40, \"math\":60}"; // 귀찮..
+        // var jason = '{"kor":30, "eng":40, "math":60}'; // 그래서 ''를 자주 사용
+        // var exam = JSON.parse(jason);
+        // console.log(exam);
+        
+        // var jason = '{kor:30, eng:40, math:60}';
+        // var exam = JSON.parse(jason);// 키값이 ""로 감싸지지 않아서 파싱불가!?
+        // console.log(exam);        
+
+        // var jason = '{kor name:30, eng:40, math:60}'; // 키값이 ""로 감싸지지 않아서 파싱불가!?
+        // var exam = JSON.parse(jason);
+        // console.log(exam);
+
+        // var jason2 = {"kor name":30, eng:40, math:60}; // kor name은 키값이 ""로 감싸야함
+        // console.log(jason2);
+
+    // //=== JSON stringify : json을 문자열로======================================================
+
+        //     var exam = {kor:30, eng:40, math:50};
+        //     alert(exam.kor);
+            
+        //     var jsonString = JSON.stringify(exam);
+        //     alert(jsonString);
+
+    // // === 연산자 =================================================================
+    
+        //     console.log("32" > "4"); // false
+
+        //     console.log(32 > "4"); // true
+    
+    //=== short-circuit evaluation =================================================================
+    
+        // var kor = prompt("국어성적을 입력하세요");
+        // console.log(kor);
+        // console.log(typeof kor);
+        
+        // var result = kor || 0;
+        // result+=2;
+        
+        // console.log(result);
+        
+        
+        // var kor = 10;
+        // var eng = 10;
+        // var math = 10;
+        // var result = kor && eng && math;
+        // if (result)
+        //     console.log("모든 값이 입력되었습니다.");
+
+    // //=== NaN과 Infinity비교 =================================================================
+
+        // // Not A Number
+        // // undefine + 3? undefine
+        // // 3 * 'a'? undefine
+
+        // {
+        //     var a = 3 * 'a';
+        //     console.log(a);
+        //     console.log(a == NaN); // false
+        //     console.log(a === NaN); // false
+        //     // => NaN은 ==, ===로 비교불가. 마치 오라클에서 NULL을 ==이 아니라 Is NULL로 비교하는 것처럼
+        //     console.log(isNaN(a));
+        // }
+
+        // {
+        //     var b = Number.MAX_VALUE*12;
+        //     console.log(b);
+        //     console.log(b == Infinity); // true?
+        //     console.log(!isFinite(b));
+        // }
+        
+    // //=== 제어구조: for-of =================================================================
+
+        // // var c = [1,4,3,5,undefined,undefined];
+
+        // var c = new Array(3);
+        // c.push(1);
+        // console.log(c);
+
+        // // c가 객체가 되다면? for-in만 가능. for-of는 불가. 
+        // // of는 iterator가 있는es6의 컬렉션만 가능
+        // // 객체는 iterator가 없으므로 for-of 불가능
+        // // var c = {kor:11, eng:22, math:33};
+
+        // for (var i=0; i<c.length; i++) {
+        //     console.log(i);
+        //     console.log(c[i]);
+        // }
+        
+        // console.log("==========================================");
+
+        // for (var i in c) {
+        //     console.log(i);
+        //     console.log(c[i]); // c[kor]는 객체c에서 키가 kor인 것의 값을 꺼냄!
+        // }
+            
+        // console.log("==========================================");
+
+        // for (var v of c) {
+        //     console.log(v);
+        // }
+
+
+    // //=== 함수 =================================================================
+        
+        // // 생성방법 1
+        // var add = new Function("x,y", "return x+y");
+        // console.log(add(3,4));
+        // // 방법 2
+        // var add1 = function(x,y) {
+        //     return x+y;
+        // }
+        // console.log(add1(31,4));
+        // // 방법 3
+        // function add2(x, y) {
+        //     return x+y;
+        // }
+        // console.log(add2(6,4));
+
+        // console.log('===============================================');
+
+        // // 매개변수의 의미(별칭?)와 가변성과 arguments컬렉션
+        // function add3(x,y) {          
+        //     return x + y + arguments[2];
+        // };
+
+        // console.log(add3(1,2));
+        // console.log(add3(1,2,10,200));
+    
+    // //=== 변수 가시영역 =================================================================
+        
+        // // alert(a); // error: a is not defined
+        // // console.log(window); // 개발자도구에 코드가 모두 실행된 후 최종 window상태를 보여줌
+        // console.log(window.a1, window.a2);
+        // console.log(a1=1, a1);
+
+        // // console.log(window);
+        // console.log(window.a1, window.a2);
+        // console.log(a2);
+        // var a2 = 1;
+        
+        // console.log(window.a1, window.a2);
+
+        // // hoist
+        // {
+        //     a1 = 3; // 이 시점에 변수마련됨.
+        //     var a2 = 1;
+        //     // 변수선언하면 hoist되서 선언 이전부분에서도 사용은 가능(undefined)
+        //     // es6 이전에선 이렇게 쓸 이유가 없음.
+        //     // es6 이전엔 지역화가 x {}로 지역화 불가능
+        //     // 변수선언해봤자 미리 메모리만 차지하고, 지역화가 안되므로 변수충돌도 해결안됨.        
+
+        // }
+
+    // //=== 함수 내에서의 지역화 ======
+
+        // var f1 = function() {
+        //     a = 1;
+
+        //     console.log(window.a); // 전역변수 a = 1          
+        // }
+        // f1();
+        
+        // // 위 아래의 차이점?
+
+        // var f2 = function() {
+        //     b = 1; // 밑에서 a가 선언되었으므로 지역변수
+            
+        //     console.log(window.b); // undefined가 나옴
+        //     var b;     
+        // }
+        // f2();
+
+    // // //=== 동일한 변수를 여러 번 선언하는 경우? ==========
+
+    //     var a = 1;
+    //     var a = 2; // 에러 안남
+    //     // 자바스크립트에서의 변수선언은 미리 준비한다는 의미 밖에 없음
+        
+    //=== 변수 생명주기와 closure ========================================
+
+        // 클로저 (마무리)
+        // 함수(아우터)가 함수를 리턴함.
+        // 리턴된 함수가 아우터의 변수를 사용함.
+        // 리턴된 함수가 아우터의 변수를 사용하기에 아우터는 죽을 수 없음.
+        // 리턴된 함수 =  클로저
+        // 꼭 함수가 아니더라도, 그것 때문에 그것이 물고있는 아우터가 죽지못한다면 그것=클로저
+
+        // 아우터를 의도적으로 죽지 못하게 할 때만 클로저를 사용해야함.
+        // 그렇지 않다면 죽지못하는 아우터가 쌓여서 메모리누수 발생
+
+        {
+            function f1() {
+                var a = 1;
+    
+                return function f2() {
+                    return a;
+                }
+            }
+    
+            var f = f1();
+            
+            var a = f();
+            
+            alert(a);
+        }
+
+        {
+            var func1 = function() {
+                console.log(1);
+            }
+            var func2 = function() {
+                console.log(2);
+            }
+            var func3 = function() {
+                console.log(3);
+            }
+
+
+            var farr = [];
+            for (var i=0; i<3; i++) {
+                farr[i] = function() {
+                    console.log(1+i);
+                };
+            }
+
+            console.log(farr[0](), farr[1](), farr[2]());
+        }
+
+
+
     </script>
 </head>
 <body>
