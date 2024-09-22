@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-box {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: 100px 100px;
+            width: 500px;
+        }
+
+        .grid-box>div:first-child {
+            /* width: 30px; */
+            background-color: goldenrod;
+        }
+
+        .item1 {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 2;
+            grid-row-end: 3;
+        }
+
+        .grid-box>div:nth-child(5) {
+            grid-column-start: 3;
+            grid-column-end: 2;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-box">
+        <div class="item1">1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    
+    </div>
+</body>
+</html>

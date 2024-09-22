@@ -10,6 +10,23 @@
     --color-accent-1: #334dcf;
     --rgb-accent-1: 51, 77, 207;
 
+
+    --color-main-1: #092241;
+    --color-main-2: #3A4E67;
+    --color-main-3: #6B7A8D;
+
+    --color-blue-1: #24A0ED;
+    --color-blue-2: #e9f5fd;
+    --color-blue-3: #e6f3ff;
+
+    --color-red-1: #e92c2c;
+    --color-red-2: #ff9205;
+    --color-red-3: #ffecec;
+
+    --color-green-1: #00ba34;
+    --color-green-2: #ff9205;
+    --color-green-3: #e6f9eb;
+
 }
 
 body{
@@ -17,4 +34,10 @@ body{
     font-size: 14px;
     color: var(--color-base-7);
 
+}
+
+.top-bar .n-btn {
+    --btn-padding: 4px 6px;
+    --btn-font-size: 12px;
+    --btn-border-radius: 10px
 }
