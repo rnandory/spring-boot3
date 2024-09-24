@@ -1,0 +1,43 @@
+.n-icon\:arrow_swap:before {
+    --icon: url(image/icon/arrow_swap.svg)
+}
+
+.n-icon\:calendar:before {
+    --icon: url(image/icon/calendar.svg)
+}
+
+.n-icon\:category:before {
+    --icon: url(image/icon/category.svg)
+}
+
+.n-icon\:clock:before {
+    --icon: url(image/icon/clock.svg)
+}
+
+.n-icon\:clock_sand:before {
+    --icon: url(image/icon/clock_sand.svg)
+}
+
+.n-icon\:globe:before {
+    --icon: url(image/icon/globe.svg)
+}
+
+.n-icon\:group:before {
+    --icon: url(image/icon/group.svg)
+}
+
+.n-icon\:list:before {
+    --icon: url(image/icon/list.svg)
+}
+
+.n-icon\:price:before {
+    --icon: url(image/icon/price.svg)
+}
+
+.n-icon\:reset:before {
+    --icon: url(image/icon/reset.svg)
+}
+
+.n-icon\:star:before {
+    --icon: url(image/icon/star.svg)
+}

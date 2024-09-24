@@ -8,6 +8,13 @@
 
     <link href="/css/menu.css" rel="stylesheet" type="text/css">
     <link href="/css/menu/list.css" rel="stylesheet" type="text/css">
+    <script>
+        let request = new XMLHttpRequest();
+        request.open("GET", "/menu/list?c=3", false);
+        request.send(null);
+
+        console.log(request.responseText);
+    </script>
 </head>
 
 <body>

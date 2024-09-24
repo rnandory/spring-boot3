@@ -1,77 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-    //     window.alert("hello javascript")
-    //     var nums = new Array(5);
-        
-    //     nums[2] = new Array(3);
-    //     nums[3] = new Array(1,2,3, undefined);
-    //     console.log(nums);
-    //     console.log(typeof nums[3]);
-    //     console.log(nums[3][1]);
+        //     window.alert("hello javascript")
+        //     var nums = new Array(5);
 
-    //     console.log(nums.length);
+        //     nums[2] = new Array(3);
+        //     nums[3] = new Array(1,2,3, undefined);
+        //     console.log(nums);
+        //     console.log(typeof nums[3]);
+        //     console.log(nums[3][1]);
 
-    //     var stack = new Array();
-    //     stack.push(1);
-    //     stack.push(2);
-    //     stack.push(3);
-    //     stack.push(4);
+        //     console.log(nums.length);
 
-    //     console.log(stack.pop());
-    //     console.log(stack.pop());
-    //     console.log(stack.lastIndexOf());
-    //     console.log(stack.lastIndexOf() + ':' + stack[stack.lastIndexOf()])
-        
-    //     var que = new Array();
-    //     console.log(que.push(1));
-    //     console.log(que.push(2));
-    //     console.log(que.push(3));
-    //     console.log(que.shift());        
-    //     console.log(que.shift());        
-    //     console.log(que.shift());        
+        //     var stack = new Array();
+        //     stack.push(1);
+        //     stack.push(2);
+        //     stack.push(3);
+        //     stack.push(4);
+
+        //     console.log(stack.pop());
+        //     console.log(stack.pop());
+        //     console.log(stack.lastIndexOf());
+        //     console.log(stack.lastIndexOf() + ':' + stack[stack.lastIndexOf()])
+
+        //     var que = new Array();
+        //     console.log(que.push(1));
+        //     console.log(que.push(2));
+        //     console.log(que.push(3));
+        //     console.log(que.shift());        
+        //     console.log(que.shift());        
+        //     console.log(que.shift());        
 
 
-    //     var deque = new Array();
-    //     console.log(deque.push(1));
-    //     console.log(deque.push(2));
-    //     console.log(deque.push(3));
-    //     console.log(deque.unshift(0));
-    //     console.log(deque)
-    //     deque.pop()
-    //     console.log(deque)
-    //     deque.shift()
-    //     console.log(deque)
-    //     deque.unshift(-1)
-    //     console.log(deque)
-    // //=================================================
-    //     nums = new Array(1,2,3,4,5);
-    //     // nums.splice(2, 1); // index 2부터 1개만 날려라
-    //     // nums.splice(2, 0, new Array(1,2,3)); // index 2부터 0개만 날리고, 삽입
-    //     // nums.splice(2, 0, 1,2,3); // index 2부터 0개만 날리고, 삽입
-    //     nums.splice(2,2); // 3,4삭제
-    //     console.log(nums);
-    // //=================================================
-    //     var exam = new Object();
-    //     exam.kor = 30;
-    //     exam["kor-Eng"] = 100;
-    //     exam.backgroundImage = 'red';
+        //     var deque = new Array();
+        //     console.log(deque.push(1));
+        //     console.log(deque.push(2));
+        //     console.log(deque.push(3));
+        //     console.log(deque.unshift(0));
+        //     console.log(deque)
+        //     deque.pop()
+        //     console.log(deque)
+        //     deque.shift()
+        //     console.log(deque)
+        //     deque.unshift(-1)
+        //     console.log(deque)
+        // //=================================================
+        //     nums = new Array(1,2,3,4,5);
+        //     // nums.splice(2, 1); // index 2부터 1개만 날려라
+        //     // nums.splice(2, 0, new Array(1,2,3)); // index 2부터 0개만 날리고, 삽입
+        //     // nums.splice(2, 0, 1,2,3); // index 2부터 0개만 날리고, 삽입
+        //     nums.splice(2,2); // 3,4삭제
+        //     console.log(nums);
+        // //=================================================
+        //     var exam = new Object();
+        //     exam.kor = 30;
+        //     exam["kor-Eng"] = 100;
+        //     exam.backgroundImage = 'red';
 
-    //     // console.log(exam.kor);
-    //     // console.log(exam["kor"]);
-    //     // console.log(exam["korEng"]);
-    //     // console.log(exam["kor-Eng"]);
-    //     console.log(exam);
-    //     console.log(exam.eng); // 확인하는 순간 eng속성이 붙어버림
+        //     // console.log(exam.kor);
+        //     // console.log(exam["kor"]);
+        //     // console.log(exam["korEng"]);
+        //     // console.log(exam["kor-Eng"]);
+        //     console.log(exam);
+        //     console.log(exam.eng); // 확인하는 순간 eng속성이 붙어버림
 
-    //     delete exam.kor; // 속성을 지움
-    //     // console.log(exam.kor); // 지웠지만 확인하는 순간 붙어버림
-    //     console.log(exam); // 이렇게 확인해야함
-        
+        //     delete exam.kor; // 속성을 지움
+        //     // console.log(exam.kor); // 지웠지만 확인하는 순간 붙어버림
+        //     console.log(exam); // 이렇게 확인해야함
+
         // var notices = [{"id":1, "title":"hello json"},
         //                 {"id":2, "title":"hello json"},
         //                 {"id":3, "title":"hello json"}
@@ -81,8 +82,8 @@
         // console.log(notices[1].id)
         // console.log(notices[1].title)
 
-    // //=== 9/20 금======================================================
-    // //=== eval ======================================================
+        // //=== 9/20 금======================================================
+        // //=== eval ======================================================
 
         // var code = "var x = 30";
         // eval(code);
@@ -93,14 +94,14 @@
         // // console.log(exam);
         // var exam = eval("("+jason+")"); // 소괄호로 감싸서 완전한 문장으로
         // console.log(exam);
-        
-    // //=== JSON Parsor==========================================================
-        
+
+        // //=== JSON Parsor==========================================================
+
         // var jason = "{\"kor\":30, \"eng\":40, \"math\":60}"; // 귀찮..
         // var jason = '{"kor":30, "eng":40, "math":60}'; // 그래서 ''를 자주 사용
         // var exam = JSON.parse(jason);
         // console.log(exam);
-        
+
         // var jason = '{kor:30, eng:40, math:60}';
         // var exam = JSON.parse(jason);// 키값이 ""로 감싸지지 않아서 파싱불가!?
         // console.log(exam);        
@@ -112,32 +113,32 @@
         // var jason2 = {"kor name":30, eng:40, math:60}; // kor name은 키값이 ""로 감싸야함
         // console.log(jason2);
 
-    // //=== JSON stringify : json을 문자열로======================================================
+        // //=== JSON stringify : json을 문자열로======================================================
 
         //     var exam = {kor:30, eng:40, math:50};
         //     alert(exam.kor);
-            
+
         //     var jsonString = JSON.stringify(exam);
         //     alert(jsonString);
 
-    // // === 연산자 =================================================================
-    
+        // // === 연산자 =================================================================
+
         //     console.log("32" > "4"); // false
 
         //     console.log(32 > "4"); // true
-    
-    //=== short-circuit evaluation =================================================================
-    
+
+        //=== short-circuit evaluation =================================================================
+
         // var kor = prompt("국어성적을 입력하세요");
         // console.log(kor);
         // console.log(typeof kor);
-        
+
         // var result = kor || 0;
         // result+=2;
-        
+
         // console.log(result);
-        
-        
+
+
         // var kor = 10;
         // var eng = 10;
         // var math = 10;
@@ -145,7 +146,7 @@
         // if (result)
         //     console.log("모든 값이 입력되었습니다.");
 
-    // //=== NaN과 Infinity비교 =================================================================
+        // //=== NaN과 Infinity비교 =================================================================
 
         // // Not A Number
         // // undefine + 3? undefine
@@ -166,8 +167,8 @@
         //     console.log(b == Infinity); // true?
         //     console.log(!isFinite(b));
         // }
-        
-    // //=== 제어구조: for-of =================================================================
+
+        // //=== 제어구조: for-of =================================================================
 
         // // var c = [1,4,3,5,undefined,undefined];
 
@@ -184,14 +185,14 @@
         //     console.log(i);
         //     console.log(c[i]);
         // }
-        
+
         // console.log("==========================================");
 
         // for (var i in c) {
         //     console.log(i);
         //     console.log(c[i]); // c[kor]는 객체c에서 키가 kor인 것의 값을 꺼냄!
         // }
-            
+
         // console.log("==========================================");
 
         // for (var v of c) {
@@ -199,8 +200,8 @@
         // }
 
 
-    // //=== 함수 =================================================================
-        
+        // //=== 함수 =================================================================
+
         // // 생성방법 1
         // var add = new Function("x,y", "return x+y");
         // console.log(add(3,4));
@@ -224,9 +225,9 @@
 
         // console.log(add3(1,2));
         // console.log(add3(1,2,10,200));
-    
-    // //=== 변수 가시영역 =================================================================
-        
+
+        // //=== 변수 가시영역 =================================================================
+
         // // alert(a); // error: a is not defined
         // // console.log(window); // 개발자도구에 코드가 모두 실행된 후 최종 window상태를 보여줌
         // console.log(window.a1, window.a2);
@@ -236,7 +237,7 @@
         // console.log(window.a1, window.a2);
         // console.log(a2);
         // var a2 = 1;
-        
+
         // console.log(window.a1, window.a2);
 
         // // hoist
@@ -250,7 +251,7 @@
 
         // }
 
-    // //=== 함수 내에서의 지역화 ======
+        // //=== 함수 내에서의 지역화 ======
 
         // var f1 = function() {
         //     a = 1;
@@ -258,24 +259,24 @@
         //     console.log(window.a); // 전역변수 a = 1          
         // }
         // f1();
-        
+
         // // 위 아래의 차이점?
 
         // var f2 = function() {
         //     b = 1; // 밑에서 a가 선언되었으므로 지역변수
-            
+
         //     console.log(window.b); // undefined가 나옴
         //     var b;     
         // }
         // f2();
 
-    // // //=== 동일한 변수를 여러 번 선언하는 경우? ==========
+        // // //=== 동일한 변수를 여러 번 선언하는 경우? ==========
 
-    //     var a = 1;
-    //     var a = 2; // 에러 안남
-    //     // 자바스크립트에서의 변수선언은 미리 준비한다는 의미 밖에 없음
-        
-    // //=== 변수 생명주기와 closure ========================================
+        //     var a = 1;
+        //     var a = 2; // 에러 안남
+        //     // 자바스크립트에서의 변수선언은 미리 준비한다는 의미 밖에 없음
+
+        // //=== 변수 생명주기와 closure ========================================
 
         // 클로저 (마무리)
         // 함수(아우터)가 함수를 리턴함.
@@ -290,19 +291,19 @@
         // {
         //     function f1() {
         //         var a = 1;
-    
+
         //         return function f2() {
         //             return a;
         //         }
         //     }
-    
+
         //     var f = f1();
-            
+
         //     var a = f();
-            
+
         //     alert(a);
         // }
-// ===9/23 월============
+        // // ===9/23 월============
         // {
         //     var func1 = function() {
         //         console.log(1);
@@ -339,42 +340,42 @@
         //     // console.log(farr[0](), farr[1](), farr[2]());
         // }
 
-        
-    // // === 함수는 객체라서 다른 함수의 인자로 전달가능하다 ========================================
 
-    //     function print(f) {
-    //         f();
-    //     }
+        // // === 함수는 객체라서 다른 함수의 인자로 전달가능하다 ========================================
 
-    //     //=== sort ======
-    //     var nums = [2, 4, 3, 12, 3, 14, 5, 17, 7, 8, 28];
-        
-    //     nums.sort();
-    //     console.log(nums); // 의도치 않은 결과 : [12, 14, 17, 2, 28, 3, 3, 4, 5, 7, 8]
-    //     // 문자열 배열로 인식하여 정렬되었다.
-    //     // 왜냐하면 자바스크립트 배열은 한가지 자료형만 담는 것은 아니기 때문에
-    //     // 비교기준이 모호함 => 기준을 제시하지 않으면 그냥 모두 문자열이라고 치고 비교함.
-        
-    //     nums.sort(function(a,b) {console.log('a : ' + a, ',  b : '+ b); return a-b;});
-    //     console.log(nums);
-        
-    //     var nums = [{kor:1, eng:2}, {kor:12, eng:34}, {kor:33, eng:44}];
-    //     nums.sort(function(a,b) {return a.kor-b.kor;});
-    //     console.log(nums);
-        
-        
-    //     //=== filter ======
-    //     var nums = [2, 4, 3, 12, 3, 14, 5, 17, 7, 8, 28];
-    //     console.log(nums);
+        //     function print(f) {
+        //         f();
+        //     }
 
-    //     nums = nums.filter(function(item, index, arr) {return item<10});
-    //     console.log(nums);
+        //     //=== sort ======
+        //     var nums = [2, 4, 3, 12, 3, 14, 5, 17, 7, 8, 28];
 
-    //     nums.sort(function(a,b) {return a-b});
-    //     console.log(nums);
+        //     nums.sort();
+        //     console.log(nums); // 의도치 않은 결과 : [12, 14, 17, 2, 28, 3, 3, 4, 5, 7, 8]
+        //     // 문자열 배열로 인식하여 정렬되었다.
+        //     // 왜냐하면 자바스크립트 배열은 한가지 자료형만 담는 것은 아니기 때문에
+        //     // 비교기준이 모호함 => 기준을 제시하지 않으면 그냥 모두 문자열이라고 치고 비교함.
+
+        //     nums.sort(function(a,b) {console.log('a : ' + a, ',  b : '+ b); return a-b;});
+        //     console.log(nums);
+
+        //     var nums = [{kor:1, eng:2}, {kor:12, eng:34}, {kor:33, eng:44}];
+        //     nums.sort(function(a,b) {return a.kor-b.kor;});
+        //     console.log(nums);
 
 
-    // // === 객체지향 : 캡슐화 ==================================
+        //     //=== filter ======
+        //     var nums = [2, 4, 3, 12, 3, 14, 5, 17, 7, 8, 28];
+        //     console.log(nums);
+
+        //     nums = nums.filter(function(item, index, arr) {return item<10});
+        //     console.log(nums);
+
+        //     nums.sort(function(a,b) {return a-b});
+        //     console.log(nums);
+
+
+        // // === 객체지향 : 캡슐화 ==================================
         // //=== 위의 filter의 함수를 화살표함수로 표현해보자  ======
         // var nums = [2, 4, 3, 12, 3, 14, 5, 17, 7, 8, 28];
         // console.log(nums);
@@ -399,7 +400,7 @@
         // print();
         // new print();
 
-    // // === 다시 함수로==================================================================
+        // // === 다시 함수로==================================================================
         // function aa() {
         //     console.log("hehe");
         // }
@@ -426,40 +427,264 @@
         //     // 1. this가 바인딩되지 않을 수도 있다.
         //     // 2. this를 가진 함수를 위임(전달)할 때, 전달되는 함수의 this와 전달받는 함수의 this 충돌문제
 
-    
-    // // === ES6: ECMAScript2015 Features =========================================================
+
+
+
+
+
+        // // === ES6: ECMAScript2015 Features =========================================================
         // // javascript, jscript의 표준안
         // // 브라우저마다 script engine은 다름. html,css파서는 비슷.
 
-        // // 1. 값, 변수, 컬렉션
-        //     // 1. Binary, Octal Literals
-        //     // 0x 0o 0b
+        // 값 제어구조 함수 객체지향
+        // A. 값, 변수, 컬렉션
+        // 1. Binary, Octal Literals
+            // 0x 0o 0b
 
-        //     // 2. let키워드 등장
-        //     // let으로 선언한 객체는 전역 객체에 포함되지 않는다.
-        //     let x = 30;
-        //     console.log(x); //30
-        //     console.log(window.x); //undefined
-
-            // 3. 변수 중복선언 방지
+        // 2. let키워드 등장
+            // let으로 선언한 객체는 전역 객체에 포함되지 않는다.
+            {
+                let x = 30;
+                console.log(x); //30
+                console.log(window.x); //undefined
+            }
+        // 3. 변수 중복선언 방지
             // 이제 변수를 중복해서 선언할 수 없다.
-            
-            // 4. 함수를 통하지 않고도 지역화 가능
 
-            // 5. const 상수형 변수 선언할 수 있다.
+        // 4. 함수를 통하지 않고도 지역화 가능
 
-            // 6. Template String
-                // multiline String \로 개행표현
-                // -> backtick으로 감싸기 `` like java의 """
+        // 5. const 상수형 변수 선언할 수 있다.
+
+        // 6. Template String
+            // multiline String \로 개행표현
+            // -> backtick으로 감싸기 `` like java의 """
+
+            //String formatting
+            // `${}`
+
+    // // === 9/24 화 =================================================================
+            {
+                let x = 3;
+                let y = 4;
+                let result = x + y;
+                // String.raw를 ``앞에 추가 : 고전적인 문자열 명령어를 그대로 출력하기
+                let template = String.raw`
+                <div>\n
+                    ${result} = ${x} + ${y};
                 
-                //String formatting
-                // ${}
-            
+                </div>
+                `;
+
+                console.log(template);            
+            }
+
+        // 7. 향상된 JSON객체 표현식1
+            {
+                let kor = 30;
+                let eng = 30;
+                let math = 30;
+
+                let exam = {
+                    "kor": kor,
+                    "eng": eng,
+                    "math": math,
+                    "total": function() {
+                        return this.kor + this.eng + this.math;
+                    }
+                };
+                // 선언된 변수명과 json속성명 동일한 경우 변수명만 나열해도 됨
+                // 함수의 경우 function생략하고 ()만으로 함수표현. 함수명: function() {} -> 함수명() {}
+                let exam2 = {
+                    kor,
+                    eng,
+                    math,
+                    total() {
+                        return this.kor + this.eng + this.math;//this반드시 필요!
+                    }                    
+                };
+                // 변수를 중괄호로만 감싸면 Json객체가 만들어짐!
+
+                console.log(exam);
+                console.log(exam2);
+            }
+
+        // 8. 향상된 JSON객체 표현식2
+            // computed property: 속성명을 정의할 때 [변수] 사용가능 
+            // 자바스크립트는 형식이 없기에 다형성을 지원할 수 없다
+            // computed property는 다형성을 지원하기 위한 수단.. ~symbol
+
+            {
+                let 약속1 = "hehe";
+                let kor = 30;
+                let eng = 30;
+                let math = 30;
+
+                let exam2 = {
+                    kor,
+                    eng,
+                    math,
+                    [약속1]:
+                        function () {
+                            return this.kor + this.eng + this.math;//this반드시 필요!
+                        }
+                };
+                console.log(exam2.hehe()); // 약속1변수의 값 hehe가 함수명!                
+                
+                let exam3 = {
+                    kor,
+                    eng,
+                    math,
+                    [약속1]() {
+                        return this.kor + this.eng + this.math;//this반드시 필요!
+                    }
+                };                
+                console.log(exam3.hehe()); // 약속1변수의 값 hehe가 함수명!                
+            }
+
+        // 9. 객체 뽀개기(Object Detructuring)
+            // .연산은 최대한 뽀개서 줄여야 코드 가독성이 향상된다
+            // obj.x.a.b[2].c -> unhappy..
+            {
+                // lValue에 중괄호. (rValue에 중괄호 = json)
+                    function add(obj) {
+                        // let x = obj.x;
+                        // let y = obj.y;
+                        let { x, y } = obj; // x, y라는 변수가 선언된 것이다
+
+                        return x + y;
+                    };
+
+                // 한번 더 뽀개기. 
+                // lValue에 중괄호 let {x,y}도 귀찮다 -> 함수 매개변수에 명시
+                    function add({x,y}){
+                        return x + y;
+                    }
+
+                // 함수 매개변수에 별칭주기.
+                // (함수 내에서 이미 쓰이고 있는 변수와 충돌피하기)
+                    function add({x:z, y}) { // 매개변수로 받은 객체의 x속성을 z란 별칭으로 사용
+                        let x = 40;
+                        return x + y + z;
+                    };
+
+                    let result = add({ x:3, y:4, z:30 });
+
+                    console.log('result : ' + result);
+
+                // 함수에 전달되는 객체에서 선택적인 속성이 존재한다면? 기본값 설정.
+                // 전달된 객체에 a라는 속성이 있을수도 없을수도?
+                // if 없는데 a값을 가지고 연산하려고 하면 a는 undefined로 연산됨. +연산에 undefined인자가 끼면 결과는 NaN.
+                // 없으면 함수 내에서 전달된 객체의 a값을 가지고 연산할 때, 기본값을 넣어서 연산하도록 하기
+                    {
+                        function add({x:z, y, a=0}) {
+                            let x = 40;
+                            return x + y + z + a;
+                        }
+                        let result = add({ x:3, y:4, z:30 });
+                        console.log('result : ' + result);
+                        
+                        let result2 = add({ x:3, y:4, z:30, a:3 });
+                        console.log('result2 : ' + result2);
+                    }          
+
+                // 중첩객체에서 뽀개기. Nested Object Destructuring
+                    // ex. Exam객체 안에 student객체 안에 name속성을 변수로 가져옴
+                    // let name = Exam.student.name;
+                    // -> let {student:{name}} = Exam; 
+                    {
+                        function add({pos:{x:z, y}, a=0}) { // 매개변수로 x, y, a 3개가 전달됨
+                            let x = 40;
+                            return x + y + z + a;
+                        }
+
+                        let result = add({ pos:{x:3, y:4}, z:30 });
+                        console.log('result3 : ' + result);
+                    }
+
+                // array뽀개기(Array Destructuring)
+                    // 맨땅 뽀개기
+                    {
+                        function sum(arr) {
+                            let a = arr[0];
+                            let b = arr[1];
+                            let c = arr[2];
+
+                            return a + b + c;
+                        }
+                    }
+
+                    // let [a, b, c], 기본값, 중첩
+                    {
+                        function sum(arr) {
+                            let [a,,b,c,d=0, [a1, b1]] = arr;
+                            return a + b + c + d + a1; // 2 + 4 + 5 + 6 + 7
+                        }
+
+                        let result = sum([2,3,4,5,6,[7,8]]);
+                        console.log(result);
+                    }
+                       
+                    // 선언된 변수 한번에 갱신
+                    {
+                        let [a,b] = [1, 2];
+                        [a,b] = [3,4];
+
+                        // 변수 swapping에 응용
+                        let x = 3;
+                        let y = 4;
+                        console.log(x, y);
+
+                        [x, y] = [y, x];
+                        console.log(x, y);
+                    }
+            }
+
+
+
+
+
+
+
+        // B. 함수
+        // 1. 가변적인 매개변수와 Rest Parameters
+            // rest parameters란?
+            // 함수를 정의할 때 매개변수에 지정되지 않았지만 전달된 매개변수들
+            // 나머지만 다루는 컬렉션? ...이름 <-> 전체 arguments
+            {
+                function print(x,y, ...aa) { // lValue에 ... <-> // rValue에 ...: Spread Operator
+                    console.log(x, y);
+
+                    for (let n of aa) {
+                        console.log(n);
+                    }
+                }
+
+                print(2,3,4,5,6);
+            }
+
+        // 2. Spread Operator
+            // 배열의 요소를 하나씩 나눠주는 연산 : ...arr(rValue)
+            {
+                function print(x,y, ...aa) {
+                    console.log(x, y);
+
+                    for (let n of aa) {
+                        console.log(n);
+                    }
+                }
+
+                let ar = [1,2,3,4,5,6];
+
+                print(...ar); // print(ar[0], ar[1], ar[2], ...)+
+            }
+
 
 
     </script>
 </head>
+
 <body>
     <h1>javascript ES5</h1>
 </body>
+
 </html>
