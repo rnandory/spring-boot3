@@ -30653,11 +30653,10 @@ body:has(.n-layout) {
         padding-right: 16px;
         transition: height .5s ease;
 
-        :is(.n-content) {
-            align-items: center;
-            display: flex;
+        
+            align-items: center;            
             width: 100%
-        }
+        
     }
 
     >.n-body,
