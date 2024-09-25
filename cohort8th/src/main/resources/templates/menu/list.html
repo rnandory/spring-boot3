@@ -8,13 +8,7 @@
 
     <link href="/css/menu.css" rel="stylesheet" type="text/css">
     <link href="/css/menu/list.css" rel="stylesheet" type="text/css">
-    <script>
-        let request = new XMLHttpRequest();
-        request.open("GET", "/menu/list?c=3", false);
-        request.send(null);
-
-        console.log(request.responseText);
-    </script>
+    <script src="/js/menu/list.js" defer></script>
 </head>
 
 <body>
@@ -23,18 +17,19 @@
 <main layout:fragment="main">
     <div class="tab-search-container">
         <div class="top-img-title">
-            <img src="/image/menu-management.svg" alt="제목입력">
-            <h1>Rland Menu</h1>
+            <img id="img1" src="/image/menu-management.svg" alt="제목입력">
+            <h1 id="h1">Rland Menu</h1>
         </div>
         <div class="tab-search-wrap">
-            <section class="tab-section">
+            <section class="tab-section" id="category">
                 <h1>탭 목록</h1>
 
 
                 <ul>
-                    <li class="selected"><a href="list">전체메뉴</a></li>
+                    <li class="selected"><a data-id="0" class="btn" href="list">전체메뉴</a></li>
                     <li th:each="category : ${categories}">
-                        <a href=""
+                        <a th:data-id="${category.id}" class="btn"
+                                href=""
                            th:href="@{list(c=${category.id})}"
                            th:text="${category.name}">커피</a>
                     </li>
