@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://www.newlecture.com/dist/v0.2.2/style.min.css" crossorigin="" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+ 
+</head>
+<body>
+    <div>
+        <section id= "calc" class="n-frame:rounded-shadow w:50p">
+            <h1>계산기<span v-text="x"></span></h1>
+            <form class="n-form">
+                <div>
+                    <label>
+                        <span>X:</span>
+                        <input type="text" :value="x" dir="rtl">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Y:</span>
+                        <input type="text" :value="y" dir="rtl">
+                    </label>
+                </div>
+                <div>
+                    <input @click.prevent="calcHandler" class="n-btn n-btn-color:main" type="submit" value="계산하기">                    
+                </div>
+                <div>
+                    <label>
+                        <span>Result:</span>
+                        <input type="text" :value="result" dir="rtl" readonly>
+                    </label>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
+
+<script>
+    const app = Vue
+    .createApp({
+        data() {
+            return {
+                x:3,
+                y:4,
+                result:0
+            }
+        },
+        methods:{
+            calcHandler() {
+                console.log("haha");
+            }
+        }
+
+    })
+    .mount("#calc");
+</script>

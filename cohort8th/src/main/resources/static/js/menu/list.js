@@ -16,10 +16,12 @@ ul.onclick = function (e) {
     request.send(null);
 
     console.log(request.responseText);
+    let menus = JSON.parse(request.responseText);
     menuList.innerHTML = "";
 
-    let template = `
-            <section class="menu">
+    menus.forEach(menu => {
+        let template = `
+                <section class="menu">
                 <div>
                     <a href="detail.html">
                         <img
@@ -27,9 +29,9 @@ ul.onclick = function (e) {
                                 alt="에스프레소">
                     </a>
                 </div>
-                <h1>ㅇㅇ.</h1>
-                <h2>dd</h2>
-                <div>11원</div>
+                <h1>${menu.korName}</h1>
+                <h2>${menu.engName}</h2>
+                <div>${menu.price}원</div>
                 <div>
                     <a href="" class="icon icon-heart">좋아요</a>
                     <span>0</span>
@@ -39,6 +41,10 @@ ul.onclick = function (e) {
                     <a href="" class="icon icon-cart icon-lg">장바구니</a>
                 </div>
             </section>`;
+
+        // menuList.innerHTML += template;
+        menuList.insertAdjacentHTML("beforeend", template);
+    });
 
 }
 
