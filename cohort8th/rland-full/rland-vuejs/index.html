@@ -17,13 +17,13 @@
                 <div>
                     <label>
                         <span>X:</span>
-                        <input type="text" :value="x" dir="rtl">
+                        <input type="text" v-model.number="x" dir="rtl">
                     </label>
                 </div>
                 <div>
                     <label>
                         <span>Y:</span>
-                        <input type="text" :value="y" dir="rtl">
+                        <input type="text" v-model.number="y" dir="rtl">
                     </label>
                 </div>
                 <div>
@@ -46,15 +46,16 @@
     .createApp({
         data() {
             return {
-                x:3,
-                y:4,
+                x:0,
+                y:0,
                 result:0
             }
         },
         methods:{
             calcHandler() {
                 console.log("haha");
-            }
+                this.result = this.x + this.y;
+            }   
         }
 
     })

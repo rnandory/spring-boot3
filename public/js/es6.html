@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Document</title>
+    <script>
+        // ES5 JSOOP
+        {
+            function Exam() {
+                this.kor=30;
+                this.eng=30;
+                this.total = function(a,b) {
+                    return this.kor + this.eng + a + b;
+                }
+            }
+
+            let exam1 = new Exam();
+            let exam2 = new Exam();
+            console.log(exam1.total === exam2.total); // false.
+            // 즉, 함수가 가진 함수는 함수가 생성될 때마다 새롭게 생성된다. -> 문제임
+        }
+
+
+        // new로 생성되는 모든 객체는 prototype을 가지고 있다. prototype에 할당된 속성도 사용가능.
+        // prototype : 물려받은 객체. new로 생성된 함수가 가지는 원형 객체이다.
+        // 객체가 생성될 때마다 달라져야할 것이 아닌 것은 prototype에 할당하여 공유하도록 하자. (마치 상속같은)
+        {
+            function Exam() {
+                this.kor=30;
+                this.eng=30;                
+            }
+            
+            // prototype설정1
+            // Exam.prototype.total = function() {
+                //     return this.kor + this.eng;
+                // }
+
+                // 윗 방식(기존 prototype에 함수만 하나 더 추가)
+                // 보다 주로 이렇게 prototype의 객체를 대체해버린 방식을 주로 씀. (기본적으로 prototype엔 빈 객체{}가 할당되어있다)
+            // prototype설정2
+            Exam.prototype = {
+                kor: 30,
+                math: 40,
+                total() {
+                    return this.kor + this.eng;
+                }
+            }
+            
+            let exam1 = new Exam();
+            let exam2 = new Exam();
+
+            // prototype 실습
+            Exam.prototype.aa = '30';
+            Array.prototype.aa = 'hehe';
+            console.log(exam1.aa); // 30
+            console.log([].aa); // hehe
+
+            console.log(exam1.total === exam2.total); // true
+
+            console.log(exam1.total()); // 60
+
+
+            // prototype에 원 객체와 동일한 이름의 키의 속성이 존재한다면?
+            // Exam에도 kor: 30, Exam.prototype에도 kor: 30 존재함.
+            // 이럴 경우 exam1.kor은 전자를 가르킴.
+            // exam1이 가진 kor이란 속성이 누구의 것인지 확인하는 방법 : Object객체 사용
+
+            // Object객체
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+            // Object.hasOwn()
+            console.log(exam1.kor, 
+                Object.hasOwn(exam1, "kor"), 
+                Object.hasOwn(exam1, "eng"), 
+                Object.hasOwn(exam1, "math")); // true, true, false
+                // kor: exam1, prototype모두 가졌지만 exam1게 우선, eng:exam1객체의 속성, math:prototype꺼임
+
+
+            // kor같이 함수 자신, prototype모두 가진 속성 중 굳이 prototype이 가진 속성을 쓰고 싶을 때?
+            console.log(exam1.constructor); 
+                // prototype설정에 따른 exam1.constructor의 차이
+                    // 방식1. 기존 prototype에 함수만 새로 추가되었기에 prototype.constructor가 유지됨.
+                    // 방식2. prototype이 대체되었기 때문에 기존 prototype이 가지고 있던 constructor가 사라졌음.
+            
+
+            
+            
+          
+        }
+
+
+
+        // es6에서 class가 등장했지만 es5의 prototype과 비슷
+      
+        
+
+
+    </script>
+</head>
+<body>
+    <h1>javascript ES6</h1>
+</body>
+</html>

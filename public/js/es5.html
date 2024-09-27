@@ -678,6 +678,38 @@
                 print(...ar); // print(ar[0], ar[1], ar[2], ...)+
             }
 
+        // === 객체지향 ==================================================================================================
+        // === 9/27 금=========================================
+        
+        {
+            function Exam() {
+                    this.kor=2;
+                    this.eng=3;
+                    this.math=4;            
+
+                    this.total = function(a, b) {
+                        return this.kor + this.eng + this.math + a + b;
+                    }
+                }
+
+            let exam = new Exam();
+            console.log(exam.total());  // 9
+
+            let aa = exam.total;
+            console.log(aa());   // NaN
+            // apply() / call() : 함수를 호출할 때, 전달해야할 인스턴스를 알고 있다면 전달하기
+            console.log(aa.apply(exam, [1, 2])); // 매개변수가 있다면 배열로 넘겨야함
+            console.log(aa.call(exam, 1, 2)); // 매개변수를 같이 넘길 수 있음
+            
+            // bind() : 함수를 호출하는 시점에 인스턴스를 전달하는 것 x
+            // 함수를 위임할 때 인스턴스도 붙여서 같이 전달
+            let bb = exam.total.bind(exam);
+            console.log(bb(1, 2)); // 이미 bb에 exam이 bind되었기에, bb호출시점에 apply나 call필요없음
+                        
+            
+        }
+            
+        
 
 
     </script>
