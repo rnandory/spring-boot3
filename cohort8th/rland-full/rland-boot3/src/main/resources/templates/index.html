@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{inc/layout}"
+>
+<head>
+    <title>Rland - 환영합니다.</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<main layout:fragment="main">
+
+    <section class="greeting">
+        <header>
+            <h1>알랜드에 오신 것을 환영합니다.</h1>
+            <h2>부안에 오면 꼭 들리는 카페</h2>
+            <div>
+                <a href="/menu/list" class="n-btn n-btn-color:main">주문하기</a>
+            </div>
+        </header>
+        
+        <div>
+            <img src="/image/assets/main-top.png" alt="알랜드 환영이미지">
+        </div>
+        
+        <footer>
+            <h2>Rland Coffee</h2>
+            <div>
+                <img src="/image/assets/logo-badge.svg" alt="알랜드 badge">
+            </div>
+        </footer>
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,9 @@
         // ES5 JSOOP
         {
             function Exam() {
-                this.kor=30;
-                this.eng=30;
-                this.total = function(a,b) {
+                this.kor = 30;
+                this.eng = 30;
+                this.total = function (a, b) {
                     return this.kor + this.eng + a + b;
                 }
             }
@@ -27,26 +28,26 @@
         // 객체가 생성될 때마다 달라져야할 것이 아닌 것은 prototype에 할당하여 공유하도록 하자. (마치 상속같은)
         {
             function Exam() {
-                this.kor=30;
-                this.eng=30;                
+                this.kor = 30;
+                this.eng = 30;
             }
-            
-            // prototype설정1
-            // Exam.prototype.total = function() {
-                //     return this.kor + this.eng;
-                // }
 
-                // 윗 방식(기존 prototype에 함수만 하나 더 추가)
-                // 보다 주로 이렇게 prototype의 객체를 대체해버린 방식을 주로 씀. (기본적으로 prototype엔 빈 객체{}가 할당되어있다)
-            // prototype설정2
-            Exam.prototype = {
-                kor: 30,
-                math: 40,
-                total() {
-                    return this.kor + this.eng;
-                }
+            // prototype설정1
+            Exam.prototype.total = function () {
+                return this.kor + this.eng;
             }
-            
+
+            // 윗 방식(기존 prototype에 함수만 하나 더 추가)
+            // 보다 주로 이렇게 prototype의 객체를 대체해버린 방식을 주로 씀. (기본적으로 prototype엔 빈 객체{}가 할당되어있다)
+            // prototype설정2
+            // Exam.prototype = {
+            //     kor: 30,
+            //     math: 40,
+            //     total() {
+            //         return this.kor + this.eng;
+            //     }
+            // }
+
             let exam1 = new Exam();
             let exam2 = new Exam();
 
@@ -69,35 +70,123 @@
             // Object객체
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
             // Object.hasOwn()
-            console.log(exam1.kor, 
-                Object.hasOwn(exam1, "kor"), 
-                Object.hasOwn(exam1, "eng"), 
+            console.log(exam1.kor,
+                Object.hasOwn(exam1, "kor"),
+                Object.hasOwn(exam1, "eng"),
                 Object.hasOwn(exam1, "math")); // true, true, false
-                // kor: exam1, prototype모두 가졌지만 exam1게 우선, eng:exam1객체의 속성, math:prototype꺼임
+            // kor: exam1, prototype모두 가졌지만 exam1게 우선, eng:exam1객체의 속성, math:prototype꺼임
 
 
-            // kor같이 함수 자신, prototype모두 가진 속성 중 굳이 prototype이 가진 속성을 쓰고 싶을 때?
-            console.log(exam1.constructor); 
-                // prototype설정에 따른 exam1.constructor의 차이
-                    // 방식1. 기존 prototype에 함수만 새로 추가되었기에 prototype.constructor가 유지됨.
-                    // 방식2. prototype이 대체되었기 때문에 기존 prototype이 가지고 있던 constructor가 사라졌음.
-            
+            // kor같이 함수 자신, prototype모두 가진 속성 중 굳이 prototype이 가진 속성을 쓰고 싶을 때? prototype얻어내기.
+            console.log(exam1.constructor);
+            // prototype설정에 따른 exam1.constructor의 차이
+            // 방식1. 기존 prototype에 함수만 새로 추가되었기에 prototype.constructor가 유지됨.
+            // 방식2. prototype이 대체되었기 때문에 기존 prototype이 가지고 있던 constructor가 사라졌음.
+            console.log(exam1.constructor.prototype); // 생성자는 prototype을 가지고 있음.
 
-            
-            
-          
+            // 9/30 월
+
+            // 만약 prototype을 뭉개버렸다면? constructor: Exam(), 추가
+            {
+                function Test() {
+                    this.kor = 30;
+                    this.eng = 30;
+                }
+
+                Test.prototype = {
+                    constructor: function Test() {
+                        this.kor = 30;
+                        this.eng = 30;
+                    },
+                    kor: 30,
+                    math: 40,
+                    total() {
+                        return this.kor + this.eng;
+                    }
+                }
+
+                console.log(Test.prototype.constructor); // constructor Test() 출력됨.
+            }
+
+
+            // es6에서 class가 등장했지만 es5의 prototype과 비슷
+            // class 
+            {
+                class Exam {                                        
+                    constructor() {
+                        this.kor = 20;
+                        this.eng = 30;
+                    }
+
+                    total() {
+                        return this.kor + this.eng;
+                    }
+                }
+
+                console.log("class type:", typeof Exam, Exam.prototype); // function, total()이 들어가 있음.                                
+                let exam = new Exam(); // new할 때 생성자가 실행되면서 생성된 exam을 this로 kor, eng추가됨.
+
+                // 자바스크립트 클래스에는 변수를 미리 정의해놓을 수 없다. 필요할 때마다 추가해서 사용.
+                // 보호모드 private
+                // 옛날엔 아우터 변수 활용
+                {
+                    function Exam() {
+                        var a = 1; // this가 없기에 외부에서 접근불가
+                        this.kor = 20;
+                        this.eng = 30;
+                        return this.kor + this.eng + a;
+                    }
+                }
+
+                // private #kor등장과 getter, setter
+                {
+                    class Exam {
+                        #kor;
+
+                        constructor() {
+                            this.#kor = 20;
+                            this.eng = 30;
+                        }
+
+                        total() {
+                            return this.kor + this.eng;
+                        }
+
+                        get kor() { // getKor() 대신 get kor()
+                            return this.#kor;
+                        }
+
+                        set kor(kor) {
+                            this.#kor = kor;
+                        }
+                    }
+                    let exam = new Exam();
+                    console.log(exam.kor, ++exam.kor, exam.eng);
+                    console.log(Exam.prototype);
+
+                    // 상속
+                    class NewExam extends Exam {
+                        constructor() {
+                            super(); // 부모의 생성자 호출
+                            this.com = 30;
+                        }
+
+                    }
+                    let newExam = new NewExam();
+                    console.log(newExam.kor, NewExam.prototype, new NewExam.prototype.constructor());
+                    // 자식은 부모를 prototype으로 가짐. 자식으로 부모생성
+                }
+                // 상속을 통해 새로운 태그를 창조할 수도 있다
+            }
+
         }
-
-
-
-        // es6에서 class가 등장했지만 es5의 prototype과 비슷
-      
-        
 
 
     </script>
 </head>
+
 <body>
     <h1>javascript ES6</h1>
 </body>
+
 </html>
