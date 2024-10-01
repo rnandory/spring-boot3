@@ -15,13 +15,17 @@
                 on m.id = ml.menu_id
         <where>
         <if test="categoryId != null">
-            category_id = #{categoryid}
+            category_id in
+            <foreach collection="categoryIds" item="cid" open="(" separator="," close=")">
+                #{cid}
+            </foreach>
         </if>
         <if test="query != null">
             and kor_name like '%${query}%'
         </if>
         </where>
         order by reg_date desc
+        limit #{offset}, #{size}
     </select>
 
 <!--

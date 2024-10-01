@@ -8,10 +8,10 @@ import kr.co.rland.boot3.model.MenuDetailModel;
 import java.util.List;
 
 public interface MenuService {
-    List<MenuView> getList();
-    List<MenuView> getList(Integer categoryId);
-    List<MenuView> getList(Integer categoryId, String query);
-    List<MenuView> getListWithImages(Integer categoryId, String query);
+    List<MenuView> getList(Integer page);
+    List<MenuView> getList(Integer page, List<Long> categoryIds);
+    List<MenuView> getList(Integer page, List<Long> categoryIds, String query);
+    List<MenuView> getListWithImages(Integer page, List<Long> categoryIds, String query);
 
     void reg(MenuRegDto menuDto);
 
