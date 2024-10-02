@@ -14,7 +14,7 @@
             left join (select menu_id, count(menu_id) like_count from menu_like group by menu_id) ml
                 on m.id = ml.menu_id
         <where>
-        <if test="categoryId != null">
+        <if test="categoryIds != null">
             category_id in
             <foreach collection="categoryIds" item="cid" open="(" separator="," close=")">
                 #{cid}

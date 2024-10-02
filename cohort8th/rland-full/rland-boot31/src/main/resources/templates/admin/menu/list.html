@@ -40,7 +40,8 @@
                             </label>
 
                             <label th:each="c : ${categories}">
-                                <input class="fl-grow:0" type="checkbox" name="c" th:value="${c.id}">
+                                <input class="fl-grow:0" type="checkbox" name="c" th:value="${c.id}"
+                                       th:checked="${param.c != null && #arrays.contains(param.c, c.id.toString())}">
                                 <span class="w:auto" th:text="${c.name}">커피</span>
                             </label>
                         </div>
