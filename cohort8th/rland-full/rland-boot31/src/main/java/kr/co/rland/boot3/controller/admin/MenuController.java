@@ -12,6 +12,8 @@ import kr.co.rland.boot3.service.MenuService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,35 +33,41 @@ import java.util.List;
 @RequestMapping("admin/menu")
 public class MenuController {
 
+    private CategoryService categoryService;
     private MenuService service;
     private MenuImageService imageService;
-    private CategoryService categoryService;
 
     @Autowired
-    public MenuController(MenuService menuService, MenuImageService menuImageService, CategoryService categoryService) {
+    public MenuController(
+            CategoryService categoryService,
+            MenuService menuService,
+            MenuImageService menuImageService) {
+        this.categoryService = categoryService;
         this.service = menuService;
         this.imageService = menuImageService;
-        this.categoryService = categoryService;
     }
 
     @GetMapping("list")
     public String list(
-            @RequestParam(name = "p", defaultValue = "1")
+            @RequestParam(name="p", defaultValue = "1")
             Integer page,
 
             @RequestParam(name = "c", required = false)
-            List<Long> categoryIds,
+            List<Integer> categoryIds,
 
-            @RequestParam(name = "q", required = false)
+            @RequestParam(name="q", required = false)
             String query,
 
-            Model model){
+            Model model
+    ){
 
-        List<MenuView> menus = service.getListWithImages(page, categoryIds, query);
-        model.addAttribute("menus", menus);
+        System.out.println(categoryIds);
 
         List<Category> categories = categoryService.getList();
         model.addAttribute("categories", categories);
+
+        List<MenuView> menus = service.getListWithImages(page, categoryIds, query);
+        model.addAttribute("menus", menus);
 
         return "admin/menu/list";
     }

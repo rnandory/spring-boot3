@@ -28,23 +28,22 @@ public class DefaultMenuService implements MenuService{
 
     @Override
     public List<MenuView> getList(Integer page) {
-        List<MenuView> menus = getList(page,null, null);
+        List<MenuView> menus = getList(1,null, null);
         return menus;
     }
 
     @Override
-    public List<MenuView> getList(Integer page, List<Long> categoryIds) {
-        List<MenuView> menus = getList(page, categoryIds, null);
+    public List<MenuView> getList(Integer page, List<Integer> categoryIds) {
+        List<MenuView> menus = getList(1, categoryIds, null);
         return menus;
     }
 
     @Override
-    public List<MenuView> getList(Integer page, List<Long> categoryIds, String query) {
+    public List<MenuView> getList(Integer page, List<Integer> categoryIds, String query) {
 
-        // page   1  2   3...
-        // offset 0, 5, 10, 15, 20, ...
+        // P:1->0, P:2->5, P:3->10, P:4->15, 20, ....
         int size = 5;
-        int offset = (page-1) * size;
+        int offset = (page - 1) * size;
 
         List<MenuView> menus = repository.findAllByCategoryIdAndQuery(offset, size, categoryIds, query);
 
@@ -53,11 +52,10 @@ public class DefaultMenuService implements MenuService{
 
     @Transactional
     @Override
-    public List<MenuView> getListWithImages(Integer page, List<Long> categoryIds, String query) {
-        // page   1  2   3...
-        // offset 0, 5, 10, 15, 20, ...
+    public List<MenuView> getListWithImages(Integer page, List<Integer> categoryIds, String query) {
+
         int size = 5;
-        int offset = (page-1) * size;
+        int offset = (page - 1) * size;
 
         List<MenuView> menus = repository.findAllByCategoryIdAndQuery(offset, size, categoryIds, query);
 

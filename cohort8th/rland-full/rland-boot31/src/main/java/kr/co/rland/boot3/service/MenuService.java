@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface MenuService {
     List<MenuView> getList(Integer page);
-    List<MenuView> getList(Integer page, List<Long> categoryIds);
-    List<MenuView> getList(Integer page, List<Long> categoryIds, String query);
-    List<MenuView> getListWithImages(Integer page, List<Long> categoryIds, String query);
+    List<MenuView> getList(Integer page, List<Integer> categoryIds);
+    List<MenuView> getList(Integer page, List<Integer> categoryIds, String query);
+    List<MenuView> getListWithImages(Integer page, List<Integer> categoryIds, String query);
 
     void reg(MenuRegDto menuDto);
 
