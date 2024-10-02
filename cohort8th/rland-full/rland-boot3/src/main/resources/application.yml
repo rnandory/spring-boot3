@@ -3,10 +3,6 @@ spring:
     name: rland-boot3
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-#    url: jdbc:log4jdbc:mariadb://db.newlecture.com:3306/newlecture2024db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-#    username: newlecture2024
-#    password: new@024
-#    url: jdbc:log4jdbc:mariadb://hi.newlecture.com:3306/rlanddb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     url: jdbc:mariadb://hi.newlecture.com:3306/rlanddb
     username: {SPRING_DATASOURCE_USERNAME}
     password: {SPRING_DATASOURCE_PASSWORD}
