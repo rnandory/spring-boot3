@@ -1,0 +1,1 @@
+console.log("project index"),window.addEventListener("load",(function(){let e=`<div>result: ${add(3,5)}</div>`;document.body.insertAdjacentHTML("beforeend",e)}));
