@@ -1,0 +1,16 @@
+spring:
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://hi.newlecture.com:3306/rlanddb
+    username: {SPRING_DATASOURCE_USERNAME}
+    password: {SPRING_DATASOURCE_PASSWORD}
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
