@@ -15,10 +15,8 @@
                 on m.id = ml.menu_id
         <where>
         <if test="categoryIds != null">
-<!--            category_id = #{categoryid}-->
-<!--            category_id in ( 1, 2, 3 )-->
-            <foreach item="cid" index="index" collection="categoryIds"
-                     open="category_id in (" separator="," close=")" nullable="true">
+            category_id in
+            <foreach collection="categoryIds" item="cid" open="(" separator="," close=")">
                 #{cid}
             </foreach>
         </if>
@@ -27,7 +25,7 @@
         </if>
         </where>
         order by reg_date desc
-        limit #{offset},#{size}
+        limit #{offset}, #{size}
     </select>
 
 <!--

@@ -27,27 +27,27 @@
                         </label>
                     </div>
                 </header>
-                <form class="n-form n-label-pos:left">
+                <form action="list" method="get" class="n-form n-label-pos:left">
                     <div>
                         <label>
                             <span>한글명</span>
-                            <input type="text" name="q">
+                            <input type="text" name="q" th:value="${param.q}">
                         </label>
-                        <div class="d:inline-flex jc:center">
-                            <label>
-                                <input type="checkbox" class="fl-grow:0">
-                                <span class="w:auto">전체</span>
-                            </label>
-
-                            <label th:each="c : ${categories}">
-                                <input class="fl-grow:0" type="checkbox" name="c" th:value="${c.id}">
-                                <span class="w:auto" th:text="${c.name}">커피</span>
-                            </label>
-                        </div>
-                        <div class="d:flex justify-content:end">
-                            <button class="n-btn n-btn-color:main">검색</button>
-                            <button class="n-btn ml:1">취소</button>
-                        </div>
+                    </div>
+                    <div class="d:flex flex-direction:row jc:center">
+                        <label class="">
+                            <input type="checkbox" value="0" class="fl-grow:0">
+                            <span class="w:auto">전체</span>
+                        </label>
+                        <label th:each="c : ${categories}">
+                            <input th:if="${param.c} == ${c.id}" type="checkbox" name="c" th:value="${c.id}" class="fl-grow:0" checked>
+                            <input th:if="${param.c} != ${c.id}" type="checkbox" name="c" th:value="${c.id}" class="fl-grow:0">
+                            <span class="w:auto" th:text="${c.name}">쿠키</span>
+                        </label>
+                    </div>
+                    <div class="d:flex">
+                        <button class="n-btn n-btn-color:main">검색</button>
+                        <button class="n-btn ml:1">취소</button>
                     </div>
                 </form>
             </section>
@@ -153,11 +153,9 @@
                 </table>
                 <div class="mt:4 text-align:center">
                     <ul class="n-bar">
-                        <li th:each="i : ${#numbers.sequence(1, 5)}"><a class="n-btn active" href="" th:href="@{list(p=${i})}" th:text="${i}">1</a></li>
-<!--                        <li><a class="n-btn" href="">2</a></li>-->
-<!--                        <li><a class="n-btn" href="">3</a></li>-->
-<!--                        <li><a class="n-btn" href="">4</a></li>-->
-<!--                        <li><a class="n-btn" href="">5</a></li>-->
+                        <li th:each="i : ${#numbers.sequence(1,5)}">
+                            <a class="n-btn" href="" th:href="@{list(p=${i})}" th:text="${i}">2</a>
+                        </li>
                     </ul>
                 </div>
             </section>
