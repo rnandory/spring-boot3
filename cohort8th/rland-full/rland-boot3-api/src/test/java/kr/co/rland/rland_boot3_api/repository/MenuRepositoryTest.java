@@ -19,11 +19,33 @@ class MenuRepositoryTest {
     private MenuRepository repository;
 
     @Test
+    void queryTest() {
+        Sort sort = Sort.by("regDate").descending();
+        Pageable pageable = PageRequest.of(0, 6, sort);
+//        List<Menu> menus = repository.findxxx(?, pageable).getContent();
+        List<Menu> menus = repository.findByKorNameContaining("아메", pageable);
+        menus.forEach(System.out::println);
+    }
+
+    @Test
+    void streamTest() {
+//        List<Menu> list = repository.findAll();
+        List<Menu> list = repository.findAll()
+                .stream()
+                .filter(menu -> menu.getPrice() >= 5000)
+                .toList();
+
+        list.forEach(menu -> System.out.println(menu.toString()));
+//        System.out.println(list);
+
+    }
+
+    @Test
     void findAllTest() {
 
 
         Sort sort = Sort.by("regDate").descending();
-        Pageable pageable  = PageRequest.of(0,6, sort);
+        Pageable pageable = PageRequest.of(0, 6, sort);
 //        Sort sort = Sort.by(Sort.Direction.DESC, "korName");
 //        List<Menu> menus = repository.findByOrderByRegDateDesc();
         Page<Menu> menuPages = repository.findAll(pageable);
