@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,6 +35,10 @@ public class Menu {
 
     private Long categoryId;
     private Long regMemberId;
+
+
+    @OneToMany(mappedBy = "menu")
+    private List<MenuImage> images;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "category_id")

@@ -9,6 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.List;
 
 @DataJpaTest
@@ -19,11 +25,53 @@ class MenuRepositoryTest {
     private MenuRepository repository;
 
     @Test
+    void joinTest() {
+        Sort sort = Sort.by("regDate").descending();
+        Pageable pageable = PageRequest.of(0, 6, sort);
+//        List<Menu> menus = repository.findAll();
+        List<Menu> menus = repository.findAllByDefaultImage(pageable);
+
+//        menus.forEach(System.out::println);
+    }
+
+    @Test
     void queryTest() {
         Sort sort = Sort.by("regDate").descending();
         Pageable pageable = PageRequest.of(0, 6, sort);
 //        List<Menu> menus = repository.findxxx(?, pageable).getContent();
-        List<Menu> menus = repository.findByKorNameContaining("아메", pageable);
+//        List<Menu> menus = repository.findByKorNameContaining("아", pageable);
+//        List<Menu> menus = repository
+//                .findByKorNameContainingAndPriceGreaterThanEqualAndCategoryIdIn("아", 4000, Arrays.asList(1L,2L,3L), pageable);
+        List<Menu> menus = repository.findByQuery("아메", null, null, pageable);
+//
+//        //=== Menu엔티티에 regDate타입이 Instant일 때=================================================================================
+//        // 현재 Instant
+//        Instant now = Instant.now();
+//
+//        // Instant를 LocalDateTime으로 변환
+//        LocalDateTime nowDateTime = LocalDateTime.ofInstant(now, ZoneId.systemDefault());
+//
+//        // 한 달 전 날짜 계산 (Period 사용)
+//        LocalDateTime oneMonthAgoDateTime = nowDateTime.minus(Period.ofMonths(1));
+//
+//        // 다시 LocalDateTime을 Instant로 변환
+//        Instant oneMonthAgo = oneMonthAgoDateTime.atZone(ZoneId.systemDefault()).toInstant();
+//
+//        System.out.printf("now : %s\n", now);
+//        System.out.printf("one month ago : %s\n", oneMonthAgo);
+//        Instant start = now.minus(30, ChronoUnit.DAYS);
+//        System.out.printf("start : %s\n", start);
+//
+//        List<Menu> menus = repository.findByRegDateBetween(start, now, pageable);
+
+        //=== Menu엔티티에 regDate타입이 LocalDateTime일 때=================================================================================
+//        LocalDateTime now = LocalDateTime.now();
+//        LocalDateTime start = now.minus(1, ChronoUnit.MONTHS);
+//        System.out.printf("now : %s\n", now);
+//        System.out.printf("one month ago : %s\n", start);
+//
+//        List<Menu> menus = repository.findByRegDateBetween(start, now, pageable);
+
         menus.forEach(System.out::println);
     }
 
