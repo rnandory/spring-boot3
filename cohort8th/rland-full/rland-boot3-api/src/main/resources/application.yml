@@ -1,3 +1,9 @@
 spring:
   profiles:
-    active: test #dev test
+    active: dev #dev test
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+server:
+  servlet:
+    context-path: /api/v1

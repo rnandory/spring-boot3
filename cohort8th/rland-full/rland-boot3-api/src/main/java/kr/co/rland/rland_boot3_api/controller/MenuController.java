@@ -2,6 +2,7 @@ package kr.co.rland.rland_boot3_api.controller;
 
 import kr.co.rland.rland_boot3_api.dto.MenuDto;
 import kr.co.rland.rland_boot3_api.entity.Menu;
+import kr.co.rland.rland_boot3_api.repository.MenuRepository;
 import kr.co.rland.rland_boot3_api.service.MenuService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.ListCrudRepository;
@@ -12,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/menus")
+@RequestMapping("menus")
 @AllArgsConstructor
 public class MenuController {
 
     private MenuService service;
-    private ListCrudRepository<Menu, Long> repository;
+//    private ListCrudRepository<Menu, Long> repository;
+    private MenuRepository repository;
 
 
 //    public MenuController(MenuService service) {

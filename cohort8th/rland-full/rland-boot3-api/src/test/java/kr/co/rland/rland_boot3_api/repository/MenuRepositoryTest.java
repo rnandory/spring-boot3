@@ -28,10 +28,17 @@ class MenuRepositoryTest {
     void joinTest() {
         Sort sort = Sort.by("regDate").descending();
         Pageable pageable = PageRequest.of(0, 6, sort);
-//        List<Menu> menus = repository.findAll();
-        List<Menu> menus = repository.findAllByDefaultImage(pageable);
 
-//        menus.forEach(System.out::println);
+        List<Long> cids = Arrays.asList(1L, 2L, 3L);
+
+//        List<Menu> menus = repository.findAll();
+//        List<Menu> menus = repository.findAllByDefaultImage(pageable);
+//        List<Menu> menus = repository.findByKorNameContainingAndCategoryIdIn("아메", cids, pageable);
+//        List<Menu> menus = repository.findByKorNameContainingAndCategoryIdIn(null, null, pageable);
+          Page<Menu> menus = repository.findAll(null, null, pageable);
+
+
+        menus.forEach(System.out::println);
     }
 
     @Test
@@ -42,7 +49,7 @@ class MenuRepositoryTest {
 //        List<Menu> menus = repository.findByKorNameContaining("아", pageable);
 //        List<Menu> menus = repository
 //                .findByKorNameContainingAndPriceGreaterThanEqualAndCategoryIdIn("아", 4000, Arrays.asList(1L,2L,3L), pageable);
-        List<Menu> menus = repository.findByQuery("아메", null, null, pageable);
+//        List<Menu> menus = repository.findByQuery("아메", null, null, pageable);
 //
 //        //=== Menu엔티티에 regDate타입이 Instant일 때=================================================================================
 //        // 현재 Instant
@@ -72,7 +79,7 @@ class MenuRepositoryTest {
 //
 //        List<Menu> menus = repository.findByRegDateBetween(start, now, pageable);
 
-        menus.forEach(System.out::println);
+//        menus.forEach(System.out::println);
     }
 
     @Test
