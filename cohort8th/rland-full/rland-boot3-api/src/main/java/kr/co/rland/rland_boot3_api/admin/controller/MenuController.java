@@ -1,12 +1,10 @@
 package kr.co.rland.rland_boot3_api.admin.controller;
 
+import kr.co.rland.rland_boot3_api.admin.dto.MenuDto;
 import kr.co.rland.rland_boot3_api.admin.dto.MenuResponseDto;
 import kr.co.rland.rland_boot3_api.admin.service.MenuService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +27,36 @@ public class MenuController {
 
         return ResponseEntity.ok(menuService.getList(page, korName, categoryIds));
     }
+
+    // api/v1/admin/menus/3
+    @GetMapping("{id}")
+    public ResponseEntity<MenuDto> get(@PathVariable("id") Long id) {
+
+        return ResponseEntity.ok(menuService.getById(id));
+    }
+
+    // api/v1/admin/menus/create
+    @PostMapping
+    public ResponseEntity<MenuDto> create(@RequestBody MenuDto menuDto) {
+        System.out.println(menuDto);
+
+        return ResponseEntity.ok(menuService.create(menuDto));
+    }
+
+    // 수정 update()
+    // api/v1/admin/menus/update/3
+    @PutMapping("{id}")
+    public ResponseEntity<MenuDto> update(@PathVariable("id") Long id,
+                                          @RequestBody MenuDto menuDto) {
+        menuDto.setId(id);
+        return ResponseEntity.ok(menuService.update(menuDto));
+    }
+
+    // 삭제 delete()
+    @DeleteMapping("{id")
+    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
+        menuService.delete(id);
+        return ResponseEntity.ok("Successfully deteleted");
+    }
+
 }

@@ -1,5 +1,6 @@
 package kr.co.rland.rland_boot3_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +25,6 @@ public class MenuImage {
 
     @ManyToOne
     @JoinColumn(name = "menu_id")
+    @JsonBackReference
     private Menu menu;
 }

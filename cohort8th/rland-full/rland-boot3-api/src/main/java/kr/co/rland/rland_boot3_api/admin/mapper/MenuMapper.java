@@ -16,6 +16,7 @@ public class MenuMapper {
                 .regDate(menu.getRegDate())
                 .categoryId(menu.getCategoryId())
                 .regMemberId(menu.getRegMemberId())
+                .images(menu.getImages())
                 .build();
     }
 

@@ -21,7 +21,13 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
             "(:username is null or korName like concat('%', :username, '%'))" +
             "and (:cIds is null or categoryId in (:cIds))")
     Page<Menu> findAll(@Param("username") String korName, @Param("cIds") List<Long> categoryIds, Pageable pageable);
-
+    
+    // 목록
+    // 단일객체
+    // 삽입
+    // 수정
+    // 삭제
+    
 
 
 //    // 사용자가 입력한 값이 korName과 같은 Menu목록만 출력
