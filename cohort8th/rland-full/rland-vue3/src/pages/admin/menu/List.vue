@@ -1,8 +1,79 @@
+<!-- <script>
+    export default {
+        setup() {
+
+        },
+        data() {
+
+        },
+        methods: {
+
+        }
+    }
+</script> -->
+
+<script setup>
+import { onBeforeMount, reactive, ref } from 'vue';
+
+// 문제 1. 어떤 api? xhr, fetch, axios
+
+// 문제 2. 어느 블록에서 호출? 라이프사이클
+
+
+let list = reactive([
+    {korName: "아메리카노1"},
+    {korName: "카페라떼1"}
+]);
+// --- Life cycle functions --------------------------
+onBeforeMount(() => {
+    console.log("before Mount");
+})
+
+// --- callback functions --------------------------
+    // function addButtonClickHandler() { //순수 static함수의 의미가 약함. 밖의 this공유불가
+    // }
+
+let count = ref(list.length);
+let info = reactive({a:1, b:2});
+
+const addButtonClickHandler = (e) => {
+    console.log("add");
+    // 2. MVC 처리방법: 모델(문서에 바인딩된 객체)를 처리하는 방법
+    list.push({korName: "아샷추"});
+    console.log(list.length);
+    count.value = list.length;
+    // info.value.a = 30;
+    info.a = 30;
+
+
+    
+    // 1. DOM 처리방법: 화면(문서)를 직접 처리
+//     let trTemplate = `<tbody>
+//                             <tr>
+//                                 <td>1</td>
+//                             </tr>
+//                             <tr>
+//                                 <td>2</td>
+//                             </tr>
+//                         </tbody>`;
+//     const table = document.querySelector("table");
+//     table.insertAdjacentHTML("beforeend", trTemplate);
+// }
+
+}
+
+const delButtonClickHandler = (e) => {
+    console.log("del")
+    list.pop();
+    count.value = list.length;
+}
+</script>
+
 <template>
     <main>
         <section class="">
             <header class="n-bar">
-                <h1 class="n-heading:5">제품관리 / 메뉴관리</h1>
+                <h1 class="n-heading:5">제품관리 / 메뉴관리</h1> 
                 <div class="ml:3 d:flex">
                     <a href="reg" class="n-icon n-icon:plus n-btn n-btn:rounded n-btn-size:small">추가</a>
                 </div>
@@ -31,8 +102,10 @@
                             <span class="w:auto">전체</span>
                         </label>
                         <label th:each="c : ${categories}">
-                            <input th:if="${param.c} == ${c.id}" type="checkbox" name="c" th:value="${c.id}" class="fl-grow:0" checked>
-                            <input th:if="${param.c} != ${c.id}" type="checkbox" name="c" th:value="${c.id}" class="fl-grow:0">
+                            <input th:if="${param.c} == ${c.id}" type="checkbox" name="c" th:value="${c.id}"
+                                class="fl-grow:0" checked>
+                            <input th:if="${param.c} != ${c.id}" type="checkbox" name="c" th:value="${c.id}"
+                                class="fl-grow:0">
                             <span class="w:auto" th:text="${c.name}">쿠키</span>
                         </label>
                     </div>
@@ -48,7 +121,9 @@
                 <header>
                     <h1 class="d:none2"><span class="n-icon n-icon:view_list n-deco n-deco-gap:2">메뉴목록</span></h1>
                     <div>
-                        <span class="ml:1 n-heading:6">(2)</span>
+                        <span class="ml:1 n-heading:6"><span>({{ count }})</span></span>
+                        <button class="n-btn ml:3" @click="addButtonClickHandler">추가</button>
+                        <button class="n-btn ml:3" @click="delButtonClickHandler">삭제</button>
                     </div>
                 </header>
 
@@ -63,12 +138,14 @@
                             <th class="w:3">비고</th>
                         </tr>
                     </thead>
-                    <tbody th:each="m : ${menus}">
+                    <tbody v-for="m in list" th:each="m : ${menus}">
                         <tr class="vertical-align:middle">
                             <td th:text="${m.id}">2</td>
-                            <td class="w:0 md:w:4 overflow:hidden"><img class="w:100p h:0 md:h:3 object-fit:cover" src="/image/product/americano.svg" th:src="@{/image/product/{img}(img=${m.img})}"></td>
+                            <td class="w:0 md:w:4 overflow:hidden"><img class="w:100p h:0 md:h:3 object-fit:cover"
+                                    src="/image/product/americano.svg" th:src="@{/image/product/{img}(img=${m.img})}">
+                            </td>
                             <td class="text-align:start n-heading-truncate text-indent:4 text-align:cetner">
-                                <a href="detail" th:href="@{detail(id=${m.id})}" th:text="${m.korName}">카페라떼</a>
+                                <a href="detail" th:href="@{detail(id=${m.id})}">{{m.korName}}</a>
                             </td>
                             <td class="w:0 md:w:2 n-heading-truncate">
                                 <label>
@@ -82,10 +159,12 @@
                                         <input type="checkbox" class="d:none n-row-expander">
                                         <span>상세보기</span>
                                     </label>
-                                    <a class="n-icon n-icon:edit_square n-icon-color:base-6" href="detail" th:href="@{detail(id=${m.id})}">수정</a>
+                                    <a class="n-icon n-icon:edit_square n-icon-color:base-6" href="detail"
+                                        th:href="@{detail(id=${m.id})}">수정</a>
                                     <form action="del" method="post" class="d:flex ai:center">
                                         <input type="hidden" name="id" th:value="${m.id}">
-                                        <button class="n-icon n-icon:delete n-icon-color:base-6" type="submit">삭제</button>
+                                        <button class="n-icon n-icon:delete n-icon-color:base-6"
+                                            type="submit">삭제</button>
                                     </form>
                                 </span>
                             </td>
@@ -113,27 +192,33 @@
                                             <dd class="ml:1">
                                                 <ul class="n-bar flex-wrap:wrap">
                                                     <li th:each="img : ${m.images}" th:classappend="'active:border'">
-                                                        <img class="max-width:5" th:src="@{/image/product/{img}(img=${img.src})}" src="/image/product/americano.svg"></li>
+                                                        <img class="max-width:5"
+                                                            th:src="@{/image/product/{img}(img=${img.src})}"
+                                                            src="/image/product/americano.svg">
+                                                    </li>
                                                 </ul>
                                             </dd>
                                         </div>
                                         <div>
                                             <dt>가격</dt>
-<!--/*
+                                            <!--/*
 참고자료
 타임리프 숫자포맷 유틸객체 :  https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf#numbers
 */-->
-                                            <dd class="ml:1" th:text="${#numbers.formatInteger(m.price,3,'COMMA')}+'원'">1,000원</dd>
+                                            <dd class="ml:1" th:text="${#numbers.formatInteger(m.price,3,'COMMA')}+'원'">
+                                                1,000원</dd>
                                         </div>
                                         <div>
                                             <dt>등록일자</dt>
-<!--/*
+                                            <!--/*
 참고자료
 타임리프 날짜포맷 유틸객체 : https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf#dates
 자바 날짜포맷 문자들 : https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/text/SimpleDateFormat
 */-->
 
-                                            <dd class="ml:1" th:text="${#dates.format(m.regDate, 'yyyy-MM-dd a HH:mm')}">2024-12-25 12:00:00</dd>
+                                            <dd class="ml:1"
+                                                th:text="${#dates.format(m.regDate, 'yyyy-MM-dd a HH:mm')}">2024-12-25
+                                                12:00:00</dd>
                                         </div>
                                     </dl>
 
