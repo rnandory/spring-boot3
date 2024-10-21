@@ -18,9 +18,9 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
 //    List<Menu> findAllByDefaultImage(Pageable pageable);
 //    List<Menu> findByKorNameContainingAndCategoryIdIn(String korName, List<Long> categoryIds, Pageable pageable);
     @Query("from Menu where " +
-            "(:username is null or korName like concat('%', :username, '%'))" +
+            "(:korName is null or korName like concat('%', :korName, '%'))" +
             "and (:cIds is null or categoryId in (:cIds))")
-    Page<Menu> findAll(@Param("username") String korName, @Param("cIds") List<Long> categoryIds, Pageable pageable);
+    Page<Menu> findAll(String korName, @Param("cIds") List<Long> categoryIds, Pageable pageable);
     
     // 목록
     // 단일객체

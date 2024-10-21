@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController("adminMenuController")
 @RequestMapping("admin/menus")
+//@CrossOrigin(origins = "http://localhost:5173")
 public class MenuController {
 
     private MenuService menuService;
@@ -21,7 +22,7 @@ public class MenuController {
     @GetMapping
     public ResponseEntity<MenuResponseDto> getList(
             @RequestParam(name = "p", defaultValue = "1") Integer page,
-            @RequestParam(name = "q", required = false) String korName,
+            @RequestParam(name = "k", required = false) String korName,
             @RequestParam(name = "cid", required = false) List<Long> categoryIds
     ) {
 

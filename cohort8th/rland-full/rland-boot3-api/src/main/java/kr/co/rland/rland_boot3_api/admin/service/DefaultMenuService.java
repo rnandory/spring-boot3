@@ -39,11 +39,16 @@ public class DefaultMenuService implements MenuService {
                 .toList();
 
         long totalCount = menuPage.getTotalElements();
-        int totalPages = menuPage.getTotalPages();
+        long totalPages = menuPage.getTotalPages();
+        boolean hasNextPage = menuPage.hasNext();
+        boolean hasPreviousPage = menuPage.hasPrevious();
+
 
         return MenuResponseDto.builder()
                 .totalCount(totalCount)
                 .totalPages(totalPages)
+                .hasNextPage(hasNextPage)
+                .hasPreviousPage(hasPreviousPage)
                 .menus(menuDtos)
                 .build();
     }

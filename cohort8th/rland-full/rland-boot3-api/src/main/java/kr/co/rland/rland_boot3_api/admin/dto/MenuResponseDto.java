@@ -13,7 +13,9 @@ import java.util.List;
 @Builder
 public class MenuResponseDto {
     private long totalCount;
-    private int totalPages;
+    private long totalPages;
+    private boolean hasNextPage;
+    private boolean hasPreviousPage;
     private List<MenuDto> menus;
 
 }

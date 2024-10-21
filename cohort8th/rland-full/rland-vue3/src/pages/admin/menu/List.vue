@@ -13,59 +13,101 @@
 </script> -->
 
 <script setup>
-import { onBeforeMount, reactive, ref } from 'vue';
+import { onBeforeMount, onBeforeUpdate, onMounted, onUpdated, reactive, ref } from 'vue';
+import axios from 'axios';
 
 // 문제 1. 어떤 api? xhr, fetch, axios
 
 // 문제 2. 어느 블록에서 호출? 라이프사이클
 
+const menus = ref([]);
+// const model = reactive({
+//     totalCount: 0,
+//     menus: []
+// });
+const totalCount = ref(0);
+const totalPages = ref(0);
+const hasPreviousPage = ref(false);
+const hasNextPage = ref(false);
+const query = ref({ k: '' });
+const pageNumbers = ref([1,2,3,4,5]);
 
-let list = reactive([
-    {korName: "아메리카노1"},
-    {korName: "카페라떼1"}
-]);
+// --- Data functions ------------------------------------------------
+const queryString = () => {
+    return `?k=${query.value.k}`;
+}
+
 // --- Life cycle functions --------------------------
 onBeforeMount(() => {
     console.log("before Mount");
+    fetchMenus();
 })
 
-// --- callback functions --------------------------
-    // function addButtonClickHandler() { //순수 static함수의 의미가 약함. 밖의 this공유불가
-    // }
+onMounted(() => {
+    console.log("Mounted");
+    // fetchMenusWithAxios();
+})
 
-let count = ref(list.length);
-let info = reactive({a:1, b:2});
+onBeforeUpdate(() => {
+    console.log("before Update");
+})
+
+onUpdated(() => {
+    console.log("Updated");
+})
+
+// --- fetch functions----------------------------------------------
+const fetchMenus = async () => {
+    const response = await fetch(`http://localhost:8080/api/v1/admin/menus${queryString()}`);
+    // console.log(response);
+    const data = await response.json();
+    // console.log(result);
+    menus.value = data.menus;
+    // module.menus = result.menus;    
+
+    totalCount.value = data.totalCount;
+    totalPages.value = data.totalPages;
+    hasPreviousPage.value = data.hasPreviousPage;
+    hasNextPage.value = data.hasNextPage;
+}
+
+const fetchMenusWithAxios = async () => {
+    const response = await axios.get("http://localhost:8080/api/v1/admin/menus");
+    menus.value = response.data.menus;
+    
+}
+
+// --- callback functions --------------------------
+// function addButtonClickHandler() { //순수 static함수의 의미가 약함. 밖의 this공유불가
+// }
+
+const searchButtonClickHandler = async (e) => {
+    console.log("search", query.value.k);
+    fetchMenus();
+}
 
 const addButtonClickHandler = (e) => {
     console.log("add");
     // 2. MVC 처리방법: 모델(문서에 바인딩된 객체)를 처리하는 방법
-    list.push({korName: "아샷추"});
-    console.log(list.length);
-    count.value = list.length;
-    // info.value.a = 30;
-    info.a = 30;
+    menus.value.push({ korName: "아샷추" });    
 
-
-    
     // 1. DOM 처리방법: 화면(문서)를 직접 처리
-//     let trTemplate = `<tbody>
-//                             <tr>
-//                                 <td>1</td>
-//                             </tr>
-//                             <tr>
-//                                 <td>2</td>
-//                             </tr>
-//                         </tbody>`;
-//     const table = document.querySelector("table");
-//     table.insertAdjacentHTML("beforeend", trTemplate);
-// }
-
+    //     let trTemplate = `<tbody>
+    //                             <tr>
+    //                                 <td>1</td>
+    //                             </tr>
+    //                             <tr>
+    //                                 <td>2</td>
+    //                             </tr>
+    //                         </tbody>`;
+    //     const table = document.querySelector("table");
+    //     table.insertAdjacentHTML("beforeend", trTemplate);
+    // }
 }
 
 const delButtonClickHandler = (e) => {
     console.log("del")
-    list.pop();
-    count.value = list.length;
+    menus.value.pop();
 }
 </script>
 
@@ -73,7 +115,7 @@ const delButtonClickHandler = (e) => {
     <main>
         <section class="">
             <header class="n-bar">
-                <h1 class="n-heading:5">제품관리 / 메뉴관리</h1> 
+                <h1 class="n-heading:5">제품관리 / 메뉴관리</h1>
                 <div class="ml:3 d:flex">
                     <a href="reg" class="n-icon n-icon:plus n-btn n-btn:rounded n-btn-size:small">추가</a>
                 </div>
@@ -93,7 +135,7 @@ const delButtonClickHandler = (e) => {
                     <div>
                         <label>
                             <span>한글명</span>
-                            <input type="text" name="q" th:value="${param.q}">
+                            <input v-model="query.k" type="text" name="q" th:value="${param.q}">
                         </label>
                     </div>
                     <div class="d:flex flex-direction:row jc:center">
@@ -110,7 +152,7 @@ const delButtonClickHandler = (e) => {
                         </label>
                     </div>
                     <div class="d:flex">
-                        <button class="n-btn n-btn-color:main">검색</button>
+                        <button class="n-btn n-btn-color:main" @click.prevent="searchButtonClickHandler">검색</button>
                         <button class="n-btn ml:1">취소</button>
                     </div>
                 </form>
@@ -121,7 +163,7 @@ const delButtonClickHandler = (e) => {
                 <header>
                     <h1 class="d:none2"><span class="n-icon n-icon:view_list n-deco n-deco-gap:2">메뉴목록</span></h1>
                     <div>
-                        <span class="ml:1 n-heading:6"><span>({{ count }})</span></span>
+                        <span class="ml:1 n-heading:6"><span>({{ totalCount }})</span></span>
                         <button class="n-btn ml:3" @click="addButtonClickHandler">추가</button>
                         <button class="n-btn ml:3" @click="delButtonClickHandler">삭제</button>
                     </div>
@@ -138,14 +180,14 @@ const delButtonClickHandler = (e) => {
                             <th class="w:3">비고</th>
                         </tr>
                     </thead>
-                    <tbody v-for="m in list" th:each="m : ${menus}">
+                    <tbody v-for="m in menus" th:each="m : ${menus}">
                         <tr class="vertical-align:middle">
                             <td th:text="${m.id}">2</td>
                             <td class="w:0 md:w:4 overflow:hidden"><img class="w:100p h:0 md:h:3 object-fit:cover"
                                     src="/image/product/americano.svg" th:src="@{/image/product/{img}(img=${m.img})}">
                             </td>
                             <td class="text-align:start n-heading-truncate text-indent:4 text-align:cetner">
-                                <a href="detail" th:href="@{detail(id=${m.id})}">{{m.korName}}</a>
+                                <a href="detail" th:href="@{detail(id=${m.id})}">{{ m.korName }}</a>
                             </td>
                             <td class="w:0 md:w:2 n-heading-truncate">
                                 <label>
@@ -229,8 +271,8 @@ const delButtonClickHandler = (e) => {
                 </table>
                 <div class="mt:4 text-align:center">
                     <ul class="n-bar">
-                        <li th:each="i : ${#numbers.sequence(1,5)}">
-                            <a class="n-btn" href="" th:href="@{list(p=${i})}" th:text="${i}">2</a>
+                        <li v-for="p in pageNumbers" :key="p">
+                            <a class="n-btn" href="">{{ p }}</a>
                         </li>
                     </ul>
                 </div>
