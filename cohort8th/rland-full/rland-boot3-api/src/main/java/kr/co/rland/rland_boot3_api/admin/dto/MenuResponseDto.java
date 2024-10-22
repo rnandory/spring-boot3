@@ -17,5 +17,5 @@ public class MenuResponseDto {
     private boolean hasNextPage;
     private boolean hasPreviousPage;
     private List<MenuDto> menus;
-
+    private List<Long> pages;
 }

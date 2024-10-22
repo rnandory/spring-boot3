@@ -13,7 +13,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service("adminMenuService")
 public class DefaultMenuService implements MenuService {
@@ -42,7 +45,18 @@ public class DefaultMenuService implements MenuService {
         long totalPages = menuPage.getTotalPages();
         boolean hasNextPage = menuPage.hasNext();
         boolean hasPreviousPage = menuPage.hasPrevious();
-
+        List<Long> pages = new ArrayList<>();
+//        let page = useRoute().query.p || 1; // 기본값 1
+//        let offset = (page - 1) % 5;
+//        startNum.value = page - offset;
+//        let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
+        page = (page == null)? 1 : page;
+        int offset = (page - 1) % 5;
+        int startNUm = page - offset;
+        pages = IntStream.range(startNUm, startNUm + 5)
+                .boxed()
+                .map(Long::valueOf)
+                .toList();
 
         return MenuResponseDto.builder()
                 .totalCount(totalCount)
@@ -50,6 +64,7 @@ public class DefaultMenuService implements MenuService {
                 .hasNextPage(hasNextPage)
                 .hasPreviousPage(hasPreviousPage)
                 .menus(menuDtos)
+                .pages(pages)
                 .build();
     }
 

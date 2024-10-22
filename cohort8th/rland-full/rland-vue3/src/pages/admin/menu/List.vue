@@ -13,39 +13,73 @@
 </script> -->
 
 <script setup>
-import { onBeforeMount, onBeforeUpdate, onMounted, onUpdated, reactive, ref } from 'vue';
+import { onBeforeMount, onBeforeUpdate, onMounted, onUpdated, reactive, ref, watch } from 'vue';
 import axios from 'axios';
+import { useRoute } from 'vue-router';
 
 // 문제 1. 어떤 api? xhr, fetch, axios
 
 // 문제 2. 어느 블록에서 호출? 라이프사이클
 
 const menus = ref([]);
+const keyword = ref([]);
 // const model = reactive({
 //     totalCount: 0,
 //     menus: []
 // });
 const totalCount = ref(0);
+const startNum = ref(0);
 const totalPages = ref(0);
 const hasPreviousPage = ref(false);
 const hasNextPage = ref(false);
-const query = ref({ k: '' });
-const pageNumbers = ref([1,2,3,4,5]);
+// const query = ref({});
+const pageNumbers = ref([1, 2, 3, 4, 5]);
 
 // --- Data functions ------------------------------------------------
 const queryString = () => {
-    return `?k=${query.value.k}`;
+    let query = useRoute().query;
+    return `?k=${query.k || ''}&p=${query.p || 1}`;
+    // return `?k=${query.value.k || ''}&p=${query.value.p || 1}`;
 }
+
+// watch(
+//     [() => query.value.p, () => pageNumbers]
+//     [(newQuery, prevQuery) => {
+//         console.log("watch", newQuery);
+//         if (newQuery < 1) {
+//             alert("없어");
+//             return;
+//         }
+//         fetchMenus();
+//     }],
+//     [(number) => {
+//         console.log(number);
+//         let page = useRoute().query.p || 1; // 기본값 1
+//         let offset = (page - 1) % 5;
+//         startNum.value = page - offset;
+//         let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
+//         pageNumbers.value = nums;
+//     }]
+// );
 
 // --- Life cycle functions --------------------------
 onBeforeMount(() => {
     console.log("before Mount");
-    fetchMenus();
 })
 
 onMounted(() => {
     console.log("Mounted");
-    // fetchMenusWithAxios();
+    // 시작, 끝페이지를 구하는 다른 방법
+    // let endNum = Math.ceil(page/5)*5
+    // let startNum = endNum - 4;
+    let page = useRoute().query.p || 1; // 기본값 1
+    let offset = (page - 1) % 5;
+    startNum.value = page - offset;
+    let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
+    pageNumbers.value = nums;
+
+    fetchMenus();
+    // fetchMenusWithAxios();    
 })
 
 onBeforeUpdate(() => {
@@ -54,6 +88,9 @@ onBeforeUpdate(() => {
 
 onUpdated(() => {
     console.log("Updated");
+    // console.log(query.value.p);
+    // query.value.p = useRoute().query.p;
+    // console.log(query.value.p);
 })
 
 // --- fetch functions----------------------------------------------
@@ -74,7 +111,7 @@ const fetchMenus = async () => {
 const fetchMenusWithAxios = async () => {
     const response = await axios.get("http://localhost:8080/api/v1/admin/menus");
     menus.value = response.data.menus;
-    
+
 }
 
 // --- callback functions --------------------------
@@ -89,7 +126,7 @@ const searchButtonClickHandler = async (e) => {
 const addButtonClickHandler = (e) => {
     console.log("add");
     // 2. MVC 처리방법: 모델(문서에 바인딩된 객체)를 처리하는 방법
-    menus.value.push({ korName: "아샷추" });    
+    menus.value.push({ korName: "아샷추" });
 
     // 1. DOM 처리방법: 화면(문서)를 직접 처리
     //     let trTemplate = `<tbody>
@@ -135,7 +172,7 @@ const delButtonClickHandler = (e) => {
                     <div>
                         <label>
                             <span>한글명</span>
-                            <input v-model="query.k" type="text" name="q" th:value="${param.q}">
+                            <input v-model="keyword" type="text" name="q" th:value="${param.q}">
                         </label>
                     </div>
                     <div class="d:flex flex-direction:row jc:center">
@@ -271,8 +308,15 @@ const delButtonClickHandler = (e) => {
                 </table>
                 <div class="mt:4 text-align:center">
                     <ul class="n-bar">
+                        <li>
+                            <RouterLink @click="pageClickHandler" class="n-btn" :to="`./list?p=${startNum - 1}`">이전</RouterLink>
+                        </li>
                         <li v-for="p in pageNumbers" :key="p">
-                            <a class="n-btn" href="">{{ p }}</a>
+                            <RouterLink @click="pageClickHandler" class="n-btn" :class="{ active: p == (useRoute().query.p || 1) }"
+                                :to="`./list?p=${p}`">{{ p }}</RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink @click="pageClickHandler" class="n-btn" :to="`./list?p=${startNum + 5}`">다음</RouterLink>
                         </li>
                     </ul>
                 </div>
