@@ -32,35 +32,44 @@ const startNum = ref(0);
 const totalPages = ref(0);
 const hasPreviousPage = ref(false);
 const hasNextPage = ref(false);
-// const query = ref({});
+const query = ref({});
 const pageNumbers = ref([1, 2, 3, 4, 5]);
 
 // --- Data functions ------------------------------------------------
 const queryString = () => {
-    let query = useRoute().query;
-    return `?k=${query.k || ''}&p=${query.p || 1}`;
-    // return `?k=${query.value.k || ''}&p=${query.value.p || 1}`;
+    // let query = useRoute().query;
+    // return `?k=${query.k || ''}&p=${query.p || 1}`;
+    return `?k=${query.value.k || ''}&p=${query.value.p || 1}`;
 }
 
-// watch(
-//     [() => query.value.p, () => pageNumbers]
-//     [(newQuery, prevQuery) => {
-//         console.log("watch", newQuery);
-//         if (newQuery < 1) {
-//             alert("없어");
-//             return;
-//         }
-//         fetchMenus();
-//     }],
-//     [(number) => {
-//         console.log(number);
-//         let page = useRoute().query.p || 1; // 기본값 1
-//         let offset = (page - 1) % 5;
-//         startNum.value = page - offset;
-//         let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
-//         pageNumbers.value = nums;
-//     }]
-// );
+const updatePageNumbers = () => {
+    let page = useRoute().query.p || 1; // 기본값 1
+    let offset = (page - 1) % 5;
+    startNum.value = page - offset;
+    let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
+    pageNumbers.value = nums;
+}
+
+watch(
+    () => query.value.p,
+    (newQuery, prevQuery) => {
+        console.log("watch", newQuery);
+        if (newQuery < 1) {
+            alert("없어");
+            return;
+        }
+        fetchMenus();
+        updatePageNumbers();
+    }
+    // [(number) => {
+    //     console.log(number);
+    //     // let page = useRoute().query.p || 1; // 기본값 1
+    //     // let offset = (page - 1) % 5;
+    //     // startNum.value = page - offset;
+    //     // let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
+    //     // pageNumbers.value = nums;
+    // }]
+);
 
 // --- Life cycle functions --------------------------
 onBeforeMount(() => {
@@ -89,8 +98,8 @@ onBeforeUpdate(() => {
 onUpdated(() => {
     console.log("Updated");
     // console.log(query.value.p);
-    // query.value.p = useRoute().query.p;
-    // console.log(query.value.p);
+    query.value.p = useRoute().query.p;
+    console.log(query.value.p);
 })
 
 // --- fetch functions----------------------------------------------
@@ -309,14 +318,14 @@ const delButtonClickHandler = (e) => {
                 <div class="mt:4 text-align:center">
                     <ul class="n-bar">
                         <li>
-                            <RouterLink @click="pageClickHandler" class="n-btn" :to="`./list?p=${startNum - 1}`">이전</RouterLink>
+                            <RouterLink class="n-btn" :to="`./list?p=${startNum - 1}`">이전</RouterLink>
                         </li>
                         <li v-for="p in pageNumbers" :key="p">
-                            <RouterLink @click="pageClickHandler" class="n-btn" :class="{ active: p == (useRoute().query.p || 1) }"
+                            <RouterLink class="n-btn" :class="{ active: p == (useRoute().query.p || 1) }"
                                 :to="`./list?p=${p}`">{{ p }}</RouterLink>
                         </li>
                         <li>
-                            <RouterLink @click="pageClickHandler" class="n-btn" :to="`./list?p=${startNum + 5}`">다음</RouterLink>
+                            <RouterLink class="n-btn" :to="`./list?p=${startNum + 5}`">다음</RouterLink>
                         </li>
                     </ul>
                 </div>

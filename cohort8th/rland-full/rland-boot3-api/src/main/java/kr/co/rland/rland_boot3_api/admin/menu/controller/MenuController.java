@@ -1,8 +1,8 @@
-package kr.co.rland.rland_boot3_api.admin.controller;
+package kr.co.rland.rland_boot3_api.admin.menu.controller;
 
-import kr.co.rland.rland_boot3_api.admin.dto.MenuDto;
-import kr.co.rland.rland_boot3_api.admin.dto.MenuResponseDto;
-import kr.co.rland.rland_boot3_api.admin.service.MenuService;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuListDto;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuResponseDto;
+import kr.co.rland.rland_boot3_api.admin.menu.service.MenuService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,26 +31,26 @@ public class MenuController {
 
     // api/v1/admin/menus/3
     @GetMapping("{id}")
-    public ResponseEntity<MenuDto> get(@PathVariable("id") Long id) {
+    public ResponseEntity<MenuListDto> get(@PathVariable("id") Long id) {
 
         return ResponseEntity.ok(menuService.getById(id));
     }
 
     // api/v1/admin/menus/create
     @PostMapping
-    public ResponseEntity<MenuDto> create(@RequestBody MenuDto menuDto) {
-        System.out.println(menuDto);
+    public ResponseEntity<MenuListDto> create(@RequestBody MenuListDto menuListDto) {
+        System.out.println(menuListDto);
 
-        return ResponseEntity.ok(menuService.create(menuDto));
+        return ResponseEntity.ok(menuService.create(menuListDto));
     }
 
     // 수정 update()
     // api/v1/admin/menus/update/3
     @PutMapping("{id}")
-    public ResponseEntity<MenuDto> update(@PathVariable("id") Long id,
-                                          @RequestBody MenuDto menuDto) {
-        menuDto.setId(id);
-        return ResponseEntity.ok(menuService.update(menuDto));
+    public ResponseEntity<MenuListDto> update(@PathVariable("id") Long id,
+                                              @RequestBody MenuListDto menuListDto) {
+        menuListDto.setId(id);
+        return ResponseEntity.ok(menuService.update(menuListDto));
     }
 
     // 삭제 delete()

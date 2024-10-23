@@ -1,10 +1,9 @@
-package kr.co.rland.rland_boot3_api.admin.service;
+package kr.co.rland.rland_boot3_api.admin.menu.service;
 
-import kr.co.rland.rland_boot3_api.admin.dto.MenuDto;
-import kr.co.rland.rland_boot3_api.admin.dto.MenuResponseDto;
-import kr.co.rland.rland_boot3_api.admin.mapper.MenuMapper;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuListDto;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuResponseDto;
+import kr.co.rland.rland_boot3_api.admin.menu.mapper.MenuMapper;
 import kr.co.rland.rland_boot3_api.entity.Menu;
-import kr.co.rland.rland_boot3_api.entity.MenuImage;
 import kr.co.rland.rland_boot3_api.repository.MenuRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -35,7 +33,7 @@ public class DefaultMenuService implements MenuService {
 //        Page<Menu> menuPage = menuRepository.findAll(pageable);
         Page<Menu> menuPage = menuRepository.findAll(korName, categoryIds, pageable);
 
-        List<MenuDto> menuDtos = menuPage
+        List<MenuListDto> menuListDtos = menuPage
                 .getContent()
                 .stream()
                 .map(MenuMapper::mapToDto)
@@ -63,26 +61,26 @@ public class DefaultMenuService implements MenuService {
                 .totalPages(totalPages)
                 .hasNextPage(hasNextPage)
                 .hasPreviousPage(hasPreviousPage)
-                .menus(menuDtos)
+                .menus(menuListDtos)
                 .pages(pages)
                 .build();
     }
 
     @Override
-    public MenuDto getById(Long id) {
+    public MenuListDto getById(Long id) {
 
         Menu menu = menuRepository.findById(id).orElseThrow();
 
-        MenuDto menuDto = MenuMapper.mapToDto(menu);
+        MenuListDto menuListDto = MenuMapper.mapToDto(menu);
 
-        return menuDto;
+        return menuListDto;
     }
 
     // POST api/v1/admin/menus/
     @Override
-    public MenuDto create(MenuDto menuDto) {
+    public MenuListDto create(MenuListDto menuListDto) {
 
-        Menu menu = menuRepository.save(MenuMapper.mapToEntity(menuDto));
+        Menu menu = menuRepository.save(MenuMapper.mapToEntity(menuListDto));
 
 //        Menu newOne = menuRepository.findById(menuDto.getId()).orElseThrow();
 
@@ -98,32 +96,32 @@ public class DefaultMenuService implements MenuService {
     // -
     @Override
     @Transactional
-    public MenuDto update(MenuDto menuDto) {
+    public MenuListDto update(MenuListDto menuListDto) {
 
-        Menu menu = menuRepository.findById(menuDto.getId()).orElseThrow();
+        Menu menu = menuRepository.findById(menuListDto.getId()).orElseThrow();
 
         // if (menuDto.getKorName());
-        if (menuDto.getKorName() != null)
-            menu.setKorName(menuDto.getKorName());
+        if (menuListDto.getKorName() != null)
+            menu.setKorName(menuListDto.getKorName());
 
-        if (menuDto.getEngName() != null)
-            menu.setEngName(menuDto.getEngName());
+        if (menuListDto.getEngName() != null)
+            menu.setEngName(menuListDto.getEngName());
 
 //        menu.setRegDate(menuDto.getRegDate()); // Entity에 @UpdateTimeStamp설정
 
-        if (menuDto.getPrice() != null)
-            menu.setPrice(menuDto.getPrice());
+        if (menuListDto.getPrice() != null)
+            menu.setPrice(menuListDto.getPrice());
 
-        if (menuDto.getRegMemberId() != null)
-            menu.setRegMemberId(menuDto.getRegMemberId());
+        if (menuListDto.getRegMemberId() != null)
+            menu.setRegMemberId(menuListDto.getRegMemberId());
 
-        if (menuDto.getImages() != null) {
-            menu.getImages().addAll(menuDto.getImages());
+        if (menuListDto.getImages() != null) {
+            menu.getImages().addAll(menuListDto.getImages());
         }
 
         menuRepository.save(menu);
 
-        Menu updatedMenu = menuRepository.findById(menuDto.getId()).orElseThrow();
+        Menu updatedMenu = menuRepository.findById(menuListDto.getId()).orElseThrow();
 
         return MenuMapper.mapToDto(updatedMenu);
     }

@@ -1,14 +1,14 @@
-package kr.co.rland.rland_boot3_api.admin.mapper;
+package kr.co.rland.rland_boot3_api.admin.menu.mapper;
 
-import kr.co.rland.rland_boot3_api.admin.dto.MenuDto;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuListDto;
 import kr.co.rland.rland_boot3_api.entity.Menu;
 
 public class MenuMapper {
-    public static MenuDto mapToDto(Menu menu) {
+    public static MenuListDto mapToDto(Menu menu) {
         if (menu == null)
             return null;
 
-        return MenuDto.builder()
+        return MenuListDto.builder()
                 .id(menu.getId())
                 .korName(menu.getKorName())
                 .engName(menu.getEngName())
@@ -20,7 +20,7 @@ public class MenuMapper {
                 .build();
     }
 
-    public static Menu mapToEntity(MenuDto dto) {
+    public static Menu mapToEntity(MenuListDto dto) {
         if (dto == null)
             return null;
 

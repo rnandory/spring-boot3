@@ -1,4 +1,4 @@
-package kr.co.rland.rland_boot3_api.admin.dto;
+package kr.co.rland.rland_boot3_api.admin.menu.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +16,6 @@ public class MenuResponseDto {
     private long totalPages;
     private boolean hasNextPage;
     private boolean hasPreviousPage;
-    private List<MenuDto> menus;
+    private List<MenuListDto> menus;
     private List<Long> pages;
 }

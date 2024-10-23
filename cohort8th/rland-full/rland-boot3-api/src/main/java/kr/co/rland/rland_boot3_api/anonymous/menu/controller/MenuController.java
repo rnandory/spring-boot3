@@ -1,11 +1,10 @@
-package kr.co.rland.rland_boot3_api.controller;
+package kr.co.rland.rland_boot3_api.anonymous.menu.controller;
 
-import kr.co.rland.rland_boot3_api.dto.MenuDto;
+import kr.co.rland.rland_boot3_api.anonymous.menu.dto.MenuDto;
 import kr.co.rland.rland_boot3_api.entity.Menu;
 import kr.co.rland.rland_boot3_api.repository.MenuRepository;
-import kr.co.rland.rland_boot3_api.service.MenuService;
+import kr.co.rland.rland_boot3_api.anonymous.menu.service.MenuService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

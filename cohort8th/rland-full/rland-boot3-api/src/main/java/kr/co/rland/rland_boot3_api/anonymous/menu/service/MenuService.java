@@ -1,4 +1,4 @@
-package kr.co.rland.rland_boot3_api.service;
+package kr.co.rland.rland_boot3_api.anonymous.menu.service;
 
 import kr.co.rland.rland_boot3_api.entity.Menu;
 

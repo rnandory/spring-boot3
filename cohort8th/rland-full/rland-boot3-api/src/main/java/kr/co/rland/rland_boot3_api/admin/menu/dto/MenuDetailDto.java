@@ -1,4 +1,4 @@
-package kr.co.rland.rland_boot3_api.admin.dto;
+package kr.co.rland.rland_boot3_api.admin.menu.dto;
 
 import kr.co.rland.rland_boot3_api.entity.MenuImage;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MenuDto {
+public class MenuDetailDto {
     private Long id;
     private String korName;
     private String engName;
