@@ -12,10 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class MenuResponseDto {
+    private List<Long> pages;
     private long totalCount;
     private long totalPages;
+    private int currentPageRowCount;
     private boolean hasNextPage;
     private boolean hasPreviousPage;
     private List<MenuListDto> menus;
-    private List<Long> pages;
 }

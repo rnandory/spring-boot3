@@ -31,7 +31,9 @@ public class DefaultMenuService implements MenuService {
         Pageable pageable = PageRequest.of(page-1, 6, sort);
 
 //        Page<Menu> menuPage = menuRepository.findAll(pageable);
-        Page<Menu> menuPage = menuRepository.findAll(korName, categoryIds, pageable);
+//        Page<Menu> menuPage = menuRepository.findAll(korName, categoryIds, pageable);
+        Page<Menu> menuPage = menuRepository.findAllMenus(korName, 0, page, 6);
+
 
         List<MenuListDto> menuListDtos = menuPage
                 .getContent()
@@ -39,15 +41,13 @@ public class DefaultMenuService implements MenuService {
                 .map(MenuMapper::mapToDto)
                 .toList();
 
+
         long totalCount = menuPage.getTotalElements();
         long totalPages = menuPage.getTotalPages();
+        int currentPageRowCount = menuPage.getNumberOfElements();
         boolean hasNextPage = menuPage.hasNext();
         boolean hasPreviousPage = menuPage.hasPrevious();
         List<Long> pages = new ArrayList<>();
-//        let page = useRoute().query.p || 1; // 기본값 1
-//        let offset = (page - 1) % 5;
-//        startNum.value = page - offset;
-//        let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
         page = (page == null)? 1 : page;
         int offset = (page - 1) % 5;
         int startNUm = page - offset;
@@ -59,6 +59,7 @@ public class DefaultMenuService implements MenuService {
         return MenuResponseDto.builder()
                 .totalCount(totalCount)
                 .totalPages(totalPages)
+                .currentPageRowCount(currentPageRowCount)
                 .hasNextPage(hasNextPage)
                 .hasPreviousPage(hasPreviousPage)
                 .menus(menuListDtos)

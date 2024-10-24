@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface MenuRepository extends JpaRepository<Menu, Long> {
+public interface MenuRepository extends JpaRepository<Menu, Long>, MenuCustomRepository {
 
 //    @Query("select m, mi.id, mi.src from Menu m left join MenuImage mi on m.id = mi.menu.id where mi.isDefault=true")
 //    List<Menu> findAllByDefaultImage(Pageable pageable);
