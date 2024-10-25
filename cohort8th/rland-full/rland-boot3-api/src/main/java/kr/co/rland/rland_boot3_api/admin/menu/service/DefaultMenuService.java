@@ -5,6 +5,7 @@ import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuResponseDto;
 import kr.co.rland.rland_boot3_api.admin.menu.mapper.MenuMapper;
 import kr.co.rland.rland_boot3_api.entity.Menu;
 import kr.co.rland.rland_boot3_api.repository.MenuRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +21,11 @@ import java.util.stream.IntStream;
 public class DefaultMenuService implements MenuService {
 
     private MenuRepository menuRepository;
+    private ModelMapper modelMapper;
 
-    public DefaultMenuService(MenuRepository menuRepository) {
+    public DefaultMenuService(MenuRepository menuRepository, ModelMapper modelMapper) {
         this.menuRepository = menuRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -33,12 +36,17 @@ public class DefaultMenuService implements MenuService {
 //        Page<Menu> menuPage = menuRepository.findAll(pageable);
 //        Page<Menu> menuPage = menuRepository.findAll(korName, categoryIds, pageable);
         Page<Menu> menuPage = menuRepository.findAllMenus(korName, 0, page, 6);
-
+        System.out.println(menuPage);
 
         List<MenuListDto> menuListDtos = menuPage
                 .getContent()
                 .stream()
-                .map(MenuMapper::mapToDto)
+                .map(menu -> {
+                    MenuListDto menuListDto = modelMapper.map(menu, MenuListDto.class);
+//                    menuListDto.setImages(menu.getImages());
+                    return menuListDto;
+                })
+//                .map(MenuMapper::mapToDto)
                 .toList();
 
 
@@ -48,7 +56,7 @@ public class DefaultMenuService implements MenuService {
         boolean hasNextPage = menuPage.hasNext();
         boolean hasPreviousPage = menuPage.hasPrevious();
         List<Long> pages = new ArrayList<>();
-        page = (page == null)? 1 : page;
+//        page = (page == null)? 1 : page;
         int offset = (page - 1) % 5;
         int startNUm = page - offset;
         pages = IntStream.range(startNUm, startNUm + 5)

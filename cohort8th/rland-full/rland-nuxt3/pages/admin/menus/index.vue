@@ -186,6 +186,9 @@ const pageClickHandler = (p) => {
 </script>
 
 <template>
+    <Head>        
+        <Title>Admin menus</title>        
+    </Head>
     <main>
         <section class="">
             <header class="n-bar">
