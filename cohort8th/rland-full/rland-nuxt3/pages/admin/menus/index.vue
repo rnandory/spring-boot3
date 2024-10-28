@@ -17,63 +17,40 @@ import { onBeforeMount, onBeforeUpdate, onMounted, onUpdated, reactive, ref, wat
 import axios from 'axios';
 import { useRoute } from 'vue-router';
 
-// 문제 1. 어떤 api? xhr, fetch, axios
-
-// 문제 2. 어느 블록에서 호출? 라이프사이클
-
 const menus = ref([]);
 const keyword = ref([]);
-// const model = reactive({
-//     totalCount: 0,
-//     menus: []
-// });
-// const startNum = ref(0);
-// const query = ref({});
 const pageNumbers = ref([]);
 
 let totalCount = 0;
 let totalPages = 0;
 let hasPreviousPage = false;
 let hasNextPage = false;
-let query = {};
+let query = ref({ ...useRoute().query });
 let startNum = 0;
 
-// --- Data functions ------------------------------------------------
-const queryString = () => {
-    if (useRoute() != undefined)
-        query.p = useRoute().query.p;
-    return `?k=${query.k || ''}&p=${query.p || 1}`;
-    // return `?k=${query.value.k || ''}&p=${query.value.p || 1}`;
-}
+const config = useRuntimeConfig();
+const { data } = useFetch(`admin/menus`, {
+    baseURL: config.public.apiBase,
+    params: query
+});
 
-// const updatePageNumbers = () => {
-//     let page = useRoute().query.p || 1; // 기본값 1
-//     let offset = (page - 1) % 5;
-//     startNum.value = page - offset;
-//     let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
-//     pageNumbers.value = nums;
-// }
+watchEffect(() => {
+    if (data.value) {
+        menus.value = data.value.menus;
+        pageNumbers.value = data.value.pages;
+        // console.log(menus.value);        
+        // console.log(pageNumbers.value);        
 
-// watch(
-//     () => query.value.p,
-//     (newQuery, prevQuery) => {
-//         console.log("watch", newQuery);
-//         if (newQuery < 1) {
-//             alert("없어");
-//             return;
-//         }
-//         fetchMenus();
-//         updatePageNumbers();
-//     }
-//     // [(number) => {
-//     //     console.log(number);
-//     //     // let page = useRoute().query.p || 1; // 기본값 1
-//     //     // let offset = (page - 1) % 5;
-//     //     // startNum.value = page - offset;
-//     //     // let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
-//     //     // pageNumbers.value = nums;
-//     // }]
-// );
+        totalCount = data.value.totalCount;
+        totalPages = data.value.totalPages;
+        hasPreviousPage = data.value.hasPreviousPage;
+        hasNextPage = data.value.hasNextPage;
+        startNum = data.value.pages[0];
+    }
+});
+
+// --- Data functions -------------------------------
+
 
 // --- Life cycle functions --------------------------
 onBeforeMount(() => {
@@ -82,17 +59,6 @@ onBeforeMount(() => {
 
 onMounted(() => {
     console.log("Mounted");
-    // 시작, 끝페이지를 구하는 다른 방법
-    // let endNum = Math.ceil(page/5)*5
-    // let startNum = endNum - 4;
-    // let page = useRoute().query.p || 1; // 기본값 1
-    // let offset = (page - 1) % 5;
-    // startNum.value = page - offset;
-    // let nums = Array.from({ length: 5 }, (_, i) => i + startNum.value);
-    // pageNumbers.value = nums;
-
-    fetchMenus();
-    // fetchMenusWithAxios();    
 })
 
 onBeforeUpdate(() => {
@@ -106,24 +72,6 @@ onUpdated(() => {
     // console.log(query.value.p);
 })
 
-// --- fetch functions----------------------------------------------
-const fetchMenus = async () => {
-    const response = await fetch(`http://localhost:8080/api/v1/admin/menus${queryString()}`);
-    // console.log(response);
-    const data = await response.json();
-    // console.log(data);
-    menus.value = data.menus;
-    // module.menus = result.menus;    
-    console.log(typeof menus.value[1].price);
-
-    totalCount = data.totalCount;
-    totalPages = data.totalPages;
-    hasPreviousPage = data.hasPreviousPage;
-    hasNextPage = data.hasNextPage;
-    pageNumbers.value = data.pages;
-    startNum = data.pages[0];
-}
-
 const fetchMenusWithAxios = async () => {
     const response = await axios.get("http://localhost:8080/api/v1/admin/menus");
     menus.value = response.data.menus;
@@ -136,7 +84,7 @@ const fetchMenusWithAxios = async () => {
 
 const searchButtonClickHandler = async (e) => {
     console.log("search", query.value.k);
-    fetchMenus();
+    // fetchMenus();
 }
 
 const addButtonClickHandler = (e) => {
@@ -186,8 +134,9 @@ const pageClickHandler = (p) => {
 </script>
 
 <template>
-    <Head>        
-        <Title>Admin menus</title>        
+
+    <Head>
+        <Title>Admin menus</title>
     </Head>
     <main>
         <section class="">
@@ -258,7 +207,7 @@ const pageClickHandler = (p) => {
                             <th class="w:3">비고</th>
                         </tr>
                     </thead>
-                    <tbody v-for="m in menus">
+                    <tbody v-for="m in data.menus">
                         <tr class="vertical-align:middle">
                             <td>{{ m.id }}</td>
                             <td class="w:0 md:w:4 overflow:hidden"><img class="w:100p h:0 md:h:3 object-fit:cover"
@@ -360,7 +309,8 @@ const pageClickHandler = (p) => {
                         </li>
                         <li>
                             <RouterLink @click="pageClickHandler(startNum + 5)" class="n-btn"
-                                :to="`./menus?p=${startNum + 5 > totalPages ? totalPages : startNum + 5}`">다음</RouterLink>
+                                :to="`./menus?p=${startNum + 5 > totalPages ? totalPages : startNum + 5}`">다음
+                            </RouterLink>
                         </li>
                     </ul>
                 </div>
