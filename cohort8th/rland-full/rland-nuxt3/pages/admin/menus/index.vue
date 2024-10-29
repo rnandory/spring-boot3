@@ -16,6 +16,7 @@
 import { onBeforeMount, onBeforeUpdate, onMounted, onUpdated, reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { useRoute } from 'vue-router';
+import Pager from '~/components/Pager.vue';
 
 const menus = ref([]);
 const keyword = ref([]);
@@ -296,24 +297,8 @@ const pageClickHandler = (p) => {
                         </tr>
                     </tbody>
                 </table>
-                <div class="mt:4 text-align:center">
-                    <ul class="n-bar">
-                        <li>
-                            <RouterLink @click="pageClickHandler(startNum - 1)" class="n-btn"
-                                :to="`./menus?p=${startNum - 1 < 1 ? 1 : startNum - 1}`">이전</RouterLink>
-                        </li>
-                        <li v-for="p in pageNumbers" :key="p">
-                            <RouterLink @click="pageClickHandler(p)" class="n-btn"
-                                :class="{ active: p == (useRoute().query.p || 1) }" :to="`./menus?p=${p}`">{{ p }}
-                            </RouterLink>
-                        </li>
-                        <li>
-                            <RouterLink @click="pageClickHandler(startNum + 5)" class="n-btn"
-                                :to="`./menus?p=${startNum + 5 > totalPages ? totalPages : startNum + 5}`">다음
-                            </RouterLink>
-                        </li>
-                    </ul>
-                </div>
+                <!-- Pager 부분 -->
+                <Pager :href :page-numbers :start-num :total-pages  @page-change="pageClickHandler"/>
             </section>
 
         </section>

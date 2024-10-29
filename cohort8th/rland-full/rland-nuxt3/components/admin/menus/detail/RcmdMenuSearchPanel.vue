@@ -1,9 +1,23 @@
 <script setup>
 
+//=== reactive variables ========================================================================
+
+const emit = defineEmits(['add', 'close']);
+
+const addMenuHandler = () => {
+    let filteredMenus = menus.value.filter(menu => menu.checked);
+    // console.log(filteredMenus);
+    emit("add", filteredMenus);
+
+    // 추천메뉴추가목록에서 추가된 메뉴는 삭제
+    // console.log(menus.value);
+    menus.value = menus.value.filter(m => !m.checked);
+};
+
 const menus = ref([
     {
         "id": 1798,
-        "korName": "올드올드",
+        "korName": "추가할 추천메뉴1",
         "engName": "oldmericano",
         "price": 3000,
         "regDate": "2024-10-27 12:55:17",
@@ -24,21 +38,26 @@ const menus = ref([
         "images": [],
         checked: false
     }]);
-
-const addMenuHandler = () => {
-    let filteredMenus = menus.value.filter(menu => menu.checked);
-    console.log(filteredMenus);
-};
+    
+    
+    //=== component variables ========================================================================
+    const props = defineProps({
+        show: {
+            type: Boolean,
+            // Required: false,
+            default: false
+        }
+    }); 
 
 </script>
 
 <template>
-    <section class="n-frame:rounded-shadow n-panel:card-list bg-color:base-2 margin-bottom:7">
+    <section v-if="show" class="n-frame:rounded-shadow n-panel:card-list bg-color:base-2 margin-bottom:7">
         <header class="d:flex">
             <h1>추천메뉴 추가 패널</h1>
             <div class="d:flex flex-grow:1">
                 <button @click.prevent="addMenuHandler" class="ml:3 n-icon n-icon:add_task n-btn n-btn:rounded n-btn-size:small">추가</button>
-                <button class="n-icon n-icon:x n-btn n-btn:rounded n-btn-size:small">추가</button>
+                <button @click.prevent="emit('close')" class="n-icon n-icon:x n-btn n-btn:rounded n-btn-size:small">닫기</button>
                 <button class="ml:auto n-icon n-icon:arrow_left n-btn n-btn:rounded n-btn-size:small">추가</button>
                 <button class="ml:2 n-icon n-icon:arrow_right n-btn n-btn:rounded n-btn-size:small">추가</button>
             </div>
