@@ -11,7 +11,9 @@
             <nav class="ml:auto">
                 <h1 class="d:none">헤더메뉴</h1>
                 <ul class="n-bar">
-                    <li><a class="n-btn" href="">대시보드</a></li>
+                    <li>
+                        <RouterLink to="/admin" class="n-btn" href="">대시보드</RouterLink>
+                    </li>
                     <li><a class="n-btn" href="">로그아웃</a></li>
                 </ul>
             </nav>

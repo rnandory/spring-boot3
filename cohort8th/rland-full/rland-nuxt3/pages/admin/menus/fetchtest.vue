@@ -1,9 +1,9 @@
 <script setup>
 const config = useRuntimeConfig();
-const { data } = useFetch(`admin/menus`, { 
+const { data } = useFetch(`admin/menus`, {
     baseURL: config.public.apiBase,
-    params: {p: 3}
- });
+    params: { p: 3 }
+});
 
 const menus = ref([]);
 const pageNumbers = ref([]);
@@ -19,6 +19,8 @@ watchEffect(() => {
 
 <template>
     <main>
-        {{ data }}
+        <!-- {{ data }} -->
+        {{ pageNumbers }}<br>
+        {{ menus }}<br>
     </main>
 </template>

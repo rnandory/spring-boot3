@@ -26,11 +26,11 @@ let totalCount = 0;
 let totalPages = 0;
 let hasPreviousPage = false;
 let hasNextPage = false;
-let query = ref({ ...useRoute().query });
+let query = { page: useRoute().query.page };
 let startNum = 0;
 
 const config = useRuntimeConfig();
-const { data } = useFetch(`admin/menus`, {
+const { data, refresh } = useFetch(`admin/menus`, {
     baseURL: config.public.apiBase,
     params: query
 });
@@ -68,15 +68,11 @@ onBeforeUpdate(() => {
 
 onUpdated(() => {
     console.log("Updated");
-    // console.log(query.value.p);
-    // query.value.p = useRoute().query.p;
-    // console.log(query.value.p);
 })
 
 const fetchMenusWithAxios = async () => {
     const response = await axios.get("http://localhost:8080/api/v1/admin/menus");
     menus.value = response.data.menus;
-
 }
 
 // --- callback functions --------------------------
@@ -115,21 +111,25 @@ const delButtonClickHandler = (e) => {
 const pageClickHandler = (p) => {
     if (p < 1) {
         alert("이전 페이지가 없습니다.");
-        query.p = 1;
-        fetchMenus();
+        query.page = p;
+        refresh();
         return;
     }
 
     if (p > totalPages) {
         alert("다음 페이지가 없습니다.");
-        query.p = totalPages;
-        fetchMenus();
+        query.page = p;
+        refresh();
         return;
     }
     // console.log(e.target);
-    query.p = p;
+
+    // if (page==null)
+    //     delete.query.page;
+
+    query.page = p;
     // console.log(query);
-    fetchMenus();
+    refresh();
 }
 
 </script>
@@ -298,7 +298,8 @@ const pageClickHandler = (p) => {
                     </tbody>
                 </table>
                 <!-- Pager 부분 -->
-                <Pager :href :page-numbers :start-num :total-pages  @page-change="pageClickHandler"/>
+                <Pager :href="'./menus'" :page-numbers="pageNumbers" :start-num="startNum" :total-pages="totalPages"
+                    @page-change="pageClickHandler" />
             </section>
 
         </section>

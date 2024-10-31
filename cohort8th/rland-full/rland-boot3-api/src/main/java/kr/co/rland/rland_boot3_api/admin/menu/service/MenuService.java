@@ -2,10 +2,12 @@ package kr.co.rland.rland_boot3_api.admin.menu.service;
 
 import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuListDto;
 import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuResponseDto;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuSearchDto;
 
 import java.util.List;
 
 public interface MenuService {
+        MenuResponseDto getList(MenuSearchDto searchDto);
         MenuResponseDto getList(Integer page, String korName, List<Long> categoryIds);
         MenuListDto getById(Long id);
         MenuListDto create(MenuListDto menuListDto);

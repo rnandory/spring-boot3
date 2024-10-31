@@ -1,4 +1,5 @@
 <template>
+
   <Head>
     <Meta charset="UTF-8" />
     <Link rel="icon" href="/favicon.ico" />
@@ -16,3 +17,6 @@
 
   </div>
 </template>
+<style>
+/* @import url("/public/css/style.css"); */
+</style>

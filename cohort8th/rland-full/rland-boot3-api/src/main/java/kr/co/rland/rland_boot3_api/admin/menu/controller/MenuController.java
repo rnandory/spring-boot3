@@ -2,6 +2,7 @@ package kr.co.rland.rland_boot3_api.admin.menu.controller;
 
 import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuListDto;
 import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuResponseDto;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuSearchDto;
 import kr.co.rland.rland_boot3_api.admin.menu.service.MenuService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,12 @@ public class MenuController {
 
     @GetMapping
     public ResponseEntity<MenuResponseDto> getList(
-            @RequestParam(name = "p", defaultValue = "1") Integer page,
-            @RequestParam(name = "k", required = false) String korName,
-            @RequestParam(name = "cid", required = false) List<Long> categoryIds
-    ) {
-
-        return ResponseEntity.ok(menuService.getList(page, korName, categoryIds));
+//            @RequestParam(name = "p", defaultValue = "1") Integer page,
+//            @RequestParam(name = "k", required = false) String korName,
+//            @RequestParam(name = "cid", required = false) List<Long> categoryIds
+            @ModelAttribute MenuSearchDto searchDto
+            ) {
+        return ResponseEntity.ok(menuService.getList(searchDto));
     }
 
     // api/v1/admin/menus/3

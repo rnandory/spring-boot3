@@ -2,6 +2,7 @@ package kr.co.rland.rland_boot3_api.admin.menu.service;
 
 import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuListDto;
 import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuResponseDto;
+import kr.co.rland.rland_boot3_api.admin.menu.dto.MenuSearchDto;
 import kr.co.rland.rland_boot3_api.admin.menu.mapper.MenuMapper;
 import kr.co.rland.rland_boot3_api.entity.Menu;
 import kr.co.rland.rland_boot3_api.repository.MenuRepository;
@@ -26,6 +27,13 @@ public class DefaultMenuService implements MenuService {
     public DefaultMenuService(MenuRepository menuRepository, ModelMapper modelMapper) {
         this.menuRepository = menuRepository;
         this.modelMapper = modelMapper;
+    }
+
+    @Override
+    public MenuResponseDto getList(MenuSearchDto searchDto) {
+        if (searchDto.getPage() == null)
+            searchDto.setPage(1);
+        return getList(searchDto.getPage(), searchDto.getKeyword(), searchDto.getCategoryId());
     }
 
     @Override

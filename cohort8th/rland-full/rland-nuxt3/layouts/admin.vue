@@ -6,18 +6,18 @@ import AdminHeader from '~/components/admin/AdminHeader.vue';
 
 </script>
 
-<template>   
+<template>
     <div class="n-layout n-aside-size:full1 n-aside-float1 n-aside-pos:right1">
         <!--header 부분-->
-        <AdminHeader/>
+        <AdminHeader />
         <div class="xl:w:xlarge">
             <!--aside 부분-->
-            <AdminAside/>
+            <AdminAside />
             <!--main 부분-->
             <!-- <router-view/> -->
-             <slot />
+            <slot />
         </div>
         <!--footer 부분-->
-        <AdminFooter/>
-    </div>    
+        <AdminFooter />
+    </div>
 </template>
