@@ -5,6 +5,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,10 @@ public class TestController {
     public String hi(String name, HttpServletRequest request, HttpServletResponse response) {
 
         Cookie cookie = new Cookie("name", name);
+        cookie.setPath("/");
+        cookie.setMaxAge(60*60*24);
+        cookie.setHttpOnly(true);
+        cookie.setDomain("localhost");
         HttpSession session = request.getSession();
         session.setAttribute("name", name);
 
@@ -34,12 +39,22 @@ public class TestController {
     }
 
     @GetMapping("say")
-    public String say(HttpServletRequest request) {
+    public String say(HttpServletRequest request, @CookieValue("name") String cookieValue) {
 
         HttpSession session = request.getSession();
 
         ServletContext servletContext = request.getServletContext();
 
-        return "Hi " + session.getAttribute("name") + ", " + servletContext.getAttribute("name");
+//        Cookie[] cookies = request.getCookies();
+//        String cookieValue = null;
+//        for (Cookie cookie : cookies) {
+//            if (cookie.getName().equals("name")) {
+//                cookieValue = cookie.getValue();
+//            }
+//        }
+
+        return "Hi " + session.getAttribute("name")
+                + ", application: " + servletContext.getAttribute("name")
+                + ", cookie: " + cookieValue;
     }
 }
