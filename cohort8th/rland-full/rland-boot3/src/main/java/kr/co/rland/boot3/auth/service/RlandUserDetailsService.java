@@ -27,7 +27,9 @@ public class RlandUserDetailsService implements UserDetailsService {
         Member member = memberRepository.findByUsername(username);
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         // authorities는 원래 db에서 가져와야함
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        if (username.equals("newlec"))
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_MEMBER"));
         return RlandUserDetails.builder()
                 .id(member.getId())
                 .username(member.getUsername())

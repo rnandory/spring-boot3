@@ -102,7 +102,7 @@ public class MenuController {
             @AuthenticationPrincipal RlandUserDetails userDetails // 스프링이 사용자 정보를 담는 그릇
     ){
 //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//        String username = userDetails.getUsername();
+//        String username = principal.getUsername();
 //        return username;
 
         return userDetails.getId() + ", " + userDetails.getEmail();

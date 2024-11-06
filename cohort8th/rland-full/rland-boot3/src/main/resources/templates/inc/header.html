@@ -19,15 +19,17 @@
             <h1 class="d:none">상단메뉴</h1>
             <ul>
                 <li><a class="n-icon n-icon:home n-icon-color:base-1" href="/">홈</a></li>
-                <li><a class="n-icon n-icon:dashboard n-icon-color:base-1" href="/admin/index">대시보드</a></li>
-                <li><a class="n-icon n-icon:user n-icon-color:base-1" href="/">로그인</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a class="n-icon n-icon:dashboard n-icon-color:base-1" href="/admin/index">대시보드</a></li>
+                <li sec:authorize="isAnonymous()"><a class="n-icon n-icon:user n-icon-color:base-1" href="/">로그인</a></li>
             </ul>
         </nav>
-        <div sec:isAuthenticated() >test</div>
-        <section>
+        <section sec:authorize="isAuthenticated()">
             <h1 class="d:none">로그아웃 폼</h1>
             <form>
                 <input type="hidden">
+                <span sec:authentication="name">이 텍스트가 나오면 망한거임</span>
+                <span sec:authentication="principal.email">이 텍스트가 나오면 망한거임</span>
+                <span th:text="${#authentication.principal.email}">이 텍스트가 나오면 망한거임</span>
                 <button class="n-icon n-icon:sign_out n-icon-color:base-1">로그아웃</button>
             </form>
         </section>
