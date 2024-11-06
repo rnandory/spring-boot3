@@ -1,3 +1,14 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<!--<sec:authenticate> &lt;!&ndash; 사용자 정보 가져오기 &ndash;&gt;
+
+</sec:authenticate>
+
+<sec:athorize></sec:athorize> &lt;!&ndash; 사용자의 권한 확인 : 영역만들 때.&ndash;&gt;-->
+
 <header class="header">
     <h1><a href="/">Rland</a></h1>
     <div class="top-mobile-menu">
@@ -12,6 +23,7 @@
                 <li><a class="n-icon n-icon:user n-icon-color:base-1" href="/">로그인</a></li>
             </ul>
         </nav>
+        <div sec:isAuthenticated() >test</div>
         <section>
             <h1 class="d:none">로그아웃 폼</h1>
             <form>
@@ -21,3 +33,5 @@
         </section>
     </div>
 </header>
+
+</html>

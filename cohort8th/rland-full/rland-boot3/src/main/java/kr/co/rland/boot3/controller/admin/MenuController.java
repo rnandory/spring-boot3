@@ -1,5 +1,6 @@
 package kr.co.rland.boot3.controller.admin;
 
+import kr.co.rland.boot3.auth.entity.RlandUserDetails;
 import kr.co.rland.boot3.dto.MenuRegDto;
 import kr.co.rland.boot3.entity.Category;
 import kr.co.rland.boot3.entity.Menu;
@@ -14,12 +15,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -96,8 +97,16 @@ public class MenuController {
     }
 
     @GetMapping("reg")
-    public String reg(){
-        return "admin/menu/reg";
+    @ResponseBody
+    public String reg(
+            @AuthenticationPrincipal RlandUserDetails userDetails // 스프링이 사용자 정보를 담는 그릇
+    ){
+//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        String username = userDetails.getUsername();
+//        return username;
+
+        return userDetails.getId() + ", " + userDetails.getEmail();
+//        return "admin/menu/reg";
     }
 
     @PostMapping("reg")
