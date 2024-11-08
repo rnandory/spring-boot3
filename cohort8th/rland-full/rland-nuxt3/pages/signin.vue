@@ -10,9 +10,24 @@ const password = ref("");
 const localLoginHandler = async () => {
     console.log('localLoginHandler called');
     // 서버로 인증정보를 제공하면서 인증 요청 후 리소스 서버에 access_token을 가지고 재요청
-    // const config = useRuntimeConfig();
-    // useFetch(`${config.public.apiBase}auth/login`)
-    let test = await useDataFetch("menus",);
+
+    /*
+    이 방식으로 하면 SSR에서 fetch가 이루어짐 + 매번 config으로 공통url얻어오고 쿼리스트링 url작성 
+    => composable로 useDataFetch
+    const config = useRuntimeConfig();    
+    useFetch(`${config.public.apiBase}auth/login`);
+    */
+
+    let test = await useDataFetch("auth/signin", {
+        method: "POST",
+        header: {
+            "Content-type": "application/json"
+        },
+        body: {
+            username: username.value,
+            password: password.value
+        }
+    });
     console.log(test);
 
     // 우리는 인증서버 + 리소스서버이기 때문에 id_token을 바로 받아서 처리

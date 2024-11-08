@@ -7,3 +7,7 @@ spring:
 server:
   servlet:
     context-path: /api/v1
+
+rland:
+  jwt:
+    secret: "K1QrJ/dVW7Y4onVg8NaPkLHkRamre+HNnsJXkT/68Grdgjw5WEOR2wuSMGKPnfIKPPNoJKbSNQsCVsWr5Jm0uw=="
