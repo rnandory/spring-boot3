@@ -29,9 +29,7 @@ let hasNextPage = false;
 let query = { page: useRoute().query.page };
 let startNum = 0;
 
-const config = useRuntimeConfig();
-const { data, refresh } = useFetch(`admin/menus`, {
-    baseURL: config.public.apiBase,
+const { data, refresh } = useAuthFetch(`admin/menus`, {
     params: query
 });
 
@@ -39,8 +37,8 @@ watchEffect(() => {
     if (data.value) {
         menus.value = data.value.menus;
         pageNumbers.value = data.value.pages;
-        // console.log(menus.value);        
-        // console.log(pageNumbers.value);        
+        // console.log(menus.value);
+        // console.log(pageNumbers.value);
 
         totalCount = data.value.totalCount;
         totalPages = data.value.totalPages;
@@ -208,7 +206,7 @@ const pageClickHandler = (p) => {
                             <th class="w:3">비고</th>
                         </tr>
                     </thead>
-                    <tbody v-for="m in data.menus">
+                    <tbody v-for="m in menus">
                         <tr class="vertical-align:middle">
                             <td>{{ m.id }}</td>
                             <td class="w:0 md:w:4 overflow:hidden"><img class="w:100p h:0 md:h:3 object-fit:cover"

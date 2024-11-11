@@ -3,6 +3,13 @@ export function useDataFetch(url, options = {}) {
   // SSR useFetch()
   // CSR $fetch()
 
+  const { token } = useUserDetails();
+
+  options.header = {
+    ...options.headers,
+    ...(token.value && { Authorization: `Bearer ${token.value}` }),
+  };
+
   const config = useRuntimeConfig();
   return $fetch(`${config.public.apiBase}${url}`, options);
 }

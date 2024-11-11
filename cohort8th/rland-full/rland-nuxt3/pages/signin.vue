@@ -1,5 +1,8 @@
 <script setup>
+import { jwtDecode } from 'jwt-decode';
 import { decodeCredential, googleTokenLogin } from 'vue3-google-login';
+
+const userDetails = useUserDetails();
 
 // === reactive variables ===============================================================================
 const username = ref("");
@@ -18,9 +21,10 @@ const localLoginHandler = async () => {
     useFetch(`${config.public.apiBase}auth/login`);
     */
 
-    let test = await useDataFetch("auth/signin", {
+    // 우리는 인증서버 + 리소스서버이기 때문에 id_token을 바로 받아서 처리
+    let response = await useDataFetch("auth/signin", {
         method: "POST",
-        header: {
+        headers: {
             "Content-type": "application/json"
         },
         body: {
@@ -28,11 +32,22 @@ const localLoginHandler = async () => {
             password: password.value
         }
     });
-    console.log(test);
+    let userInfo = jwtDecode(response.token);
+    console.log(userInfo);
 
-    // 우리는 인증서버 + 리소스서버이기 때문에 id_token을 바로 받아서 처리
     // 앞에서 받은 사용자정보를 이용해서 상태저장
+    userDetails.setAuthentication({
+        id: userInfo.id,
+        username: userInfo.username,
+        email: userInfo.email,
+        roles: userInfo.roles.map(role => role.authority),
+        token: response.token
+    });
+
     // 사용자에 따른 페이지로 이동
+    const returnURL = useRoute().query.returnURL || "/";
+
+    return navigateTo(returnURL);
 }
 
 const callback = (response) => {
@@ -44,9 +59,9 @@ const callback = (response) => {
 
     let userDetails = useUserDetails();
 
-    userDetails.login({
+    userDetails.setAuthentication({
         id: 1,
-        userName: user.name,
+        username: user.name,
         email: user.email,
         roles: ['member', 'admin']
     });

@@ -1,31 +1,83 @@
 package kr.co.rland.rland_boot3_api.auth.util;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import kr.co.rland.rland_boot3_api.auth.entity.RlandUserDetails;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
-import java.util.List;
+import java.util.*;
 
+@Component
 public class JwtUtil {
 
-    private final Key secretKdy;
+    private final Key secretKey;
 
-    public JwtUtil(@Value("rland.jwt.secret") String secret) {
+    public JwtUtil(@Value("${rland.jwt.secret}") String secret) {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
-        this.secretKdy = Keys.hmacShaKeyFor(keyBytes);
+        this.secretKey = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public boolean validateToken(String token) {
-        return true;
+        try {
+            extractAllClaims(token); // 유효성 검사를 위해 클레임을 추출
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
     }
 
     public String extractUsername(String token) {
-        return null;
+        return extractAllClaims(token).getSubject();
+    }
+
+    public String extractEmail(String token) {
+        return extractAllClaims(token).get("email", String.class);
     }
 
     public List<String> extractRoles(String token) {
-        return null;
+        List<Map<String, String>> roles = extractAllClaims(token).get("roles", List.class);
+
+        List<String> roleNames = new ArrayList<>();
+        for(Map<String, String> role : roles) {
+            System.out.println(role);
+            roleNames.add(role.get("authority"));
+            System.out.println(role.get("authority"));
+        }
+        return roleNames;
+    }
+
+    public Long extractId(String token) {
+        return extractAllClaims(token).get("id", Long.class);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public String generateToken(RlandUserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("id", userDetails.getId());
+        claims.put("username", userDetails.getUsername());
+        claims.put("email", userDetails.getEmail());
+        claims.put("roles", userDetails.getAuthorities());
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
+                .signWith(secretKey, SignatureAlgorithm.HS512)
+                .compact();
+
     }
 }
